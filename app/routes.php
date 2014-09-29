@@ -1,7 +1,5 @@
 <?php
-
 // app/routes.php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,14 +11,14 @@
 |
 */
 
+
 // Bind route parameters.
-Route::group(array('before' => 'auth'), function()
-{
+Route::group(array('before' => 'auth'), function () {
 	Route::get('/', 'HomeController@showWelcome');
 	Route::get('/index', 'HomeController@showWelcome');
 });
 
+
 Route::get('login', 'LoginController@showLogin');
 Route::post('authenticate', 'LoginController@authenticateUser');
 Route::get('logout', 'LoginController@logoutUser');
-
