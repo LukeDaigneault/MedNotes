@@ -14,6 +14,12 @@ class LoginController extends \BaseController {
 		if (Auth::check()) return Redirect::to('/');
 		return View::make('login.create');
 	}
+	
+	public function showHome()
+	{
+
+		return View::make('index');
+	}
 
 
 	/**

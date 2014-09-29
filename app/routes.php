@@ -14,8 +14,8 @@
 
 // Bind route parameters.
 Route::group(array('before' => 'auth'), function () {
-	Route::get('/', 'HomeController@showWelcome');
-	Route::get('/index', 'HomeController@showWelcome');
+	Route::get('/', 'LoginController@showHome');
+	Route::get('/index', 'LoginController@showHome');
 });
 
 
