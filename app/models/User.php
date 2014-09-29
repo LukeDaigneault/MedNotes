@@ -1,6 +1,7 @@
 <?php
+use Illuminate\Auth\UserInterface;
 
-class User extends Eloquent {
+class User extends Eloquent implements UserInterface {
 
 	protected $table = 'users';
 	public $timestamps = true;
