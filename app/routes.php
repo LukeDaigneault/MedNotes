@@ -14,13 +14,13 @@
 */
 
 // Bind route parameters.
+Route::group(array('before' => 'auth'), function()
+{
+	Route::get('/', 'HomeController@showWelcome');
+	Route::get('/index', 'HomeController@showWelcome');
+});
 
-Route::get('/', 'HomeController@showWelcome')->before('auth');
-Route::get('/index', 'HomeController@showWelcome')->before('auth');
 Route::get('login', 'LoginController@showLogin');
 Route::post('authenticate', 'LoginController@authenticateUser');
 Route::get('logout', 'LoginController@logoutUser');
-
-//Just a test
-
 
