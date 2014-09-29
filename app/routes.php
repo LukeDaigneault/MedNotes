@@ -21,6 +21,6 @@ Route::get('login', 'LoginController@showLogin');
 Route::post('authenticate', 'LoginController@authenticateUser');
 Route::get('logout', 'LoginController@logoutUser');
 
-
+//Just a test
 
 
