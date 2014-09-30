@@ -35,12 +35,12 @@
 	<div class="row">
 	{{ Form::open(array('route' => 'create.patient', 'method' => 'POST')) }}
 		<div class="form-group">
-		{{ Form::label('firstName', 'First Name') }}
-		{{ Form::text('firstName', '', ['class' => 'form-control']) }}
-		</div>
-		<div class="form-group">
 		{{ Form::label('lastName', 'Last Name') }}
 		{{ Form::text('lastName', '', ['class' => 'form-control']) }}
+		</div>
+		<div class="form-group">
+		{{ Form::label('firstName', 'First Name') }}
+		{{ Form::text('firstName', '', ['class' => 'form-control']) }}
 		</div>
 		<div class="form-group">
 		{{ Form::label('address', 'Address') }}
