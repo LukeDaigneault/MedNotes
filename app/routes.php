@@ -12,10 +12,13 @@
 */
 
 
+
 // Bind route parameters.
 Route::group(array('before' => 'auth'), function () {
 	Route::get('/', 'LoginController@showHome');
 	Route::get('/index', 'LoginController@showHome');
+	Route::get('/createPatient', ['as' => 'new.patient', 'uses' => 'UserController@show']);
+	Route::post('/createPatient', ['as' => 'create.patient', 'uses' => 'UserController@show']);
 });
 
 

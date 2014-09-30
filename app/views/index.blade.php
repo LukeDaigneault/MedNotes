@@ -8,7 +8,7 @@
 <div class="row">	
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<a href="/" class="btn btn-primary">Create New Patient</a>
+			<a href="createPatient" class="btn btn-primary">Create New Patient</a>
 		</div>
 	</div>
 </div>

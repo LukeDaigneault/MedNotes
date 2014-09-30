@@ -1,24 +1,13 @@
 <?php
 
-class LoginController extends \BaseController {
+class UserController extends \BaseController {
 
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function showLogin()
-	{
-
-		if (Auth::check()) return Redirect::to('/');
-		return View::make('login.create');
-	}
 	
-	public function showHome()
+	public function show()
 	{
 
-		return View::make('index');
+		return View::make('createPatient');
 	}
 
 
@@ -27,7 +16,7 @@ class LoginController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function authenticateUser()
+	public function storeUser()
 	{
 		if (Auth::attempt(Input::only('email', 'password'))){
 		
@@ -37,19 +26,6 @@ class LoginController extends \BaseController {
 		return Redirect::back()->withInput();
 	}
 
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function logoutUser()
-	{
-		Auth::logout();
-		return Redirect::to('login');
-	}
 
 
 }
