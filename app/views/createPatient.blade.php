@@ -17,6 +17,14 @@
 		{{ Form::text('lastName', '', ['class' => 'form-control']) }}
 		</div>
 		<div class="form-group">
+		{{ Form::label('homePhone', 'Home Phone Number') }}
+		{{ Form::text('homePhone', '', ['class' => 'form-control']) }}
+		</div>
+		<div class="form-group">
+		{{ Form::label('mobilePhone', 'Mobile Phone Number') }}
+		{{ Form::text('mobilePhone', '', ['class' => 'form-control']) }}
+		</div>
+		<div class="form-group">
 		{{ Form::label('address', 'Address') }}
 		{{ Form::text('address', '', ['class' => 'form-control']) }}
 		</div>
