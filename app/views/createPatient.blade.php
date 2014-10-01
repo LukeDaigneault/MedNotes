@@ -2,7 +2,7 @@
 
 @section('head')
 <link href="{{ asset('css/createpatient.css') }}" rel="stylesheet">
-<link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
+<link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
 
 @stop
 @section('content')
