@@ -1,6 +1,6 @@
 <?php
 
-class LoginController extends \BaseController {
+class AdminController extends \BaseController {
 
 
 	/**

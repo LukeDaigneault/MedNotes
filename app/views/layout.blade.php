@@ -9,7 +9,7 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
-   
+	@yield('head')
 	</head>
 	<body>
 		
@@ -22,7 +22,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/">Med Notes</a>				<
+					<a class="navbar-brand" href="/">Med Notes</a>				
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
@@ -61,7 +61,8 @@
 		 <!-- Bootstrap core JavaScript
 		 ================================================== -->
 		 <!-- Placed at the end of the document so the pages load faster -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		 <script src="//code.jquery.com/jquery-1.11.1.js"></script>
 		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+		@yield('scripts')
 	</body>
 </html>
