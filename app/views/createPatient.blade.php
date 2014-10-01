@@ -2,7 +2,8 @@
 
 @section('head')
 <link href="{{ asset('css/createpatient.css') }}" rel="stylesheet">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+<link href="{{ asset('css/jquery-ui.css') }}" rel="stylesheet">
+
 @stop
 @section('content')
 
@@ -29,11 +30,11 @@
 			{{ Form::open(array('route' => 'create.patient', 'method' => 'POST')) }}
 				<div class="form-group">
 				{{ Form::label('firstName', 'First Name') }}
-				{{ Form::text('firstName', '', ['class' => 'form-control', 'required' => "required"]) }}
+				{{ Form::text('firstName', '', ['class' => 'form-control', 'required' => 'required', ]) }}
 				</div>
 				<div class="form-group">
 				{{ Form::label('lastName', 'Last Name') }}
-				{{ Form::text('lastName', '', ['class' => 'form-control']) }}
+				{{ Form::text('lastName', '', ['class' => 'form-control', 'required' => 'required']) }}
 				</div>
 				<div class="form-group">
 				{{ Form::label('homePhone', 'Home Phone Number') }}
@@ -51,20 +52,59 @@
 				</div>
 				<div class="form-group">
 				{{ Form::label('dob', 'Date Of Birth') }}
-				{{ Form::text('dob', '', array('class' => 'form-control', 'id' => "datepicker")) }}
+				{{ Form::text('dob', '', ['class' => 'form-control', 'required' => 'required', 'id' => 'datepicker']) }}
 				</div>
-				<div class="checkbox">
-					<label for="consentform">
-						<input type="checkbox" name="consentform" /> Consent Given?
-					</label>
+				<div class="form-group">
+				{{ Form::label('consentform', 'Consent Given?') }}
+				{{ Form::checkbox('consentform', 'value') }}
 				</div>
 			</div>
 			<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
 		</div>
 		<div class="row setup-content" id="step-2">
-		<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+			<div class="col-md-6">
+				<div class="form-group">
+					{{ Form::label('social', 'Social') }}
+					{{ Form::textarea('social', '', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
+				</div>
+				<div class="form-group">
+					{{ Form::label('drug', 'Drug') }}
+					{{ Form::textarea('drug', '', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					{{ Form::label('conditions', 'Conditions') }}
+					{{ Form::textarea('conditions', '', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
+				</div>
+				<div class="form-group">
+					{{ Form::label('details', 'Details') }}
+					{{ Form::textarea('details', '', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
+				</div>
+			</div>		
+			<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
 		</div>
 		<div class="row setup-content" id="step-3">
+			<div class="col-md-6">
+				<div class="form-group">
+				{{ Form::label('doctorsname', 'Doctors Name') }}
+				{{ Form::text('doctorsname', '', ['class' => 'form-control']) }}
+				</div>
+				<div class="form-group">
+				{{ Form::label('doctorsphoneNumber', 'Doctors Phone Number') }}
+				{{ Form::text('doctorsphoneNumber', '', ['class' => 'form-control']) }}
+				</div>
+				<div class="form-group">
+				{{ Form::label('doctorsaddress', 'Doctors Address') }}
+				{{ Form::text('doctorsaddress', '', ['class' => 'form-control']) }}
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					{{ Form::label('condition', 'Condition') }}
+					{{ Form::textarea('condition', '', ['class' => 'form-control', 'style' => 'resize:vertical', 'required' => 'required']) }}
+				</div>
+			</div>
 				{{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
 				<a href="/" class="btn btn-link">Cancel</a>
 				{{ Form::close() }}
@@ -73,9 +113,9 @@
 @stop
 
 @section('scripts')
-<script src="{{ asset('js/createpatient.js') }}"></script>
-<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 
+<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('js/createpatient.js') }}"></script>
   <script>
   $(function() {
     $( "#datepicker" ).datepicker({ dateFormat: "dd/mm/yy" });
