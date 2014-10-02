@@ -11,7 +11,7 @@ class Patient extends Eloquent {
 		return $this->hasOne('Doctor');
 	}
 
-	public function conditions()
+	public function complaints()
 	{
 		return $this->hasMany('Condition');
 	}

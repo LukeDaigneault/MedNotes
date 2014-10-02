@@ -46,6 +46,10 @@
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
+				{{ Form::label('email', 'Email Address') }}
+				{{ Form::text('email', '', ['class' => 'form-control']) }}
+				</div>
+				<div class="form-group">
 				{{ Form::label('address', 'Address') }}
 				{{ Form::text('address', '', ['class' => 'form-control']) }}
 				</div>

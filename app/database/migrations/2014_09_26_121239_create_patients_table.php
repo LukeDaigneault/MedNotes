@@ -17,7 +17,6 @@ class CreatePatientsTable extends Migration {
 			$table->string('mobilePhone', 20)->nullable();;
 			$table->string('email', 200)->nullable();;
 			$table->date('dob');
-			$table->string('consentform', 100)->nullable();
 			$table->integer('user_id')->unsigned();
 			$table->integer('doctor_id')->unsigned()->nullable();
 			$table->integer('history_id')->unsigned()->nullable();
