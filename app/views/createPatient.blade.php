@@ -1,7 +1,6 @@
 @extends('layout')
 
 @section('head')
-<link href="{{ asset('css/createpatient.css') }}" rel="stylesheet">
 <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
 
 @stop
@@ -54,10 +53,6 @@
 				{{ Form::label('dob', 'Date Of Birth') }}
 				{{ Form::text('dob', '', ['class' => 'form-control', 'required' => 'required', 'id' => 'datepicker']) }}
 				</div>
-				<div class="form-group">
-				{{ Form::label('consentform', 'Consent Given?') }}
-				{{ Form::checkbox('consentform', 'value') }}
-				</div>
 			</div>
 			<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
 		</div>
@@ -85,6 +80,7 @@
 			<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
 		</div>
 		<div class="row setup-content" id="step-3">
+		
 			<div class="col-md-6">
 				<div class="form-group">
 				{{ Form::label('doctorsname', 'Doctors Name') }}
@@ -98,16 +94,15 @@
 				{{ Form::label('doctorsaddress', 'Doctors Address') }}
 				{{ Form::text('doctorsaddress', '', ['class' => 'form-control']) }}
 				</div>
-			</div>
-			<div class="col-md-6">
 				<div class="form-group">
-					{{ Form::label('condition', 'Condition') }}
-					{{ Form::textarea('condition', '', ['class' => 'form-control', 'style' => 'resize:vertical', 'required' => 'required']) }}
-				</div>
-			</div>
 				{{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
 				<a href="/" class="btn btn-link">Cancel</a>
 				{{ Form::close() }}
+				</div>
+			</div>
+			<div class="col-md-6">
+			</div>
+				
 		</div>
 </div>	
 @stop
@@ -118,7 +113,7 @@
 <script src="{{ asset('js/createpatient.js') }}"></script>
   <script>
   $(function() {
-    $( "#datepicker" ).datepicker({ dateFormat: "dd/mm/yy" });
+    $( "#datepicker" ).datepicker({ dateFormat: "dd/mm/yy", changeYear: true, changeMonth: true, yearRange: "-100:-0", minDate: "-100Y", maxDate: "+0D" });
   });
   </script>
 @stop
