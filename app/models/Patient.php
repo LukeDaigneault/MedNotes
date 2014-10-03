@@ -4,7 +4,15 @@ class Patient extends Eloquent {
 
 	protected $table = 'patients';
 	public $timestamps = true;
-	protected $fillable = array('doctor_id', 'history_id');
+	
+	protected $rules =[
+	'firstName' => 'required|alpha',
+	'lastName' => 'required|alpha',
+	'homePhone' => 'numeric|required_without:mobilePhone',
+	'mobilePhone' => 'numeric|required_without:homePhone',
+	'email' => 'required|email|unique:patients',
+	'dob' => 'date_format:d/m/Y'
+	];	
 
 	public function doctor()
 	{
