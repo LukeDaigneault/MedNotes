@@ -9,9 +9,9 @@
 <h2 class="sub-header">Create Patient</h2>
 <div class="container">
 	@if (!($errors->isEmpty()))
-	<div class="row bg-danger">
+	<div class="row alert alert-warning">
 		@foreach($errors->all() as $error)
-		<h4>{{ $error}}</h4>
+		<h4>{{ $error }}</h4>
 		@endforeach
 	</div>
 	@endif
@@ -20,15 +20,15 @@
 		<div class="stepwizard-row setup-panel">
 			<div class="stepwizard-step">
 				<a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
-				<p>Details</p>
+				<p>Patient Details</p>
 			</div>
 			<div class="stepwizard-step">
 				<a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-				<p>History</p>
+				<p>Patient History</p>
 			</div>
 			<div class="stepwizard-step">
 				<a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
-				<p>Condition</p>
+				<p>Referral Details</p>
 			</div>
 		</div>
 	</div>

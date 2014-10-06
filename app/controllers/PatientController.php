@@ -18,7 +18,7 @@ class PatientController extends \BaseController {
     }
 
 	
-	public function show()
+	public function showCreate()
 	{
 
 		return View::make('createPatient');
@@ -30,7 +30,7 @@ class PatientController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function storePatient()
+	public function handleCreate()
 	{
 		if( ! $this->patient->isValid(Input::all()))
 		{
@@ -53,9 +53,23 @@ class PatientController extends \BaseController {
 		
   		$patient->save();
 
-    	return Redirect::action('index');		
+    	return Redirect::route('index');		
 		
-		//return Redirect::back()->withInput();
+	}
+	
+	public function showDelete($patientID)
+    {
+        // Show delete confirmation page.
+		$patient = Patient::find($patientID);
+        return View::make('deletePatient', compact('patient'));
+    }
+	
+	public function handleDelete()
+	{
+		$patient = Patient::findOrFail(Input::get('patient'));
+		$patient->delete();
+
+		return Redirect::route('index');	
 	}
 
 

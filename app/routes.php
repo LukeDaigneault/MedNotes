@@ -17,8 +17,12 @@
 Route::group(array('before' => 'auth'), function () {
 	Route::get('/', 'PatientController@index');
 	Route::get('index', ['as' => 'index', 'uses' => 'PatientController@index']);
-	Route::get('createPatient', ['as' => 'new.patient', 'uses' => 'PatientController@show']);
-	Route::post('createPatient', ['as' => 'create.patient', 'uses' => 'PatientController@storePatient']);
+	// Routes to create patients
+	Route::get('createPatient', ['as' => 'new.patient', 'uses' => 'PatientController@showCreate']);
+	Route::post('createPatient', ['as' => 'create.patient', 'uses' => 'PatientController@handleCreate']);
+	// Routes to delete patients
+	Route::get('deletePatient/{patient}', ['as' => 'delete.patient', 'uses' => 'PatientController@showDelete']);
+	Route::post('deletePatient/{patient}', ['as' => 'delete.patient', 'uses' => 'PatientController@handleDelete']);
 });
 
 

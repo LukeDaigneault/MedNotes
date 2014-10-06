@@ -22,7 +22,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/">Med Notes</a>				
+					<a class="navbar-brand" href="index">Med Notes</a>				
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
@@ -40,7 +40,7 @@
 			<div class="row">
 				<div class="col-sm-3 col-md-2 sidebar">
 					<ul class="nav nav-sidebar">
-						<li class="active"><a href="#">Overview</a></li>
+						<li class="active"><a href="index">Patient List</a></li>
 						<li><a href="#">Reports</a></li>
 						<li><a href="#">Index</a></li>
 					</ul>

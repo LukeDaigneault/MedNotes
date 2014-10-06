@@ -14,7 +14,8 @@
                     <th>Name</th>
                     <th>DOB</th>
 					<th>Address</th>
-                    <th>Actions</th>
+					<th>Email</th>
+					<th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,8 +24,11 @@
                     <td>{{ $patient->lastName }}, {{ $patient->firstName }}</td>
                     <td>{{ date("d/m/Y", strtotime($patient->dob)) }}</td>
 					<td>{{ $patient->address }}</td>
+					<td>{{ $patient->email }}</td>
                     <td>
-                    <a href="/" class="btn btn-info">View
+						<a href="/" class="btn btn-success">Treat</a>
+						<a href="/" class="btn btn-info">Edit</a>
+						<a href="{{ route('delete.patient', $patient->id) }}" class="btn btn-danger">Delete</a>
 					</td>
                 </tr>
                 @endforeach
@@ -32,10 +36,8 @@
 		</table>
 		@endif
 		
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<a href="{{ action('PatientController@show') }}" class="btn btn-primary">Create New Patient</a>
-			</div>
+		<div class="row">
+					<a href="{{ route('create.patient') }}" class="btn btn-primary">Create New Patient</a>
 		</div>
 	</div>
 
