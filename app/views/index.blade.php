@@ -3,11 +3,12 @@
 @section('content')
 
  <h2 class="sub-header">Patient Index</h2>
+	<div class="row">
     @if ($patients->isEmpty())
         <p>There are no patients! :(</p>
     @else
 	
-	<div class="row">
+	
 		<table class="table table-striped">
             <thead>
                 <tr>
@@ -36,9 +37,7 @@
 		</table>
 		@endif
 		
-		<div class="row">
-					<a href="{{ route('create.patient') }}" class="btn btn-primary">Create New Patient</a>
-		</div>
+		<a href="{{ route('create.patient') }}" class="btn btn-primary btn-lg">Create New Patient</a>
 	</div>
 
 
