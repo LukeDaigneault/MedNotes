@@ -26,7 +26,6 @@
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">Dashboard</a></li>
 						<li><a href="logout">Log Out</a></li>
 					</ul>
 					<form class="navbar-form navbar-right">
