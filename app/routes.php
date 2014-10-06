@@ -15,11 +15,13 @@
 
 // Bind route parameters.
 Route::group(array('before' => 'auth'), function () {
-	Route::get('/', 'PatientController@index');
-	Route::get('index', ['as' => 'index', 'uses' => 'PatientController@index']);
+	Route::get('/', 'PatientController@showIndex');
+	Route::get('index', ['as' => 'index', 'uses' => 'PatientController@showIndex']);
 	// Routes to create patients
 	Route::get('createPatient', ['as' => 'new.patient', 'uses' => 'PatientController@showCreate']);
 	Route::post('createPatient', ['as' => 'create.patient', 'uses' => 'PatientController@handleCreate']);
+	//Search for patient
+	Route::post('searchPatient', ['as' => 'search.patient', 'uses' => 'PatientController@showSearchResults']);
 	// Routes to delete patients
 	Route::get('deletePatient/{patient}', ['as' => 'delete.patient', 'uses' => 'PatientController@showDelete']);
 	Route::post('deletePatient/{patient}', ['as' => 'delete.patient', 'uses' => 'PatientController@handleDelete']);

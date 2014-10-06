@@ -19,7 +19,7 @@
     <div class="container">
 
       {{ Form::open(['url' => 'authenticate', 'class' => 'form-signin']) }}
-        <h2 class="form-signin-heading">Sign in</h2>
+      <h2 class="form-signin-heading">MedNote</h2>
 		{{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email address', 'required', 'autofocus']) }}
 		{{ Form::password('password', ['class' => 'form-control', 'placeholder'=>'Password', 'required']) }}
         {{ Form::submit('Sign in', ['class' => 'btn btn-lg btn-primary btn-block']) }}

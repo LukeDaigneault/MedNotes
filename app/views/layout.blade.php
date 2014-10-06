@@ -28,16 +28,16 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="logout">Log Out</a></li>
 					</ul>
-					<form class="navbar-form navbar-right">
-						<input type="text" class="form-control" placeholder="Search Patients">
-					</form>
+					{{ Form::open(['route' => 'search.patient', 'class' => 'navbar-form navbar-right', 'method' => 'POST']) }}
+					{{ Form::text('search', '', ['class' => 'form-control', 'placeholder'=>'Search Patients']) }}
+					{{ Form::close() }}					
 				</div>
 			</div>
 		</div>
 		
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-sm-3 col-md-2 sidebar">
+				<div class="col-sm-3 col-md-1 sidebar">
 					<ul class="nav nav-sidebar">
 						<li class="active"><a href="index">Patient List</a></li>
 						<li><a href="#">Reports</a></li>
@@ -47,7 +47,7 @@
 						<li><a href="">Nav item</a></li>
 					</ul>
 				</div>
-				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-1 main">
 				 
 				  @yield('content')
 				

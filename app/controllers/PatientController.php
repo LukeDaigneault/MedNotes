@@ -9,11 +9,24 @@ class PatientController extends \BaseController {
 	}
 
 
-	public function index()
+	public function showIndex()
     {
      // Show a listing of games.
-     $patients = $this->patient->where('user_id', '=', Auth::id())->get();
-    return View::make('index', compact('patients'));
+     $patients = $this->patient->where('user_id', '=', Auth::id())->
+     orderBy('lastName', 'asc')->
+     orderBy('firstName', 'asc')->get();
+    return View::make('patient.patientIndex', compact('patients'));
+
+    }
+    
+    public function showSearchResults()
+    {
+     // Show a listing of games.
+     $patients = $this->patient->where('firstName', 'LIKE', '%'.Input::get('search').'%')->
+     orWhere('lastName', 'LIKE', '%'.Input::get('search').'%')->
+     orderBy('lastName', 'asc')->
+     orderBy('firstName', 'asc')->get();
+    return View::make('patient.patientSearchResults', compact('patients'));
 
     }
 
@@ -21,7 +34,7 @@ class PatientController extends \BaseController {
 	public function showCreate()
 	{
 
-		return View::make('createPatient');
+		return View::make('patient.createPatientForm');
 	}
 
 
@@ -53,23 +66,23 @@ class PatientController extends \BaseController {
 		
   		$patient->save();
 
-    	return Redirect::route('index');		
+    	return Redirect::to('index');		
 		
 	}
 	
 	public function showDelete($patientID)
     {
         // Show delete confirmation page.
-		$patient = Patient::find($patientID);
-        return View::make('deletePatient', compact('patient'));
+		$patient = $this->patient->find($patientID);
+        return View::make('patient.deletePatientForm', compact('patient'));
     }
 	
 	public function handleDelete()
 	{
-		$patient = Patient::findOrFail(Input::get('patient'));
+		$patient = $this->patient->findOrFail(Input::get('patient'));
 		$patient->delete();
 
-		return Redirect::route('index');	
+		return Redirect::to('index');	
 	}
 
 
