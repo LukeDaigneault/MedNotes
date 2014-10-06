@@ -2,10 +2,17 @@
 
 class PatientController extends \BaseController {
 
+	protected $patient;
+
+	public function __construct(Patient $patient){
+		$this->patient = $patient;
+	}
+
+
 	public function index()
     {
      // Show a listing of games.
-     $patients = Patient::where('user_id', '=', Auth::id())->get();
+     $patients = $this->patient->where('user_id', '=', Auth::id())->get();
     return View::make('index', compact('patients'));
 
     }
@@ -25,6 +32,11 @@ class PatientController extends \BaseController {
 	 */
 	public function storePatient()
 	{
+		if( ! $this->patient->isValid(Input::all()))
+		{
+		return Redirect::back()->withInput()->withErrors($this->patient->errors);
+		}
+	
 		$patient = new Patient;
 		$patient->firstName = Input::get('firstName');
 		$patient->lastName = Input::get('lastName');

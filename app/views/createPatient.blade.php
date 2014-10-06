@@ -8,6 +8,14 @@
 
 <h2 class="sub-header">Create Patient</h2>
 <div class="container">
+	@if (!($errors->isEmpty()))
+	<div class="row bg-danger">
+		@foreach($errors->all() as $error)
+		<h4>{{ $error}}</h4>
+		@endforeach
+	</div>
+	@endif
+	
 	<div class="stepwizard">
 		<div class="stepwizard-row setup-panel">
 			<div class="stepwizard-step">
@@ -47,7 +55,7 @@
 			<div class="col-md-6">
 				<div class="form-group">
 				{{ Form::label('email', 'Email Address') }}
-				{{ Form::text('email', '', ['class' => 'form-control']) }}
+				{{ Form::text('email', '', ['class' => 'form-control', 'required' => 'required']) }}
 				</div>
 				<div class="form-group">
 				{{ Form::label('address', 'Address') }}
@@ -80,7 +88,7 @@
 					{{ Form::label('details', 'Details') }}
 					{{ Form::textarea('details', '', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
 				</div>
-			</div>		
+			</div>
 			<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
 		</div>
 		<div class="row setup-content" id="step-3">
@@ -99,7 +107,7 @@
 				{{ Form::text('doctorsaddress', '', ['class' => 'form-control']) }}
 				</div>
 				<div class="form-group">
-				{{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
+				{{ Form::submit('Create', ['class' => 'btn btn-primary btn-lg']) }}
 				<a href="/" class="btn btn-link">Cancel</a>
 				{{ Form::close() }}
 				</div>

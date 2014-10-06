@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link rel="icon" href="{{ asset('favicon.ico') }}">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>MedNotes App</title>
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Custom styles for this template -->

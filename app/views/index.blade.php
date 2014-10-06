@@ -13,7 +13,7 @@
                 <tr>
                     <th>Name</th>
                     <th>DOB</th>
-						<th>Next Appointment</th>
+					<th>Address</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -21,11 +21,11 @@
                 @foreach($patients as $patient)
                 <tr>
                     <td>{{ $patient->lastName }}, {{ $patient->firstName }}</td>
-                    <td>{{ date("d-m-Y", strtotime($patient->dob)) }}</td>
-					<td>Tomorrow</td>
+                    <td>{{ date("d/m/Y", strtotime($patient->dob)) }}</td>
+					<td>{{ $patient->address }}</td>
                     <td>
                     <a href="/" class="btn btn-info">View
-						  </td>
+					</td>
                 </tr>
                 @endforeach
             </tbody>
