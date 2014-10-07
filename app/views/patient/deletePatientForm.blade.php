@@ -1,9 +1,5 @@
 @extends('layout')
 
-@section('head')
-<link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
-
-@stop
 @section('content')
 
 <h2 class="sub-header">Delete {{ $patient->lastName }}, {{$patient->firstName }} <small>Are you sure?</small></h2>
@@ -16,14 +12,6 @@
 		<a href="/" class="btn btn-default btn-lg">No</a>
 		{{ Form::close() }}
 
-	</div>
+	</div>	
 
-	
-
-@stop
-
-@section('scripts')
-
-<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
-<script src="{{ asset('js/createpatient.js') }}"></script>
 @stop
