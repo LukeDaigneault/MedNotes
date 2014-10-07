@@ -39,8 +39,8 @@
 			<div class="row">
 				<div class="col-sm-3 col-md-1 sidebar">
 					<ul class="nav nav-sidebar">
-						<li class="active"><a href="index">Patient Index</a></li>
-						<li><a href="doctorIndex">Doctor Index</a></li>
+						<li id="PatientIndex"><a href="index">Patient Index</a></li>
+						<li id="DoctorIndex"><a href="doctorIndex">Doctor Index</a></li>
 						<li><a href="#">Reports</a></li>
 						<li><a href="#">Index</a></li>
 					</ul>

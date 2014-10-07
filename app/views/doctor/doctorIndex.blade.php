@@ -39,3 +39,12 @@
 
 
 @stop
+
+@section('scripts')
+	<script>
+	$(function() {
+	$('#DoctorIndex').addClass('active');
+	});
+
+	</script>
+@stop

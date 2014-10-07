@@ -40,7 +40,14 @@
 		<a href="{{ route('create.patient') }}" class="btn btn-primary btn-lg">Create New Patient</a>
 	</div>
 
+@stop
 
-
+@section('scripts')
+	<script>
+	$(function() {
+	$('#PatientIndex').addClass('active');
+	});
 	
+	
+	</script>
 @stop
