@@ -21,7 +21,7 @@ class PatientController extends \BaseController {
     
     public function showSearchResults()
     {
-     // Show a listing of games.
+     // Show  the patients that match the search
      $patients = $this->patient->where('firstName', 'LIKE', '%'.Input::get('search').'%')->
      orWhere('lastName', 'LIKE', '%'.Input::get('search').'%')->
      orderBy('lastName', 'asc')->
@@ -33,8 +33,9 @@ class PatientController extends \BaseController {
 	
 	public function showCreate()
 	{
+		$doctors = Doctor::get();
 
-		return View::make('patient.createPatientForm');
+		return View::make('patient.createPatientForm', compact('doctors'));
 	}
 
 
@@ -49,7 +50,7 @@ class PatientController extends \BaseController {
 		{
 		return Redirect::back()->withInput()->withErrors($this->patient->errors);
 		}
-	
+						
 		$patient = new Patient;
 		$patient->firstName = Input::get('firstName');
 		$patient->lastName = Input::get('lastName');
@@ -63,6 +64,20 @@ class PatientController extends \BaseController {
 		$patient->dob = $dob;
 		$patient->email = Input::get('email');
 		$patient->user_id = Auth::id();
+		
+		if(Input::has('doctorsName'))
+		{
+		$doctor = new Doctor;
+		$doctor->name = Input::get('doctorsName');
+		$doctor->phoneNumber = Input::get('doctorsPhoneNumber');
+		$doctor->address = Input::get('doctorsAddress');
+		$doctor->save();
+		$patient->doctor_id = $doctor->id;
+		}elseif (!(Input::get('doctorsID') == 0))
+		{
+		$doctor = Doctor::find(Input::get('doctorsID'));
+		$patient->doctor_id = $doctor->id;
+		}
 		
   		$patient->save();
 

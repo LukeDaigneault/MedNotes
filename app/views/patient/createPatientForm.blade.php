@@ -95,28 +95,40 @@
 		
 			<div class="col-md-6">
 				<div class="form-group">
-				{{ Form::label('doctorsname', 'Doctors Name') }}
-				{{ Form::text('doctorsname', '', ['class' => 'form-control']) }}
+				{{ Form::label('doctorsName', 'Doctors Name') }}
+				{{ Form::text('doctorsName', '', ['class' => 'form-control']) }}
 				</div>
 				<div class="form-group">
-				{{ Form::label('doctorsphoneNumber', 'Doctors Phone Number') }}
-				{{ Form::text('doctorsphoneNumber', '', ['class' => 'form-control']) }}
+				{{ Form::label('doctorsPhoneNumber', 'Doctors Phone Number') }}
+				{{ Form::text('doctorsPhoneNumber', '', ['class' => 'form-control']) }}
 				</div>
 				<div class="form-group">
-				{{ Form::label('doctorsaddress', 'Doctors Address') }}
-				{{ Form::text('doctorsaddress', '', ['class' => 'form-control']) }}
+				{{ Form::label('doctorsAddress', 'Doctors Address') }}
+				{{ Form::text('doctorsAddress', '', ['class' => 'form-control']) }}
 				</div>
 				<div class="form-group">
 				{{ Form::submit('Create', ['class' => 'btn btn-primary btn-lg']) }}
 				<a href="/" class="btn btn-link">Cancel</a>
-				{{ Form::close() }}
+				
 				</div>
 			</div>
 			<div class="col-md-6">
-			</div>
+				<div class="form-group">
+				{{ Form::label('doctorsID', 'Select From List') }}
+				<select class="form-control" id="doctorsID" name="doctorsID" onchange="populateData(this.value)">
+					<option selected value="0">Select From List Or Enter Details</option>
+					@foreach($doctors as $doctor)
+					<option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
+					@endforeach
+				</select>
+				{{ Form::close() }}
+				 </div>
 				
+				
+			</div>
 		</div>
-</div>	
+</div>
+
 @stop
 
 @section('scripts')
@@ -127,5 +139,31 @@
   $(function() {
     $( "#datepicker" ).datepicker({ dateFormat: "dd/mm/yy", changeYear: true, changeMonth: true, yearRange: "-100:-0", minDate: "-100Y", maxDate: "+0D" });
   });
-  </script>
+  
+  function populateData(value){
+		if(value==0){
+        $('#doctorsName').val("");
+		$('#doctorsPhoneNumber').val("");
+		$('#doctorsAddress').val("");
+		$('#doctorsID').val("");
+		document.getElementById('doctorsName').disabled = false;
+		document.getElementById('doctorsPhoneNumber').disabled = false;
+		document.getElementById('doctorsAddress').disabled = false;
+    }else{
+		document.getElementById('doctorsName').disabled = true;
+		document.getElementById('doctorsPhoneNumber').disabled = true;
+		document.getElementById('doctorsAddress').disabled = true;
+	
+	}
+		@foreach($doctors as $doctor)
+		if(value=={{ $doctor->id }}){
+        $('#doctorsName').val("{{ $doctor->name }}");
+		$('#doctorsPhoneNumber').val("{{ $doctor->phoneNumber }}");
+		$('#doctorsAddress').val("{{ $doctor->address }}");
+		$('#doctorsID').val("{{ $doctor->id }}");
+    }
+	@endforeach
+		
+  }
+    </script>
 @stop
