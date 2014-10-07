@@ -71,6 +71,12 @@ class PatientController extends \BaseController {
 		$doctor->name = Input::get('doctorsName');
 		$doctor->phoneNumber = Input::get('doctorsPhoneNumber');
 		$doctor->address = Input::get('doctorsAddress');
+		
+			if( ! $doctor->isValid(['name'=>$doctor->name, 'phoneNumber'=>$doctor->phoneNumber, 'address'=>$doctor->address]))
+			{
+			return Redirect::back()->withInput()->withErrors($doctor->errors);
+			}
+		
 		$doctor->save();
 		$patient->doctor_id = $doctor->id;
 		}elseif (!(Input::get('doctorsID') == 0))

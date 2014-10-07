@@ -9,6 +9,7 @@ class Patient extends Eloquent {
 	public static $rules =[
 	'firstName' => 'required|alpha',
 	'lastName' => 'required|alpha',
+	'address' => 'alpha_num_spaces',
 	'homePhone' => 'numeric|required_without:mobilePhone',
 	'mobilePhone' => 'numeric|required_without:homePhone',
 	'email' => 'required|email|unique:patients',
