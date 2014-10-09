@@ -18,17 +18,22 @@ class Patient extends Eloquent {
 
 	public function doctor()
 	{
-		return $this->hasOne('Doctor');
+		return $this->belongsTo('Doctor');
 	}
 
 	public function complaints()
 	{
-		return $this->hasMany('Condition');
+		return $this->hasMany('Complaints');
 	}
 
 	public function history()
 	{
 		return $this->hasOne('History');
+	}
+	
+	public function user()
+	{
+		return $this->hasOne('User');
 	}
 	
 	public function isValid($data)

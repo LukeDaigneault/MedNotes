@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('patient.patientTemplate')
 
 @section('content')
 
@@ -28,7 +28,7 @@
 					<td>{{ $patient->email }}</td>
                     <td>
 						<a href="/" class="btn btn-success">Treat</a>
-						<a href="/" class="btn btn-info">Edit</a>
+						<a href="/editPatient/{{ $patient->id }}" class="btn btn-info">Edit</a>
 						<a href="{{ route('delete.patient', $patient->id) }}" class="btn btn-danger">Delete</a>
 					</td>
                 </tr>

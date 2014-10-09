@@ -105,6 +105,24 @@ class PatientController extends \BaseController {
 
 		return Redirect::to('index');	
 	}
+	
+	public function showEdit($patientID)
+    {
+        // Show delete confirmation page.
+		$patient = $this->patient->find($patientID);
+		$refDoctor = $patient->doctor;
+		$doctors = Doctor::get();
+		
+        return View::make('patient.editPatientForm', ['patient' => $patient, 'doctors' => $doctors, 'refDoctor' => $refDoctor]);
+    }
+	
+	public function handleEdit()
+	{
+		$patient = $this->patient->findOrFail(Input::get('patient'));
+	
+
+		return Redirect::to('index');	
+	}
 
 
 

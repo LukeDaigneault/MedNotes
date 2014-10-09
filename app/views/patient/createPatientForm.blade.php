@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('patient.patientTemplate')
 
 @section('head')
 <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
@@ -131,11 +131,11 @@
 
 @stop
 
-@section('scripts')
+@section('patientScripts')
 
 <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('js/createpatient.js') }}"></script>
-  <script>
+<script>
   $(function() {
     $( "#datepicker" ).datepicker({ dateFormat: "dd/mm/yy", changeYear: true, changeMonth: true, yearRange: "-100:-0", minDate: "-100Y", maxDate: "+0D" });
   });
@@ -165,5 +165,5 @@
 	@endforeach
 		
   }
-    </script>
+  </script>
 @stop

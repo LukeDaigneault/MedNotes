@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('doctor.doctorTemplate')
 
 @section('content')
 
@@ -38,13 +38,4 @@
 	</div>
 
 
-@stop
-
-@section('scripts')
-	<script>
-	$(function() {
-	$('#DoctorIndex').addClass('active');
-	});
-
-	</script>
 @stop

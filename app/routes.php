@@ -20,6 +20,9 @@ Route::group(array('before' => 'auth'), function () {
 	// Routes to create patients
 	Route::get('createPatient', ['as' => 'new.patient', 'uses' => 'PatientController@showCreate']);
 	Route::post('createPatient', ['as' => 'create.patient', 'uses' => 'PatientController@handleCreate']);
+	// Routes to edit patients
+	Route::get('editPatient/{patient}', ['as' => 'edit.patient', 'uses' => 'PatientController@showEdit']);
+	Route::post('editPatient/{patient}', ['as' => 'edit.patient', 'uses' => 'PatientController@handleEdit']);
 	//Search for patient
 	Route::post('searchPatient', ['as' => 'search.patient', 'uses' => 'PatientController@showSearchResults']);
 	// Routes to delete patients

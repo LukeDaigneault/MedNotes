@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('patient.patientTemplate')
 
 @section('content')
 

@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('doctor.doctorTemplate')
 
 @section('content')
 
@@ -13,7 +13,5 @@
 		{{ Form::close() }}
 
 	</div>
-
-	
 
 @stop

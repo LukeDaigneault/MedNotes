@@ -9,28 +9,28 @@ class CreateForeignKeys extends Migration {
 	{
 		Schema::table('patients', function(Blueprint $table) {
 			$table->foreign('user_id')->references('id')->on('users')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 		Schema::table('patients', function(Blueprint $table) {
 			$table->foreign('doctor_id')->references('id')->on('doctors')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('set null')
+						->onUpdate('cascade');
 		});
 		Schema::table('patients', function(Blueprint $table) {
 			$table->foreign('history_id')->references('id')->on('historys')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 		Schema::table('patientNotes', function(Blueprint $table) {
 			$table->foreign('condition_id')->references('id')->on('conditions')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 		Schema::table('conditions', function(Blueprint $table) {
 			$table->foreign('patient_id')->references('id')->on('patients')
-						->onDelete('restrict')
-						->onUpdate('restrict');
+						->onDelete('cascade')
+						->onUpdate('cascade');
 		});
 	}
 
