@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h2 class="sub-header">Create Doctor</h2>
+<h2 class="sub-header">Edit {{ $doctor->name }}</h2>
 
 @if (!($errors->isEmpty()))
 	<div class="row alert alert-warning">
@@ -14,20 +14,20 @@
 
 			<div class="col-md-6">
 				<div class="form-group">
-				{{ Form::open(['route' => 'create.doctor', 'method' => 'POST']) }}
+				{{ Form::open(['route' => ['edit.doctor', $doctor->id], 'method' => 'POST']) }}
 				{{ Form::label('name', 'Doctors Name') }}
-				{{ Form::text('name', '', ['class' => 'form-control']) }}
+				{{ Form::text('name', $doctor->name, ['class' => 'form-control']) }}
 				</div>
 				<div class="form-group">
 				{{ Form::label('phoneNumber', 'Doctors Phone Number') }}
-				{{ Form::text('phoneNumber', '', ['class' => 'form-control']) }}
+				{{ Form::text('phoneNumber', $doctor->phoneNumber, ['class' => 'form-control']) }}
 				</div>
 				<div class="form-group">
 				{{ Form::label('address', 'Doctors Address') }}
-				{{ Form::text('address', '', ['class' => 'form-control']) }}
+				{{ Form::text('address', $doctor->address, ['class' => 'form-control']) }}
 				</div>
 				<div class="form-group">
-				{{ Form::submit('Create', ['class' => 'btn btn-primary btn-lg']) }}
+				{{ Form::submit('Update', ['class' => 'btn btn-primary btn-lg']) }}
 				<a href="/" class="btn btn-link">Cancel</a>
 				{{ Form::close() }}
 				</div>

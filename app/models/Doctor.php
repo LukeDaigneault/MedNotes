@@ -7,14 +7,25 @@ class Doctor extends Eloquent {
 	public $errors;
 
 	public static $rules =[
-	'name' => 'required|alpha',
+	'name' => 'required|alpha|unique:doctors,name,:id',
 	'phoneNumber' => 'numeric',
 	'address' => 'alpha_num_spaces',
 	];
 	
-	public function isValid($data)
+	
+	
+	public function isValid($data, $id = 0)
 	{
-		$validation = Validator::make($data, static::$rules);
+	
+	$replace = ($id > 0) ? $id : '';
+	
+	foreach (static::$rules as $key => $rule)
+    {
+        static::$rules[$key] = str_replace(':id', $id, $rule);
+    }
+
+    $validation = Validator::make($data, static::$rules);
+		
 		
 		if ($validation->passes()) return true;
 		

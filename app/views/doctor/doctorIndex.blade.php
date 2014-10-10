@@ -25,7 +25,7 @@
                     <td>{{ $doctor->phoneNumber }}</td>
 					<td>{{ $doctor->address }}</td>
                     <td>
-						<a href="/" class="btn btn-info">Edit</a>
+						<a href="{{ route('edit.doctor', $doctor->id) }}" class="btn btn-info">Edit</a>
 						<a href="{{ route('delete.doctor', $doctor->id) }}" class="btn btn-danger">Delete</a>
 					</td>
                 </tr>
