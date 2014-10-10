@@ -22,7 +22,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index">Med Notes</a>				
+					<a class="navbar-brand" href="{{ route('index') }}">Med Notes</a>				
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
@@ -39,8 +39,8 @@
 			<div class="row">
 				<div class="col-sm-3 col-md-1 sidebar">
 					<ul class="nav nav-sidebar">
-						<li id="PatientIndex"><a href="/index">Patient Index</a></li>
-						<li id="DoctorIndex"><a href="/doctorIndex">Doctor Index</a></li>
+						<li id="PatientIndex"><a href="{{ route('index') }}">Patient Index</a></li>
+						<li id="DoctorIndex"><a href="{{ route('index.doctor') }}">Doctor Index</a></li>
 						<li><a href="#">Reports</a></li>
 						<li><a href="#">Index</a></li>
 					</ul>
