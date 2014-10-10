@@ -67,22 +67,23 @@ class PatientController extends \BaseController {
 		
 		if(Input::has('doctorsName'))
 		{
+		
 		$doctor = new Doctor;
 		$doctor->name = Input::get('doctorsName');
 		$doctor->phoneNumber = Input::get('doctorsPhoneNumber');
 		$doctor->address = Input::get('doctorsAddress');
 		
-			if( ! $doctor->isValid(['name'=>$doctor->name, 'phoneNumber'=>$doctor->phoneNumber, 'address'=>$doctor->address]))
+		if( ! $doctor->isValid(['name'=>$doctor->name, 'phoneNumber'=>$doctor->phoneNumber, 'address'=>$doctor->address]))
 			{
 			return Redirect::back()->withInput()->withErrors($doctor->errors);
 			}
 		
 		$doctor->save();
-		$patient->doctor_id = $doctor->id;
+		$patient->doctor()->associate($doctor);
 		}elseif (!(Input::get('doctorsID') == 0))
 		{
 		$doctor = Doctor::find(Input::get('doctorsID'));
-		$patient->doctor_id = $doctor->id;
+		$patient->doctor()->associate($doctor);
 		}
 		
   		$patient->save();
@@ -98,9 +99,9 @@ class PatientController extends \BaseController {
         return View::make('patient.deletePatientForm', compact('patient'));
     }
 	
-	public function handleDelete()
+	public function handleDelete($patientID)
 	{
-		$patient = $this->patient->findOrFail(Input::get('patient'));
+		$patient = $this->patient->findOrFail($patientID);
 		$patient->delete();
 
 		return Redirect::to('index');	
@@ -116,14 +117,54 @@ class PatientController extends \BaseController {
         return View::make('patient.editPatientForm', ['patient' => $patient, 'doctors' => $doctors, 'refDoctor' => $refDoctor]);
     }
 	
-	public function handleEdit()
+	public function handleEdit($patientID)
 	{
-		$patient = $this->patient->findOrFail(Input::get('patient'));
+		if( ! $this->patient->isValid(Input::all(), $patientID))
+		{
+		return Redirect::back()->withInput()->withErrors($this->patient->errors);
+		}
 	
+		$patient = $this->patient->findOrFail($patientID);
+		
+		$patient->firstName = Input::get('firstName');
+		$patient->lastName = Input::get('lastName');
+		$patient->homePhone = Input::get('homePhone');
+		$patient->mobilePhone = Input::get('mobilePhone');
+		$patient->address = Input::get('address');
 
-		return Redirect::to('index');	
+		$dob_orig = strtotime(Input::get('dob'));
+		$dob = date("Y-m-d", $dob_orig );		
+		
+		$patient->dob = $dob;
+		$patient->email = Input::get('email');
+		
+		if(Input::has('doctorsName'))
+		{
+			
+			$doctor = new Doctor;
+			$doctor->name = Input::get('doctorsName');
+			$doctor->phoneNumber = Input::get('doctorsPhoneNumber');
+			$doctor->address = Input::get('doctorsAddress');
+			
+			if( ! $doctor->isValid(['name'=>$doctor->name, 'phoneNumber'=>$doctor->phoneNumber, 'address'=>$doctor->address]))
+				{
+					return Redirect::back()->withInput()->withErrors($doctor->errors);
+				}
+			
+			$doctor->save();
+			$patient->doctor()->associate($doctor);
+		}
+		elseif (!(Input::get('doctorsID') == 0))
+		{
+				$doctor = Doctor::find(Input::get('doctorsID'));
+				$patient->doctor()->associate($doctor);
+		}
+		
+  		$patient->save();
+
+		return Redirect::to('index');		
+		
 	}
-
 
 
 }

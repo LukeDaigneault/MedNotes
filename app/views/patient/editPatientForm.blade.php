@@ -7,8 +7,17 @@
 @section('content')
 
 <h2 class="sub-header">Edit {{ $patient->lastName }}, {{$patient->firstName }}</h2>
+
+@if (!($errors->isEmpty()))
+	<div class="row alert alert-warning">
+		@foreach($errors->all() as $error)
+		<h4>{{ $error }}</h4>
+		@endforeach
+	</div>
+	@endif
+	
 		<div class="col-md-6">
-			{{ Form::open(array('route' => 'edit.patient', 'method' => 'POST')) }}
+			{{ Form::open(['route' => ['edit.patient', $patient->id], 'method' => 'POST']) }}
 				<div class="form-group">
 				{{ Form::label('firstName', 'First Name') }}
 				{{ Form::text('firstName', $patient->firstName, ['class' => 'form-control', 'required' => 'required', ]) }}
@@ -35,7 +44,7 @@
 				</div>
 				<div class="form-group">
 				{{ Form::label('dob', 'Date Of Birth') }}
-				{{ Form::text('dob', $patient->dob, ['class' => 'form-control', 'required' => 'required', 'id' => 'datepicker']) }}
+				{{ Form::text('dob', date("d/m/Y", strtotime($patient->dob)), ['class' => 'form-control', 'required' => 'required', 'id' => 'datepicker']) }}
 				</div>
 			</div>
 
