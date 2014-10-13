@@ -62,6 +62,19 @@
 				{{ Form::label('doctorsAddress', 'Doctors Address') }}
 				{{ Form::text('doctorsAddress', $refDoctor->address, ['class' => 'form-control']) }}
 				</div>
+				<div class="form-group">
+				{{ Form::label('doctorsID', 'Select From List') }}
+					<select class="form-control" id="doctorsID" name="doctorsID" onchange="populateData(this.value)" >
+						<option value="0">Select From List Or Enter Details</option>
+						@foreach($doctors as $doctor)
+						 @if ($doctor->id == $refDoctor->id)
+						  <option selected value="{{ $doctor->id }}">{{ $doctor->name }}</option>
+						 @else
+						 <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
+						 @endif
+						@endforeach
+					</select>
+				 </div>
 		@else
 				<div class="form-group">
 				{{ Form::label('doctorsName', 'Doctors Name') }}
@@ -75,18 +88,18 @@
 				{{ Form::label('doctorsAddress', 'Doctors Address') }}
 				{{ Form::text('doctorsAddress', '', ['class' => 'form-control']) }}
 				</div>
-		
-		@endif
 				<div class="form-group">
 				{{ Form::label('doctorsID', 'Select From List') }}
-					<select class="form-control" id="doctorsID" name="doctorsID" onchange="populateData(this.value)">
+					<select class="form-control" id="doctorsID" name="doctorsID" onchange="populateData(this.value)" >
 						<option selected value="0">Select From List Or Enter Details</option>
 						@foreach($doctors as $doctor)
 						<option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
 						@endforeach
 					</select>
-				
 				 </div>
+		
+		@endif
+				
 				
 				<div class="form-group">
 				{{ Form::submit('Update', ['class' => 'btn btn-primary btn-lg']) }}
@@ -108,11 +121,11 @@
   });
   
   function populateData(value){
-		if(value==0){
+		if(value=="0"){
         $('#doctorsName').val("");
 		$('#doctorsPhoneNumber').val("");
 		$('#doctorsAddress').val("");
-		$('#doctorsID').val("");
+		$('#doctorsID').val("0");
 		document.getElementById('doctorsName').disabled = false;
 		document.getElementById('doctorsPhoneNumber').disabled = false;
 		document.getElementById('doctorsAddress').disabled = false;
@@ -132,5 +145,7 @@
 	@endforeach
 		
   }
+  
+  populateData($('#doctorsID').val());
   </script>
 @stop

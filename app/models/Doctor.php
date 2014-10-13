@@ -7,7 +7,7 @@ class Doctor extends Eloquent {
 	public $errors;
 
 	public static $rules =[
-	'name' => 'required|alpha|unique:doctors,name,:id',
+	'name' => 'required|alpha_num_spaces|unique:doctors,name,:id',
 	'phoneNumber' => 'numeric',
 	'address' => 'alpha_num_spaces',
 	];

@@ -9,10 +9,12 @@ class CreateDoctorsTable extends Migration {
 	{
 		Schema::create('doctors', function(Blueprint $table) {
 			$table->increments('id');
-			$table->timestamps();
 			$table->string('name', 50)->unique();
 			$table->string('phoneNumber', 20);
 			$table->string('address', 200);
+			$table->integer('user_id')->unsigned()->index();
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+			$table->timestamps();
 		});
 	}
 

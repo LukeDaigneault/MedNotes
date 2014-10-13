@@ -41,6 +41,7 @@ class DoctorController extends \BaseController {
 		$doctor->name = Input::get('name');
 		$doctor->phoneNumber = Input::get('phoneNumber');
 		$doctor->address = Input::get('address');
+		$doctor->user_id = Auth::id();
 				
 		$doctor->save();
 

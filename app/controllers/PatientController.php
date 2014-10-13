@@ -12,7 +12,7 @@ class PatientController extends \BaseController {
 	public function showIndex()
     {
      // Show a listing of games.
-     $patients = $this->patient->where('user_id', '=', Auth::id())->
+     $patients = $this->patient->ofUser(Auth::id())->
      orderBy('lastName', 'asc')->
      orderBy('firstName', 'asc')->get();
     return View::make('patient.patientIndex', compact('patients'));
@@ -22,7 +22,8 @@ class PatientController extends \BaseController {
     public function showSearchResults()
     {
      // Show  the patients that match the search
-     $patients = $this->patient->where('firstName', 'LIKE', '%'.Input::get('search').'%')->
+     $patients = $this->patient->ofUser(Auth::id())->
+	 where('firstName', 'LIKE', '%'.Input::get('search').'%')->
      orWhere('lastName', 'LIKE', '%'.Input::get('search').'%')->
      orderBy('lastName', 'asc')->
      orderBy('firstName', 'asc')->get();
@@ -72,15 +73,17 @@ class PatientController extends \BaseController {
 		$doctor->name = Input::get('doctorsName');
 		$doctor->phoneNumber = Input::get('doctorsPhoneNumber');
 		$doctor->address = Input::get('doctorsAddress');
+		$doctor->user_id = Auth::id();
 		
-		if( ! $doctor->isValid(['name'=>$doctor->name, 'phoneNumber'=>$doctor->phoneNumber, 'address'=>$doctor->address]))
-			{
-			return Redirect::back()->withInput()->withErrors($doctor->errors);
-			}
+			if( ! $doctor->isValid(['name'=>$doctor->name, 'phoneNumber'=>$doctor->phoneNumber, 'address'=>$doctor->address]))
+				{
+				return Redirect::back()->withInput()->withErrors($doctor->errors);
+				}
 		
 		$doctor->save();
 		$patient->doctor()->associate($doctor);
-		}elseif (!(Input::get('doctorsID') == 0))
+		}
+		else
 		{
 		$doctor = Doctor::find(Input::get('doctorsID'));
 		$patient->doctor()->associate($doctor);
@@ -95,13 +98,14 @@ class PatientController extends \BaseController {
 	public function showDelete($patientID)
     {
         // Show delete confirmation page.
-		$patient = $this->patient->find($patientID);
+		$patient = $this->patient->ofUser(Auth::id())->findOrFail($patientID);
+	
         return View::make('patient.deletePatientForm', compact('patient'));
     }
 	
 	public function handleDelete($patientID)
 	{
-		$patient = $this->patient->findOrFail($patientID);
+		$patient = $this->patient->ofUser(Auth::id())->findOrFail($patientID);
 		$patient->delete();
 
 		return Redirect::to('index');	
@@ -110,7 +114,7 @@ class PatientController extends \BaseController {
 	public function showEdit($patientID)
     {
         // Show delete confirmation page.
-		$patient = $this->patient->find($patientID);
+		$patient = $this->patient->ofUser(Auth::id())->findOrFail($patientID);
 		$refDoctor = $patient->doctor;
 		$doctors = Doctor::get();
 		
@@ -124,7 +128,7 @@ class PatientController extends \BaseController {
 		return Redirect::back()->withInput()->withErrors($this->patient->errors);
 		}
 	
-		$patient = $this->patient->findOrFail($patientID);
+		$patient = $this->patient->ofUser(Auth::id())->findOrFail($patientID);
 		
 		$patient->firstName = Input::get('firstName');
 		$patient->lastName = Input::get('lastName');
@@ -158,6 +162,9 @@ class PatientController extends \BaseController {
 		{
 				$doctor = Doctor::find(Input::get('doctorsID'));
 				$patient->doctor()->associate($doctor);
+		}
+		else{
+				$patient->doctor_id = null;
 		}
 		
   		$patient->save();

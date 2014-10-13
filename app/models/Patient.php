@@ -7,14 +7,20 @@ class Patient extends Eloquent {
 	public $errors;
 	
 	public static $rules =[
-	'firstName' => 'required|alpha',
-	'lastName' => 'required|alpha',
+	'firstName' => 'required|alpha_num_spaces',
+	'lastName' => 'required|alpha_num_spaces',
 	'address' => 'alpha_num_spaces',
 	'homePhone' => 'numeric|required_without:mobilePhone',
 	'mobilePhone' => 'numeric|required_without:homePhone',
 	'email' => 'required|email|unique:patients,email,:id,',
 	'dob' => 'required|date_format:d/m/Y'
 	];	
+	
+
+	public function scopeOfUser($query, $user_id)
+	{
+    return $query->where('user_id', '=', $user_id);
+	}
 
 	public function doctor()
 	{
