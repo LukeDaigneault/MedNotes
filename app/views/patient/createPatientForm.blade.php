@@ -81,14 +81,81 @@
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
-					{{ Form::label('conditions', 'Conditions') }}
-					{{ Form::textarea('conditions', '', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
-				</div>
-				<div class="form-group">
 					{{ Form::label('details', 'Details') }}
 					{{ Form::textarea('details', '', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
 				</div>
 			</div>
+			<div class="form-group">
+			{{ Form::label('', 'Conditions') }}
+			<div class="col-md-6">
+				<div class="col-md-4">
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='diabetes'> Diabetes
+					</label>
+ 				</div>
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='epilepsy'> Epilepsy
+					</label>
+ 				</div>
+ 				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='heartCondition'> Heart Condition
+					</label>
+ 				</div>
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='stroke'> Stroke
+					</label>
+ 				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='diabetes'> Diabetes
+					</label>
+ 				</div>
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='diabetes'> Diabetes
+					</label>
+ 				</div>
+ 				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='diabetes'> Diabetes
+					</label>
+ 				</div>
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='diabetes'> Diabetes
+					</label>
+ 				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='diabetes'> Diabetes
+					</label>
+ 				</div>
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='diabetes'> Diabetes
+					</label>
+ 				</div>
+ 				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='diabetes'> Diabetes
+					</label>
+ 				</div>
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='diabetes'> Diabetes
+					</label>
+ 				</div>
+			</div>
+				</div>
+			</div>			
 			<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
 		</div>
 		<div class="row setup-content" id="step-3">

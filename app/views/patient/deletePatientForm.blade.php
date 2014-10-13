@@ -6,7 +6,7 @@
 
 	<div class="row">
 
-		{{ Form::open(['route' => ['delete.patient', $patient->id], 'method' => 'POST']) }}
+		{{ Form::open(['route' => ['delete.patient', $patient->id], 'method' => 'DELETE']) }}
 		{{ Form::submit('Yes', ['class' => 'btn btn-danger btn-lg']) }}
 		<a href="/" class="btn btn-default btn-lg">No</a>
 		{{ Form::close() }}

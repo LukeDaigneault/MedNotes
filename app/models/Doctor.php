@@ -7,23 +7,20 @@ class Doctor extends Eloquent {
 	public $errors;
 
 	public static $rules =[
-	'name' => 'required|alpha_num_spaces|unique:doctors,name,:id',
+	'name' => 'required|alpha_num_spaces',
 	'phoneNumber' => 'numeric',
 	'address' => 'alpha_num_spaces',
 	];
 	
+	public function scopeOfUser($query, $user_id)
+	{
+    return $query->where('user_id', '=', $user_id);
+	}
 	
 	
-	public function isValid($data, $id = 0)
+	public function isValid($data)
 	{
 	
-	$replace = ($id > 0) ? $id : '';
-	
-	foreach (static::$rules as $key => $rule)
-    {
-        static::$rules[$key] = str_replace(':id', $id, $rule);
-    }
-
     $validation = Validator::make($data, static::$rules);
 		
 		

@@ -12,7 +12,7 @@ class DoctorController extends \BaseController {
 	public function showIndex()
     {
      // Show a listing of games.
-     $doctors = $this->doctor->
+     $doctors = $this->doctor->ofUser(Auth::id())->
      orderBy('name', 'asc')->get();
     return View::make('doctor.doctorIndex', compact('doctors'));
 
@@ -52,13 +52,13 @@ class DoctorController extends \BaseController {
 	public function showDelete($doctorID)
     {
         // Show delete confirmation page.
-		$doctor = $this->doctor->find($doctorID);
+		$doctor = $this->doctor->ofUser(Auth::id())->findOrFail($doctorID);
         return View::make('doctor.deleteDoctorForm', compact('doctor'));
     }
 	
 	public function handleDelete($doctorID)
 	{
-		$doctor = $this->doctor->findOrFail($doctorID);
+		$doctor = $this->doctor->ofUser(Auth::id())->findOrFail($doctorID);
 		$doctor->delete();
 
 		return Redirect::to('doctorIndex');	

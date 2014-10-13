@@ -27,7 +27,7 @@ Route::group(array('before' => 'auth'), function () {
 	Route::post('searchPatient', ['as' => 'search.patient', 'uses' => 'PatientController@showSearchResults']);
 	// Routes to delete patients
 	Route::get('deletePatient/{patient}', ['as' => 'delete.patient', 'uses' => 'PatientController@showDelete']);
-	Route::post('deletePatient/{patient}', ['as' => 'delete.patient', 'uses' => 'PatientController@handleDelete']);
+	Route::delete('deletePatient/{patient}', ['as' => 'delete.patient', 'uses' => 'PatientController@handleDelete']);
 	
 	//Doctor routes
 	Route::get('doctorIndex', ['as' => 'index.doctor', 'uses' => 'DoctorController@showIndex']);
@@ -38,7 +38,7 @@ Route::group(array('before' => 'auth'), function () {
 	Route::post('searchDoctor', ['as' => 'search.doctor', 'uses' => 'DoctorController@showSearchResults']);
 	// Routes to Delete Doctors
 	Route::get('deleteDoctor/{doctor}', ['as' => 'delete.doctor', 'uses' => 'DoctorController@showDelete']);
-	Route::post('deleteDoctor/{doctor}', ['as' => 'delete.doctor', 'uses' => 'DoctorController@handleDelete']);
+	Route::delete('deleteDoctor/{doctor}', ['as' => 'delete.doctor', 'uses' => 'DoctorController@handleDelete']);
 	// Routes to Edit Doctors
 	Route::get('editDoctor/{doctor}', ['as' => 'edit.doctor', 'uses' => 'DoctorController@showEdit']);
 	Route::post('editDoctor/{doctor}', ['as' => 'edit.doctor', 'uses' => 'DoctorController@handleEdit']);

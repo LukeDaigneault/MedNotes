@@ -70,23 +70,27 @@ class PatientController extends \BaseController {
 		{
 		
 		$doctor = new Doctor;
+		
+		if( ! $doctor->isValid(['name'=>$doctor->name, 'phoneNumber'=>$doctor->phoneNumber, 'address'=>$doctor->address]))
+				{
+				return Redirect::back()->withInput()->withErrors($doctor->errors);
+				}		
+				
 		$doctor->name = Input::get('doctorsName');
 		$doctor->phoneNumber = Input::get('doctorsPhoneNumber');
 		$doctor->address = Input::get('doctorsAddress');
 		$doctor->user_id = Auth::id();
-		
-			if( ! $doctor->isValid(['name'=>$doctor->name, 'phoneNumber'=>$doctor->phoneNumber, 'address'=>$doctor->address]))
-				{
-				return Redirect::back()->withInput()->withErrors($doctor->errors);
-				}
-		
+			
 		$doctor->save();
 		$patient->doctor()->associate($doctor);
 		}
-		else
+		elseif(!(Input::get('doctorsID') == 0))
 		{
-		$doctor = Doctor::find(Input::get('doctorsID'));
-		$patient->doctor()->associate($doctor);
+				$doctor = Doctor::find(Input::get('doctorsID'));
+				$patient->doctor()->associate($doctor);
+		}
+		else{
+				$patient->doctor_id = null;
 		}
 		
   		$patient->save();
@@ -145,15 +149,15 @@ class PatientController extends \BaseController {
 		if(Input::has('doctorsName'))
 		{
 			
-			$doctor = new Doctor;
-			$doctor->name = Input::get('doctorsName');
-			$doctor->phoneNumber = Input::get('doctorsPhoneNumber');
-			$doctor->address = Input::get('doctorsAddress');
-			
 			if( ! $doctor->isValid(['name'=>$doctor->name, 'phoneNumber'=>$doctor->phoneNumber, 'address'=>$doctor->address]))
 				{
 					return Redirect::back()->withInput()->withErrors($doctor->errors);
 				}
+			
+			$doctor = new Doctor;
+			$doctor->name = Input::get('doctorsName');
+			$doctor->phoneNumber = Input::get('doctorsPhoneNumber');
+			$doctor->address = Input::get('doctorsAddress');
 			
 			$doctor->save();
 			$patient->doctor()->associate($doctor);
