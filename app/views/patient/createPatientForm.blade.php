@@ -23,7 +23,7 @@
 				<p>Patient Details</p>
 			</div>
 			<div class="stepwizard-step">
-				<a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+				<a href="#step-2" type="button" class="btn btn-default btn-circle">2</a>
 				<p>Patient History</p>
 			</div>
 			<div class="stepwizard-step">
@@ -84,10 +84,9 @@
 					{{ Form::label('details', 'Details') }}
 					{{ Form::textarea('details', '', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
 				</div>
-			</div>
 			<div class="form-group">
 			{{ Form::label('', 'Conditions') }}
-			<div class="col-md-6">
+			</div>
 				<div class="col-md-4">
 				<div class="checkbox">
 					<label>
@@ -101,7 +100,7 @@
  				</div>
  				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='heartCondition'> Heart Condition
+     			 		<input type="checkbox" id='heartDisease'> Heart Disease
 					</label>
  				</div>
 				<div class="checkbox">
@@ -113,22 +112,22 @@
 			<div class="col-md-4">
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='diabetes'> Diabetes
+     			 		<input type="checkbox" id='osteoporosis'> Osteoporosis
 					</label>
  				</div>
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='diabetes'> Diabetes
+     			 		<input type="checkbox" id='jointReplacements'> Joint Replacements
 					</label>
  				</div>
  				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='diabetes'> Diabetes
+     			 		<input type="checkbox" id='pregnancy'> Pregnancy
 					</label>
  				</div>
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='diabetes'> Diabetes
+     			 		<input type="checkbox" id='arthritis'> Arthritis
 					</label>
  				</div>
 			</div>
@@ -153,11 +152,11 @@
      			 		<input type="checkbox" id='diabetes'> Diabetes
 					</label>
  				</div>
-			</div>
 				</div>
+			</div>
+				<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
 			</div>			
-			<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
-		</div>
+			
 		<div class="row setup-content" id="step-3">
 		
 			<div class="col-md-6">
