@@ -6,6 +6,8 @@ class Patient extends Eloquent {
 	public $timestamps = true;
 	public $errors;
 	
+	protected $guarded = array('id');
+	
 	public static $rules =[
 	'firstName' => 'required|alpha_num_spaces',
 	'lastName' => 'required|alpha_num_spaces',
@@ -34,7 +36,7 @@ class Patient extends Eloquent {
 
 	public function history()
 	{
-		return $this->hasOne('History');
+		return $this->belongsTo('History');
 	}
 	
 	public function user()

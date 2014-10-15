@@ -23,7 +23,7 @@
 				<p>Patient Details</p>
 			</div>
 			<div class="stepwizard-step">
-				<a href="#step-2" type="button" class="btn btn-default btn-circle">2</a>
+				<a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
 				<p>Patient History</p>
 			</div>
 			<div class="stepwizard-step">
@@ -87,76 +87,76 @@
 			</div>
 			<div class="col-md-6">
 			<div class="form-group">
-			{{ Form::label('', 'Red Flags') }}
+			{{ Form::label('', 'History') }}
 			</div>
 				<div class="col-md-4">
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='diplopia'> Diplopia
+					{{ Form::checkbox('diplopia') }} Diplopia
 					</label>
  				</div>
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='dizziness'> Dizziness
+     			 		{{ Form::checkbox('dizziness') }} Dizziness
 					</label>
  				</div>
  				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='speechSwallow'> Speech/Swallow
+     			 		{{ Form::checkbox('speechSwallow') }} Speech/Swallow
 					</label>
  				</div>
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='blackouts'> Blackouts
+     			 		{{ Form::checkbox('blackouts') }} Blackouts
 					</label>
  				</div>
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='pacemaker'> Pacemaker
+     			 		{{ Form::checkbox('pacemaker') }} Pacemaker
 					</label>
  				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='bilateralNeuroSigns'> Bilateral Neuro Signs
+     			 		{{ Form::checkbox('bilateralNeuroSigns') }} Bilateral Neuro Signs
 					</label>
  				</div>
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='bladderBowel'> Bladder/Bowel
+     			 		{{ Form::checkbox('bladderBowel') }} Bladder/Bowel
 					</label>
  				</div>
  				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='saddleAnaesthesia'> Saddle Anaesthesia
+     			 		{{ Form::checkbox('saddleAnaesthesia') }} Saddle Anaesthesia
 					</label>
  				</div>
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='cancerHistory'> Cancer History
+     			 		{{ Form::checkbox('cancerHistory') }} Cancer History
 					</label>
  				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='weightloss'> Weightloss
+     			 		{{ Form::checkbox('weightloss') }} Weightloss
 					</label>
  				</div>
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='steroids'> Steroids
+     			 		{{ Form::checkbox('steroids') }} Steroids
 					</label>
  				</div>
  				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='anticoagulants'> Anticoagulants
+     			 		{{ Form::checkbox('anticoagulants') }} Anticoagulants
 					</label>
  				</div>
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='pregnant'> Pregnant
+     			 		{{ Form::checkbox('pregnant') }} Pregnant
 					</label>
  				</div>
 			</div>
@@ -165,41 +165,41 @@
 				<div class="col-md-4">
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='diabetes'> Diabetes
+     			 		{{ Form::checkbox('diabetes') }} Diabetes
 					</label>
  				</div>
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='epilepsy'> Epilepsy
+     			 		{{ Form::checkbox('epilepsy') }} Epilepsy
 					</label>
  				</div>
  				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='bloodPressure'> Blood pressure
+     			 		{{ Form::checkbox('bloodPressure') }} Blood pressure
 					</label>
  				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='heartConditions'> Heart Conditions
+     			 		{{ Form::checkbox('heartConditions') }} Heart Conditions
 					</label>
  				</div>
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='osteoporosis'> Osteoporosis
+     			 		{{ Form::checkbox('osteoporosis') }} Osteoporosis
 					</label>
  				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='thyroid'> Thyroid
+     			 		{{ Form::checkbox('thyroid') }} Thyroid
 					</label>
  				</div>
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='arthritis'> Arthritis
+     			 		{{ Form::checkbox('arthritis') }} Arthritis
 					</label>
  				</div>
  				

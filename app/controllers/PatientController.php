@@ -49,10 +49,66 @@ class PatientController extends \BaseController {
 	{
 		if( ! $this->patient->isValid(Input::all()))
 		{
-		return Redirect::back()->withInput()->withErrors($this->patient->errors);
+			return Redirect::back()->withInput()->withErrors($this->patient->errors);
 		}
 						
 		$patient = new Patient;
+		
+		
+		if(Input::has('doctorsName'))
+		{	$doctor = new Doctor;
+			$doctor->name = Input::get('doctorsName');
+			$doctor->phoneNumber = Input::get('doctorsPhoneNumber');
+			$doctor->address = Input::get('doctorsAddress');
+			$doctor->user_id = Auth::id();
+		
+			
+			if( ! $doctor->isValid(['name'=>$doctor->name, 'phoneNumber'=>$doctor->phoneNumber, 'address'=>$doctor->address]))
+				{
+					return Redirect::back()->withInput()->withErrors($doctor->errors);
+				}		
+			$doctor->save();
+			
+			$patient->doctor()->associate($doctor);
+		}
+		elseif(!(Input::get('doctorsID') == 0))
+		{
+			$doctor = Doctor::find(Input::get('doctorsID'));
+			$patient->doctor()->associate($doctor);
+		}
+		else{
+			$patient->doctor_id = null;
+		}
+		
+		$history = new History;
+		$history->social = Input::get('social'); 
+		$history->drug = Input::get('drug');
+		$history->details = Input::get('details');
+		if(Input::has('diplopia')) $history->diplopia = Input::get('diplopia');
+		if(Input::has('dizziness')) $history->dizziness = Input::get('dizziness');
+		if(Input::has('speechSwallow')) $history->speechSwallow = Input::get('speechSwallow');
+		if(Input::has('blackouts')) $history->blackouts = Input::get('blackouts');
+		if(Input::has('bilateralNeuroSigns')) $history->bilateralNeuroSigns = Input::get('bilateralNeuroSigns');
+		if(Input::has('bladderBowel')) $history->bladderBowel = Input::get('bladderBowel');
+		if(Input::has('saddleAnaesthesia')) $history->saddleAnaesthesia = Input::get('saddleAnaesthesia');
+		if(Input::has('cancerHistory')) $history->cancerHistory = Input::get('cancerHistory');
+		if(Input::has('weightloss')) $history->weightloss = Input::get('weightloss');
+		if(Input::has('steroids')) $history->steroids = Input::get('steroids');
+		if(Input::has('anticoagulants')) $history->anticoagulants = Input::get('anticoagulants');
+		if(Input::has('pregnant')) $history->pregnant = Input::get('pregnant');
+		if(Input::has('pacemaker')) $history->pacemaker = Input::get('pacemaker');
+		if(Input::has('diabetes')) $history->diabetes = Input::get('diabetes');
+		if(Input::has('epilepsy')) $history->epilepsy = Input::get('epilepsy');
+		if(Input::has('bloodPressure')) $history->bloodPressure = Input::get('bloodPressure');
+		if(Input::has('heartConditions')) $history->heartConditions = Input::get('heartConditions');
+		if(Input::has('osteoporosis')) $history->osteoporosis = Input::get('osteoporosis');
+		if(Input::has('thyroid')) $history->thyroid = Input::get('thyroid');
+		if(Input::has('arthritis')) $history->arthritis = Input::get('arthritis');
+		$history->user_id = Auth::id();
+		$history->save();
+		
+		$patient->history()->associate($doctor);
+		
 		$patient->firstName = Input::get('firstName');
 		$patient->lastName = Input::get('lastName');
 		$patient->homePhone = Input::get('homePhone');
@@ -65,34 +121,6 @@ class PatientController extends \BaseController {
 		$patient->dob = $dob;
 		$patient->email = Input::get('email');
 		$patient->user_id = Auth::id();
-		
-		if(Input::has('doctorsName'))
-		{
-		
-		$doctor = new Doctor;
-		
-		if( ! $doctor->isValid(['name'=>$doctor->name, 'phoneNumber'=>$doctor->phoneNumber, 'address'=>$doctor->address]))
-				{
-				return Redirect::back()->withInput()->withErrors($doctor->errors);
-				}		
-				
-		$doctor->name = Input::get('doctorsName');
-		$doctor->phoneNumber = Input::get('doctorsPhoneNumber');
-		$doctor->address = Input::get('doctorsAddress');
-		$doctor->user_id = Auth::id();
-			
-		$doctor->save();
-		$patient->doctor()->associate($doctor);
-		}
-		elseif(!(Input::get('doctorsID') == 0))
-		{
-				$doctor = Doctor::find(Input::get('doctorsID'));
-				$patient->doctor()->associate($doctor);
-		}
-		else{
-				$patient->doctor_id = null;
-		}
-		
   		$patient->save();
 
     	return Redirect::to('index');		
