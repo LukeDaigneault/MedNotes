@@ -20,6 +20,6 @@ class CreateComplaintsTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('conditions');
+		Schema::drop('complaints');
 	}
 }
