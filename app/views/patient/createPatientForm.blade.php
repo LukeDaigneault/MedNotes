@@ -84,9 +84,84 @@
 					{{ Form::label('details', 'Details') }}
 					{{ Form::textarea('details', '', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
 				</div>
-			<div class="form-group">
-			{{ Form::label('', 'Conditions') }}
 			</div>
+			<div class="col-md-6">
+			<div class="form-group">
+			{{ Form::label('', 'Red Flags') }}
+			</div>
+				<div class="col-md-4">
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='diplopia'> Diplopia
+					</label>
+ 				</div>
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='dizziness'> Dizziness
+					</label>
+ 				</div>
+ 				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='speechSwallow'> Speech/Swallow
+					</label>
+ 				</div>
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='blackouts'> Blackouts
+					</label>
+ 				</div>
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='pacemaker'> Pacemaker
+					</label>
+ 				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='bilateralNeuroSigns'> Bilateral Neuro Signs
+					</label>
+ 				</div>
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='bladderBowel'> Bladder/Bowel
+					</label>
+ 				</div>
+ 				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='saddleAnaesthesia'> Saddle Anaesthesia
+					</label>
+ 				</div>
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='cancerHistory'> Cancer History
+					</label>
+ 				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='weightloss'> Weightloss
+					</label>
+ 				</div>
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='steroids'> Steroids
+					</label>
+ 				</div>
+ 				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='anticoagulants'> Anticoagulants
+					</label>
+ 				</div>
+				<div class="checkbox">
+					<label>
+     			 		<input type="checkbox" id='pregnant'> Pregnant
+					</label>
+ 				</div>
+			</div>
+			</div>
+			<div class="col-md-6">
 				<div class="col-md-4">
 				<div class="checkbox">
 					<label>
@@ -100,29 +175,26 @@
  				</div>
  				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='heartDisease'> Heart Disease
-					</label>
- 				</div>
-				<div class="checkbox">
-					<label>
-     			 		<input type="checkbox" id='stroke'> Stroke
+     			 		<input type="checkbox" id='bloodPressure'> Blood pressure
 					</label>
  				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='osteoporosis'> Osteoporosis
+     			 		<input type="checkbox" id='heartConditions'> Heart Conditions
 					</label>
  				</div>
 				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='jointReplacements'> Joint Replacements
+     			 		<input type="checkbox" id='osteoporosis'> Osteoporosis
 					</label>
  				</div>
- 				<div class="checkbox">
+			</div>
+			<div class="col-md-4">
+				<div class="checkbox">
 					<label>
-     			 		<input type="checkbox" id='pregnancy'> Pregnancy
+     			 		<input type="checkbox" id='thyroid'> Thyroid
 					</label>
  				</div>
 				<div class="checkbox">
@@ -130,29 +202,9 @@
      			 		<input type="checkbox" id='arthritis'> Arthritis
 					</label>
  				</div>
+ 				
 			</div>
-			<div class="col-md-4">
-				<div class="checkbox">
-					<label>
-     			 		<input type="checkbox" id='diabetes'> Diabetes
-					</label>
- 				</div>
-				<div class="checkbox">
-					<label>
-     			 		<input type="checkbox" id='diabetes'> Diabetes
-					</label>
- 				</div>
- 				<div class="checkbox">
-					<label>
-     			 		<input type="checkbox" id='diabetes'> Diabetes
-					</label>
- 				</div>
-				<div class="checkbox">
-					<label>
-     			 		<input type="checkbox" id='diabetes'> Diabetes
-					</label>
- 				</div>
-				</div>
+				
 			</div>
 				<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
 			</div>			
