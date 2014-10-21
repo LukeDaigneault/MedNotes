@@ -17,12 +17,8 @@
 				{{ Form::open(['route' => 'create.doctor', 'method' => 'POST']) }}
 				{{ Form::label('name', 'Doctors Name') }}
 				{{ Form::text('name', '', ['class' => 'form-control']) }}
-				</div>
-				<div class="form-group">
 				{{ Form::label('phoneNumber', 'Doctors Phone Number') }}
 				{{ Form::text('phoneNumber', '', ['class' => 'form-control']) }}
-				</div>
-				<div class="form-group">
 				{{ Form::label('address', 'Doctors Address') }}
 				{{ Form::text('address', '', ['class' => 'form-control']) }}
 				</div>

@@ -7,7 +7,6 @@
 @section('content')
 
 <h2 class="sub-header">Create Patient</h2>
-<div class="container">
 	@if (!($errors->isEmpty()))
 	<div class="row alert alert-warning">
 		@foreach($errors->all() as $error)
@@ -15,197 +14,44 @@
 		@endforeach
 	</div>
 	@endif
-	
-
+	<h3>Personal Details</h3>
+		<div class="row">
 			<div class="col-md-6">
 			{{ Form::open(array('route' => 'create.patient', 'method' => 'POST')) }}
 				<div class="form-group">
 				{{ Form::label('firstName', 'First Name') }}
 				{{ Form::text('firstName', '', ['class' => 'form-control', 'required' => 'required', ]) }}
-				</div>
-				<div class="form-group">
 				{{ Form::label('lastName', 'Last Name') }}
 				{{ Form::text('lastName', '', ['class' => 'form-control', 'required' => 'required']) }}
-				</div>
-				<div class="form-group">
-				{{ Form::label('homePhone', 'Home Phone Number') }}
-				{{ Form::text('homePhone', '', ['class' => 'form-control']) }}
-				</div>
-				<div class="form-group">
-				{{ Form::label('mobilePhone', 'Mobile Phone Number') }}
-				{{ Form::text('mobilePhone', '', ['class' => 'form-control']) }}
+				{{ Form::label('address', 'Address') }}
+				{{ Form::text('address', '', ['class' => 'form-control']) }}
+				{{ Form::label('email', 'Email Address') }}
+				{{ Form::text('email', '', ['class' => 'form-control', 'required' => 'required']) }}
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
-				{{ Form::label('email', 'Email Address') }}
-				{{ Form::text('email', '', ['class' => 'form-control', 'required' => 'required']) }}
-				</div>
-				<div class="form-group">
-				{{ Form::label('address', 'Address') }}
-				{{ Form::text('address', '', ['class' => 'form-control']) }}
-				</div>
-				<div class="form-group">
+				{{ Form::label('homePhone', 'Home Phone Number') }}
+				{{ Form::text('homePhone', '', ['class' => 'form-control']) }}
+				{{ Form::label('mobilePhone', 'Mobile Phone Number') }}
+				{{ Form::text('mobilePhone', '', ['class' => 'form-control']) }}
 				{{ Form::label('dob', 'Date Of Birth') }}
 				{{ Form::text('dob', '', ['class' => 'form-control', 'required' => 'required', 'id' => 'datepicker']) }}
 				</div>
 			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					{{ Form::label('social', 'Social') }}
-					{{ Form::textarea('social', '', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
-				</div>
-				<div class="form-group">
-					{{ Form::label('drug', 'Drug') }}
-					{{ Form::textarea('drug', '', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					{{ Form::label('details', 'Details') }}
-					{{ Form::textarea('details', '', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
-				</div>
-			</div>
-			<div class="col-md-6">
-			<div class="form-group">
-			{{ Form::label('', 'History') }}
-			</div>
-				<div class="col-md-4">
-				<div class="checkbox">
-					<label>
-					{{ Form::checkbox('diplopia') }} Diplopia
-					</label>
- 				</div>
-				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('dizziness') }} Dizziness
-					</label>
- 				</div>
- 				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('speechSwallow') }} Speech/Swallow
-					</label>
- 				</div>
-				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('blackouts') }} Blackouts
-					</label>
- 				</div>
-				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('pacemaker') }} Pacemaker
-					</label>
- 				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('bilateralNeuroSigns') }} Bilateral Neuro Signs
-					</label>
- 				</div>
-				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('bladderBowel') }} Bladder/Bowel
-					</label>
- 				</div>
- 				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('saddleAnaesthesia') }} Saddle Anaesthesia
-					</label>
- 				</div>
-				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('cancerHistory') }} Cancer History
-					</label>
- 				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('weightloss') }} Weightloss
-					</label>
- 				</div>
-				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('steroids') }} Steroids
-					</label>
- 				</div>
- 				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('anticoagulants') }} Anticoagulants
-					</label>
- 				</div>
-				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('pregnant') }} Pregnant
-					</label>
- 				</div>
-			</div>
-			</div>
-			<div class="col-md-6">
-				<div class="col-md-4">
-				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('diabetes') }} Diabetes
-					</label>
- 				</div>
-				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('epilepsy') }} Epilepsy
-					</label>
- 				</div>
- 				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('bloodPressure') }} Blood pressure
-					</label>
- 				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('heartConditions') }} Heart Conditions
-					</label>
- 				</div>
-				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('osteoporosis') }} Osteoporosis
-					</label>
- 				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('thyroid') }} Thyroid
-					</label>
- 				</div>
-				<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('arthritis') }} Arthritis
-					</label>
- 				</div>
- 				
-			</div>
-				
-			</div>
-					
+		</div>
+		<h3>Referral Details <small>optional</small></h3>
+		<div class="row">		
 			<div class="col-md-6">
 				<div class="form-group">
 				{{ Form::label('doctorsName', 'Doctors Name') }}
 				{{ Form::text('doctorsName', '', ['class' => 'form-control']) }}
-				</div>
-				<div class="form-group">
 				{{ Form::label('doctorsPhoneNumber', 'Doctors Phone Number') }}
 				{{ Form::text('doctorsPhoneNumber', '', ['class' => 'form-control']) }}
-				</div>
-				<div class="form-group">
 				{{ Form::label('doctorsAddress', 'Doctors Address') }}
 				{{ Form::text('doctorsAddress', '', ['class' => 'form-control']) }}
 				</div>
-				<div class="form-group">
-				{{ Form::submit('Create', ['class' => 'btn btn-primary btn-lg']) }}
-				<a href="/" class="btn btn-link">Cancel</a>
-				
-				</div>
+			
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
@@ -216,13 +62,18 @@
 					<option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
 					@endforeach
 				</select>
-				{{ Form::close() }}
-				 </div>
 				
+				 </div>
+				<div class="form-group">
+				{{ Form::submit('Create', ['class' => 'btn btn-primary btn-lg']) }}
+				<a href="/" class="btn btn-link">Cancel</a>
+				{{ Form::close() }}
+				</div>
 				
 			</div>
-	
-</div>
+				
+		</div>
+
 
 @stop
 

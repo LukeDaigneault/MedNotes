@@ -28,6 +28,7 @@
 					<td>{{ $patient->email }}</td>
                     <td>
 						<a href="/" class="btn btn-success">Treat</a>
+						<a href="/" class="btn btn-warning">View</a>
 						<a href="{{ route('edit.patient', $patient->id) }}" class="btn btn-info">Edit</a>
 						<a href="{{ route('delete.patient', $patient->id) }}" class="btn btn-danger">Delete</a>
 					</td>

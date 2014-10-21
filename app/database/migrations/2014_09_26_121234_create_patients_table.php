@@ -21,7 +21,7 @@ class CreatePatientsTable extends Migration {
 			$table->integer('doctor_id')->unsigned()->nullable();
 			$table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('set null')->onUpdate('cascade');
 			$table->integer('history_id')->unsigned()->nullable();
-			$table->foreign('history_id')->references('id')->on('historys')->onDelete('cascade')->onUpdate('cascade');
+			$table->foreign('history_id')->references('id')->on('historys')->onDelete('set null')->onUpdate('cascade');
 			$table->timestamps();
 			
 		});

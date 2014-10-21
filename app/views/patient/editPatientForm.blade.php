@@ -21,28 +21,16 @@
 				<div class="form-group">
 				{{ Form::label('firstName', 'First Name') }}
 				{{ Form::text('firstName', $patient->firstName, ['class' => 'form-control', 'required' => 'required', ]) }}
-				</div>
-				<div class="form-group">
 				{{ Form::label('lastName', 'Last Name') }}
 				{{ Form::text('lastName', $patient->lastName, ['class' => 'form-control', 'required' => 'required']) }}
-				</div>
-				<div class="form-group">
 				{{ Form::label('homePhone', 'Home Phone Number') }}
 				{{ Form::text('homePhone', $patient->homePhone, ['class' => 'form-control']) }}
-				</div>
-				<div class="form-group">
 				{{ Form::label('mobilePhone', 'Mobile Phone Number') }}
 				{{ Form::text('mobilePhone', $patient->mobilePhone, ['class' => 'form-control']) }}
-				</div>
-				<div class="form-group">
 				{{ Form::label('email', 'Email Address') }}
 				{{ Form::text('email', $patient->email, ['class' => 'form-control', 'required' => 'required']) }}
-				</div>
-				<div class="form-group">
 				{{ Form::label('address', 'Address') }}
 				{{ Form::text('address', $patient->address, ['class' => 'form-control']) }}
-				</div>
-				<div class="form-group">
 				{{ Form::label('dob', 'Date Of Birth') }}
 				{{ Form::text('dob', date("d/m/Y", strtotime($patient->dob)), ['class' => 'form-control', 'required' => 'required', 'id' => 'datepicker']) }}
 				</div>
@@ -53,12 +41,8 @@
 				<div class="form-group">
 				{{ Form::label('doctorsName', 'Doctors Name') }}
 				{{ Form::text('doctorsName', $refDoctor->name, ['class' => 'form-control']) }}
-				</div>
-				<div class="form-group">
 				{{ Form::label('doctorsPhoneNumber', 'Doctors Phone Number') }}
 				{{ Form::text('doctorsPhoneNumber', $refDoctor->phoneNumber, ['class' => 'form-control']) }}
-				</div>
-				<div class="form-group">
 				{{ Form::label('doctorsAddress', 'Doctors Address') }}
 				{{ Form::text('doctorsAddress', $refDoctor->address, ['class' => 'form-control']) }}
 				</div>
@@ -79,12 +63,8 @@
 				<div class="form-group">
 				{{ Form::label('doctorsName', 'Doctors Name') }}
 				{{ Form::text('doctorsName', '', ['class' => 'form-control']) }}
-				</div>
-				<div class="form-group">
 				{{ Form::label('doctorsPhoneNumber', 'Doctors Phone Number') }}
 				{{ Form::text('doctorsPhoneNumber', '', ['class' => 'form-control']) }}
-				</div>
-				<div class="form-group">
 				{{ Form::label('doctorsAddress', 'Doctors Address') }}
 				{{ Form::text('doctorsAddress', '', ['class' => 'form-control']) }}
 				</div>
@@ -114,7 +94,6 @@
 @section('patientScripts')
 
 <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
-<script src="{{ asset('js/createpatient.js') }}"></script>
 <script>
   $(function() {
     $( "#datepicker" ).datepicker({ dateFormat: "dd/mm/yy", changeYear: true, changeMonth: true, yearRange: "-100:-0", minDate: "-100Y", maxDate: "+0D" });

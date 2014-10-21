@@ -79,36 +79,7 @@ class PatientController extends \BaseController {
 		else{
 			$patient->doctor_id = null;
 		}
-		
-		$history = new History;
-		$history->social = Input::get('social'); 
-		$history->drug = Input::get('drug');
-		$history->details = Input::get('details');
-		if(Input::has('diplopia')) $history->diplopia = Input::get('diplopia');
-		if(Input::has('dizziness')) $history->dizziness = Input::get('dizziness');
-		if(Input::has('speechSwallow')) $history->speechSwallow = Input::get('speechSwallow');
-		if(Input::has('blackouts')) $history->blackouts = Input::get('blackouts');
-		if(Input::has('bilateralNeuroSigns')) $history->bilateralNeuroSigns = Input::get('bilateralNeuroSigns');
-		if(Input::has('bladderBowel')) $history->bladderBowel = Input::get('bladderBowel');
-		if(Input::has('saddleAnaesthesia')) $history->saddleAnaesthesia = Input::get('saddleAnaesthesia');
-		if(Input::has('cancerHistory')) $history->cancerHistory = Input::get('cancerHistory');
-		if(Input::has('weightloss')) $history->weightloss = Input::get('weightloss');
-		if(Input::has('steroids')) $history->steroids = Input::get('steroids');
-		if(Input::has('anticoagulants')) $history->anticoagulants = Input::get('anticoagulants');
-		if(Input::has('pregnant')) $history->pregnant = Input::get('pregnant');
-		if(Input::has('pacemaker')) $history->pacemaker = Input::get('pacemaker');
-		if(Input::has('diabetes')) $history->diabetes = Input::get('diabetes');
-		if(Input::has('epilepsy')) $history->epilepsy = Input::get('epilepsy');
-		if(Input::has('bloodPressure')) $history->bloodPressure = Input::get('bloodPressure');
-		if(Input::has('heartConditions')) $history->heartConditions = Input::get('heartConditions');
-		if(Input::has('osteoporosis')) $history->osteoporosis = Input::get('osteoporosis');
-		if(Input::has('thyroid')) $history->thyroid = Input::get('thyroid');
-		if(Input::has('arthritis')) $history->arthritis = Input::get('arthritis');
-		$history->user_id = Auth::id();
-		$history->save();
-		
-		$patient->history()->associate($doctor);
-		
+			
 		$patient->firstName = Input::get('firstName');
 		$patient->lastName = Input::get('lastName');
 		$patient->homePhone = Input::get('homePhone');
@@ -138,6 +109,7 @@ class PatientController extends \BaseController {
 	public function handleDelete($patientID)
 	{
 		$patient = $this->patient->ofUser(Auth::id())->findOrFail($patientID);
+		$patient->history()->delete();
 		$patient->delete();
 
 		return Redirect::to('index');	
@@ -204,6 +176,16 @@ class PatientController extends \BaseController {
 		return Redirect::to('index');		
 		
 	}
+	
+	public function showTreat($patientID)
+    {
+        // Show delete confirmation page.
+		$patient = $this->patient->ofUser(Auth::id())->findOrFail($patientID);
+		
+		if ($patient->history == null) return View::make('history.createHistoryForm', compact('patient'));
+	
+        return View::make('patient.treatPatientForm', compact('patient'));
+    }
 
 
 }

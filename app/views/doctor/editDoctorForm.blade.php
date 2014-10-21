@@ -17,12 +17,8 @@
 				{{ Form::open(['route' => ['edit.doctor', $doctor->id], 'method' => 'POST']) }}
 				{{ Form::label('name', 'Doctors Name') }}
 				{{ Form::text('name', $doctor->name, ['class' => 'form-control']) }}
-				</div>
-				<div class="form-group">
 				{{ Form::label('phoneNumber', 'Doctors Phone Number') }}
 				{{ Form::text('phoneNumber', $doctor->phoneNumber, ['class' => 'form-control']) }}
-				</div>
-				<div class="form-group">
 				{{ Form::label('address', 'Doctors Address') }}
 				{{ Form::text('address', $doctor->address, ['class' => 'form-control']) }}
 				</div>

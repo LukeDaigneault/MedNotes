@@ -28,6 +28,19 @@ Route::group(array('before' => 'auth'), function () {
 	// Routes to delete patients
 	Route::get('deletePatient/{patient}', ['as' => 'delete.patient', 'uses' => 'PatientController@showDelete']);
 	Route::delete('deletePatient/{patient}', ['as' => 'delete.patient', 'uses' => 'PatientController@handleDelete']);
+	// Routes to treat patients
+	Route::get('treatPatient/{patient}', ['as' => 'treat.patient', 'uses' => 'PatientController@showTreat']);
+	
+	
+	
+	//History routes
+	// Routes to create History
+	Route::get('createHistory/{patient}', ['as' => 'new.history', 'uses' => 'HistoryController@showCreate']);
+	Route::post('createHistory/{patient}', ['as' => 'create.history', 'uses' => 'HistoryController@handleCreate']);
+	// Routes to Edit History
+	Route::get('editHistory/{patient}', ['as' => 'edit.history', 'uses' => 'HistoryController@showEdit']);
+	Route::post('editHistory/{patient}', ['as' => 'edit.history', 'uses' => 'HistoryController@handleEdit']);
+	
 	
 	//Doctor routes
 	Route::get('doctorIndex', ['as' => 'index.doctor', 'uses' => 'DoctorController@showIndex']);
