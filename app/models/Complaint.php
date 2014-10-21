@@ -1,8 +1,8 @@
 <?php
 
-class Condition extends Eloquent {
+class Complaint extends Eloquent {
 
-	protected $table = 'conditions';
+	protected $table = 'complaints';
 	public $timestamps = true;
 
 	public function patientNotes()
