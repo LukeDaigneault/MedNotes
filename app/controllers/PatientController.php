@@ -119,10 +119,9 @@ class PatientController extends \BaseController {
     {
         // Show delete confirmation page.
 		$patient = $this->patient->ofUser(Auth::id())->findOrFail($patientID);
-		$refDoctor = $patient->doctor;
 		$doctors = Doctor::get();
 		
-        return View::make('patient.editPatientForm', ['patient' => $patient, 'doctors' => $doctors, 'refDoctor' => $refDoctor]);
+        return View::make('patient.editPatientForm', ['patient' => $patient, 'doctors' => $doctors]);
     }
 	
 	public function handleEdit($patientID)

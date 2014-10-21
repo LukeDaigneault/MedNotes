@@ -37,21 +37,21 @@
 			</div>
 
 		<div class="col-md-6">
-		@if (is_object($refDoctor) )
+		@if (is_object($patient->doctor) )
 				<div class="form-group">
 				{{ Form::label('doctorsName', 'Doctors Name') }}
-				{{ Form::text('doctorsName', $refDoctor->name, ['class' => 'form-control']) }}
+				{{ Form::text('doctorsName', $patient->doctor->name, ['class' => 'form-control']) }}
 				{{ Form::label('doctorsPhoneNumber', 'Doctors Phone Number') }}
-				{{ Form::text('doctorsPhoneNumber', $refDoctor->phoneNumber, ['class' => 'form-control']) }}
+				{{ Form::text('doctorsPhoneNumber', $patient->doctor->phoneNumber, ['class' => 'form-control']) }}
 				{{ Form::label('doctorsAddress', 'Doctors Address') }}
-				{{ Form::text('doctorsAddress', $refDoctor->address, ['class' => 'form-control']) }}
+				{{ Form::text('doctorsAddress', $patient->doctor->address, ['class' => 'form-control']) }}
 				</div>
 				<div class="form-group">
 				{{ Form::label('doctorsID', 'Select From List') }}
 					<select class="form-control" id="doctorsID" name="doctorsID" onchange="populateData(this.value)" >
 						<option value="0">Select From List Or Enter Details</option>
 						@foreach($doctors as $doctor)
-						 @if ($doctor->id == $refDoctor->id)
+						 @if ($doctor->id == $patient->doctor->id)
 						  <option selected value="{{ $doctor->id }}">{{ $doctor->name }}</option>
 						 @else
 						 <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>

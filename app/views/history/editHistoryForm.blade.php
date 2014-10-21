@@ -65,7 +65,7 @@
 			<div class="col-md-4">
 			<div class="checkbox">
 					<label>
-     			 		{{ Form::checkbox('bilateralNeuroSigns, 1, $history->bilateralNeuroSigns') }} Bilateral Neuro Signs
+     			 		{{ Form::checkbox('bilateralNeuroSigns', 1, $history->bilateralNeuroSigns) }} Bilateral Neuro Signs
 					</label>
  				</div>
 				<div class="checkbox">

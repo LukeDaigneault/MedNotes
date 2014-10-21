@@ -49,7 +49,7 @@
 		{{ ($patient->history->osteoporosis) ? 'Osteoporosis<br/>' : null  }}  
 		{{ ($patient->history->thyroid) ? 'Thyroid<br/>' : null  }}  
 		{{ ($patient->history->arthritis) ? 'Arthritis<br/>' : null  }}  
-	
+		<a href="{{ route('edit.history', $patient->id) }}" class="btn btn-info">Edit History</a>
 	</div>
 </div>
 <h3 class="sub-header">Complaints</h3>
