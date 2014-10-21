@@ -16,22 +16,22 @@
 			<div class="col-md-6">
 			{{ Form::open(['route' => ['edit.history', $patient->id], 'method' => 'POST']) }}
 				<div class="form-group">
-					{{ Form::label('social', 'Social') }}
+					{{ Form::label('social', 'Social History') }}
 					{{ Form::textarea('social', $history->social, ['class' => 'form-control', 'style' => 'resize:vertical']) }}
 				</div>
 				<div class="form-group">
-					{{ Form::label('drug', 'Drug') }}
+					{{ Form::label('drug', 'Drug History') }}
 					{{ Form::textarea('drug', $history->drug, ['class' => 'form-control', 'style' => 'resize:vertical']) }}
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
-					{{ Form::label('details', 'Details') }}
+					{{ Form::label('details', 'Past Medical History') }}
 					{{ Form::textarea('details', $history->details, ['class' => 'form-control', 'style' => 'resize:vertical']) }}
 				</div>
 	
 		<div class="row">
-		{{ Form::label('', 'History') }}
+		{{ Form::label('', 'Pathologies') }}
 		<div class="col-md-12">
 		
 			<div class="col-md-4">
@@ -159,7 +159,7 @@
      			 		{{ Form::checkbox('arthritis', 1, $history->arthritis) }} Arthritis
 					</label>
  				</div>
-				{{ Form::submit('Create', ['class' => 'btn btn-primary btn-lg']) }}
+				{{ Form::submit('Update', ['class' => 'btn btn-primary btn-lg']) }}
 					<a href="/" class="btn btn-link">Cancel</a>
 				{{ Form::close() }}
 			</div>

@@ -6,27 +6,27 @@
 @stop
 @section('content')
 
-<h2 class="sub-header">Create History</h2>
+<h2 class="sub-header">Create History {{ $patient->lastName }}, {{$patient->firstName }} </h2>
 	
 			<div class="col-md-6">
 			{{ Form::open(['route' => ['create.history', $patient->id], 'method' => 'POST']) }}
 				<div class="form-group">
-					{{ Form::label('social', 'Social') }}
+					{{ Form::label('social', 'Social History') }}
 					{{ Form::textarea('social', '', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
 				</div>
 				<div class="form-group">
-					{{ Form::label('drug', 'Drug') }}
+					{{ Form::label('drug', 'Drug History') }}
 					{{ Form::textarea('drug', '', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
-					{{ Form::label('details', 'Details') }}
+					{{ Form::label('details', 'Past Medical History') }}
 					{{ Form::textarea('details', '', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
 				</div>
 	
 		<div class="row">
-		{{ Form::label('', 'History') }}
+		{{ Form::label('', 'Conditions') }}
 		<div class="col-md-12">
 		
 			<div class="col-md-4">

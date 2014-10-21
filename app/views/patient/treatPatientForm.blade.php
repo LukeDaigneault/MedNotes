@@ -26,29 +26,31 @@
 	</address>
 	</div>
 	<div class="col-md-6">
-	<strong>Details :</strong> {{ $patient->history->details }}<br/>
-	<strong>Social :</strong> {{ $patient->history->social }}<br/>
-	<strong>Drugs :</strong> {{ $patient->history->drug }}<br/>
-	<strong>Conditions :</strong><br/>
-		{{ ($patient->history->diplopia) ? 'Diplopia<br/>' : null  }} 
-		{{ ($patient->history->dizziness) ? 'Dizziness<br/>' : null  }}  
-		{{ ($patient->history->speechSwallow) ? 'Speech/Swallow<br/>' : null  }}
-		{{ ($patient->history->blackouts) ? 'Blackouts<br/>' : null  }}  
-		{{ ($patient->history->pacemaker) ? 'Pacemaker<br/>' : null  }}  
-		{{ ($patient->history->bilateralNeuroSigns) ? 'Bilateral Neuro Signs<br/>' : null  }}  
-		{{ ($patient->history->saddleAnaesthesia) ? 'Saddle Anaesthesia<br/>' : null  }}  
-		{{ ($patient->history->cancerHistory) ? 'Cancer History<br/>' : null  }}  
-		{{ ($patient->history->weightloss) ? 'Weightloss<br/>' : null  }}  
-		{{ ($patient->history->steroids) ? 'Steroids<br/>' : null  }}  
-		{{ ($patient->history->anticoagulants) ? 'Anticoagulants<br/>' : null  }}  
-		{{ ($patient->history->pregnant) ? 'Pregnant<br/>' : null  }}  
-		{{ ($patient->history->diabetes) ? 'Diabetes<br/>' : null  }}  
-		{{ ($patient->history->epilepsy) ? 'Epilepsy<br/>' : null  }}  
-		{{ ($patient->history->bloodPressure) ? 'Blood pressure<br/>' : null  }}  
-		{{ ($patient->history->heartConditions) ? 'Heart Conditions<br/>' : null  }}  
-		{{ ($patient->history->osteoporosis) ? 'Osteoporosis<br/>' : null  }}  
-		{{ ($patient->history->thyroid) ? 'Thyroid<br/>' : null  }}  
-		{{ ($patient->history->arthritis) ? 'Arthritis<br/>' : null  }}  
+	<strong>Past Medical History :</strong> {{ $patient->history->details }}<br/>
+	<strong>Social History:</strong> {{ $patient->history->social }}<br/>
+	<strong>Drug History :</strong> {{ $patient->history->drug }}<br/>
+	<strong>Pathologies :</strong><br/>
+	<ul>
+		{{ ($patient->history->diplopia) ? '<li>Diplopia</li>' : null  }} 
+		{{ ($patient->history->dizziness) ? '<li>Dizziness</li>' : null  }}  
+		{{ ($patient->history->speechSwallow) ? '<li>Speech/Swallow</li>' : null  }}
+		{{ ($patient->history->blackouts) ? '<li>Blackouts</li>' : null  }}  
+		{{ ($patient->history->pacemaker) ? '<li>Pacemaker</li>' : null  }}  
+		{{ ($patient->history->bilateralNeuroSigns) ? '<li>Bilateral Neuro Signs</li>' : null  }}  
+		{{ ($patient->history->saddleAnaesthesia) ? '<li>Saddle Anaesthesia</li>' : null  }}  
+		{{ ($patient->history->cancerHistory) ? '<li>Cancer History</li>' : null  }}  
+		{{ ($patient->history->weightloss) ? '<li>Weightloss</li>' : null  }}  
+		{{ ($patient->history->steroids) ? '<li>Steroids</li>' : null  }}  
+		{{ ($patient->history->anticoagulants) ? '<li>Anticoagulants</li>' : null  }}  
+		{{ ($patient->history->pregnant) ? '<li>Pregnant</li>' : null  }}  
+		{{ ($patient->history->diabetes) ? '<li>Diabetes</li>' : null  }}  
+		{{ ($patient->history->epilepsy) ? '<li>Epilepsy</li>' : null  }}  
+		{{ ($patient->history->bloodPressure) ? '<li>Blood pressure</li>' : null  }}  
+		{{ ($patient->history->heartConditions) ? '<li>Heart Conditions</li>' : null  }}  
+		{{ ($patient->history->osteoporosis) ? '<li>Osteoporosis</li>' : null  }}  
+		{{ ($patient->history->thyroid) ? '<li>Thyroid</li>' : null  }}  
+		{{ ($patient->history->arthritis) ? '<li>Arthritis</li>' : null  }}
+	</ul>
 		<a href="{{ route('edit.history', $patient->id) }}" class="btn btn-info">Edit History</a>
 	</div>
 </div>
