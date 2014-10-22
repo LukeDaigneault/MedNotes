@@ -92,4 +92,6 @@ div#multiColumn {
     column-gap: 20px;
 }
 
-
+.nodots {
+	list-style-type: none;
+}

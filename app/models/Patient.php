@@ -31,7 +31,7 @@ class Patient extends Eloquent {
 
 	public function complaints()
 	{
-		return $this->hasMany('Complaints');
+		return $this->hasMany('Complaint');
 	}
 
 	public function history()

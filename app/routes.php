@@ -30,8 +30,7 @@ Route::group(array('before' => 'auth'), function () {
 	Route::delete('deletePatient/{patient}', ['as' => 'delete.patient', 'uses' => 'PatientController@handleDelete']);
 	// Routes to treat patients
 	Route::get('treatPatient/{patient}', ['as' => 'treat.patient', 'uses' => 'PatientController@showTreat']);
-	
-	
+		
 	
 	//History routes
 	// Routes to create History
@@ -40,6 +39,17 @@ Route::group(array('before' => 'auth'), function () {
 	// Routes to Edit History
 	Route::get('editHistory/{patient}', ['as' => 'edit.history', 'uses' => 'HistoryController@showEdit']);
 	Route::post('editHistory/{patient}', ['as' => 'edit.history', 'uses' => 'HistoryController@handleEdit']);
+	
+	//Complaint routes
+	// Routes to create History
+	Route::get('createComplaint/{patient}', ['as' => 'new.complaint', 'uses' => 'ComplaintController@showCreate']);
+	Route::post('createComplaint/{patient}', ['as' => 'create.complaint', 'uses' => 'ComplaintController@handleCreate']);
+	// Routes to Edit History
+	Route::get('editComplaint/{patient}/complaint/{complaint}', ['as' => 'edit.complaint', 'uses' => 'ComplaintController@showEdit']);
+	Route::post('editComplaint/{patient}/complaint/{complaint}', ['as' => 'edit.complaint', 'uses' => 'ComplaintController@handleEdit']);
+	// Routes to delete patients
+	Route::get('deleteComplaint/{complaint}', ['as' => 'delete.complaint', 'uses' => 'ComplaintController@showDelete']);
+	Route::delete('deleteComplaint/{complaint}', ['as' => 'delete.complaint', 'uses' => 'ComplaintController@handleDelete']);
 	
 	
 	//Doctor routes

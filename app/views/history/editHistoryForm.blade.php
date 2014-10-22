@@ -160,7 +160,7 @@
 					</label>
  				</div>
 				{{ Form::submit('Update', ['class' => 'btn btn-primary btn-lg']) }}
-					<a href="/" class="btn btn-link">Cancel</a>
+					<a href="{{ route('treat.patient', $patient->id) }}" class="btn btn-link">Cancel</a>
 				{{ Form::close() }}
 			</div>
 			
