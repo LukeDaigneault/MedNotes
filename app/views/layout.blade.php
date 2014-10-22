@@ -26,7 +26,7 @@
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="logout">Log Out</a></li>
+						<li><a href="{{ route('logout') }}">Log Out</a></li>
 					</ul>
 					{{ Form::open(['route' => 'search.patient', 'class' => 'navbar-form navbar-right', 'method' => 'POST']) }}
 					{{ Form::text('search', '', ['class' => 'form-control', 'placeholder'=>'Search Patients']) }}

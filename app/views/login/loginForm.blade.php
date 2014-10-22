@@ -17,8 +17,7 @@
   <body>
 
     <div class="container">
-
-      {{ Form::open(['url' => 'authenticate', 'class' => 'form-signin']) }}
+      {{ Form::open(['route' => 'authenticate', 'method' => 'POST', 'class' => 'form-signin']) }}
       <h2 class="form-signin-heading">MedNote</h2>
 		{{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email address', 'required', 'autofocus']) }}
 		{{ Form::password('password', ['class' => 'form-control', 'placeholder'=>'Password', 'required']) }}

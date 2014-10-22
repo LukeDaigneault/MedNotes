@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('login', ['as' => 'login', 'uses' => 'LoginController@showLogin']);
+Route::post('authenticate', ['as' => 'authenticate', 'uses' => 'LoginController@authenticateUser']);
+Route::get('logout', ['as' => 'logout', 'uses' => 'LoginController@logoutUser']);
 
 
 // Bind route parameters.
@@ -80,10 +83,3 @@ Route::group(array('before' => 'auth'), function () {
 	Route::post('editDoctor/{doctor}', ['as' => 'edit.doctor', 'uses' => 'DoctorController@handleEdit']);
 	
 });
-
-
-
-
-Route::get('login', 'LoginController@showLogin');
-Route::post('authenticate', 'LoginController@authenticateUser');
-Route::get('logout', 'LoginController@logoutUser');

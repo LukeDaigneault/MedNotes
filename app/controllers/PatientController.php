@@ -34,8 +34,8 @@ class PatientController extends \BaseController {
 	
 	public function showCreate()
 	{
-		$doctors = Doctor::get();
-
+		$doctors = new Doctor;
+		$doctors = $doctors->ofUser(Auth::id())->get();
 		return View::make('patient.createPatientForm', compact('doctors'));
 	}
 
@@ -119,7 +119,8 @@ class PatientController extends \BaseController {
     {
         // Show delete confirmation page.
 		$patient = $this->patient->ofUser(Auth::id())->findOrFail($patientID);
-		$doctors = Doctor::get();
+		$doctors = new Doctor;
+		$doctors = $doctors->ofUser(Auth::id())->get();
 		
         return View::make('patient.editPatientForm', ['patient' => $patient, 'doctors' => $doctors]);
     }
