@@ -83,7 +83,7 @@
 				
 				<div class="form-group">
 				{{ Form::submit('Update', ['class' => 'btn btn-primary btn-lg']) }}
-					<a href="/" class="btn btn-link">Cancel</a>
+					<a href="{{ route('index') }}" class="btn btn-link">Cancel</a>
 				{{ Form::close() }}
 				</div>
 		</div>

@@ -8,7 +8,7 @@
 
 		{{ Form::open(['route' => ['delete.doctor', $doctor->id], 'method' => 'DELETE']) }}
 		{{ Form::submit('Yes', ['class' => 'btn btn-danger btn-lg']) }}
-		<a href="/doctorIndex" class="btn btn-default btn-lg">No</a>
+		<a href="{{ route('index.doctor') }}" class="btn btn-default btn-lg">No</a>
 		{{ Form::close() }}
 
 	</div>
