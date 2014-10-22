@@ -57,8 +57,8 @@ Route::group(array('before' => 'auth'), function () {
 	Route::get('createPatientNote/{complaint}', ['as' => 'new.patientNote', 'uses' => 'PatientNoteController@showCreate']);
 	Route::post('createPatientNote/{complaint}', ['as' => 'create.patientNote', 'uses' => 'PatientNoteController@handleCreate']);
 	// Routes to Edit PatientNote
-	Route::get('editComplaint/{complaint}', ['as' => 'edit.complaint', 'uses' => 'ComplaintController@showEdit']);
-	Route::post('editComplaint/{complaint}', ['as' => 'edit.complaint', 'uses' => 'ComplaintController@handleEdit']);
+	Route::get('editPatientNote/{patientNote}', ['as' => 'edit.patientNote', 'uses' => 'PatientNoteController@showEdit']);
+	Route::post('editPatientNote/{patientNote}', ['as' => 'edit.patientNote', 'uses' => 'PatientNoteController@handleEdit']);
 	// Routes to delete PatientNote
 	Route::get('deletePatientNote/{patientNote}', ['as' => 'delete.patientNote', 'uses' => 'PatientNoteController@showDelete']);
 	Route::delete('deletePatientNote/{patientNote}', ['as' => 'delete.patientNote', 'uses' => 'PatientNoteController@handleDelete']);
