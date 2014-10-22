@@ -2,7 +2,7 @@
 
 class PatientNote extends Eloquent {
 
-	protected $table = 'patientnotes';
+	protected $table = 'patientNotes';
 	public $timestamps = true;
 	public $errors;
 	
