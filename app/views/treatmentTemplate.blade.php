@@ -80,8 +80,8 @@
 				<tr>
                     <td>{{ $complaint->description }}</td>
                     <td>
-						<a href="{{ route('treat.patient', $patient->id) }}" class="btn btn-success">Open</a>
-						<a href="{{ route('edit.patient', ['patient' => $patient->id]) }}" class="btn btn-info">Edit</a>
+						<a href="{{ route('show.patientNotes', $complaint->id) }}" class="btn btn-success">Open</a>
+						<a href="{{ route('edit.complaint', $complaint->id) }}" class="btn btn-info">Edit</a>
 						<a href="{{ route('delete.complaint', $complaint->id) }}" class="btn btn-danger">Delete</a>
 					</td>
                 </tr>

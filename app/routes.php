@@ -45,11 +45,24 @@ Route::group(array('before' => 'auth'), function () {
 	Route::get('createComplaint/{patient}', ['as' => 'new.complaint', 'uses' => 'ComplaintController@showCreate']);
 	Route::post('createComplaint/{patient}', ['as' => 'create.complaint', 'uses' => 'ComplaintController@handleCreate']);
 	// Routes to Edit History
-	Route::get('editComplaint/{patient}/complaint/{complaint}', ['as' => 'edit.complaint', 'uses' => 'ComplaintController@showEdit']);
-	Route::post('editComplaint/{patient}/complaint/{complaint}', ['as' => 'edit.complaint', 'uses' => 'ComplaintController@handleEdit']);
+	Route::get('editComplaint/{complaint}', ['as' => 'edit.complaint', 'uses' => 'ComplaintController@showEdit']);
+	Route::post('editComplaint/{complaint}', ['as' => 'edit.complaint', 'uses' => 'ComplaintController@handleEdit']);
 	// Routes to delete patients
 	Route::get('deleteComplaint/{complaint}', ['as' => 'delete.complaint', 'uses' => 'ComplaintController@showDelete']);
 	Route::delete('deleteComplaint/{complaint}', ['as' => 'delete.complaint', 'uses' => 'ComplaintController@handleDelete']);
+	
+	//PatientNote routes
+	Route::get('showNotes/{complaint}', ['as' => 'show.patientNotes', 'uses' => 'PatientNoteController@show']);
+	// Routes to create PatientNote
+	Route::get('createPatientNote/{complaint}', ['as' => 'new.patientNote', 'uses' => 'PatientNoteController@showCreate']);
+	Route::post('createPatientNote/{complaint}', ['as' => 'create.patientNote', 'uses' => 'PatientNoteController@handleCreate']);
+	// Routes to Edit PatientNote
+	Route::get('editComplaint/{complaint}', ['as' => 'edit.complaint', 'uses' => 'ComplaintController@showEdit']);
+	Route::post('editComplaint/{complaint}', ['as' => 'edit.complaint', 'uses' => 'ComplaintController@handleEdit']);
+	// Routes to delete PatientNote
+	Route::get('deletePatientNote/{patientNote}', ['as' => 'delete.patientNote', 'uses' => 'PatientNoteController@showDelete']);
+	Route::delete('deletePatientNote/{patientNote}', ['as' => 'delete.patientNote', 'uses' => 'PatientNoteController@handleDelete']);
+	
 	
 	
 	//Doctor routes
