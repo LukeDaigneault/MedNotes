@@ -91,13 +91,13 @@
 		$('#doctorsPhoneNumber').val("");
 		$('#doctorsAddress').val("");
 		$('#doctorsID').val("");
-		document.getElementById('doctorsName').disabled = false;
-		document.getElementById('doctorsPhoneNumber').disabled = false;
-		document.getElementById('doctorsAddress').disabled = false;
+		$('#doctorsName').prop('disabled', false);
+		$('#doctorsPhoneNumber').prop('disabled', false);
+		$('#doctorsAddress').prop('disabled', false);
     }else{
-		document.getElementById('doctorsName').disabled = true;
-		document.getElementById('doctorsPhoneNumber').disabled = true;
-		document.getElementById('doctorsAddress').disabled = true;
+		$('#doctorsName').prop('disabled', true);
+		$('#doctorsPhoneNumber').prop('disabled', true);
+		$('#doctorsAddress').prop('disabled', true);
 	
 	}
 		@foreach($doctors as $doctor)
