@@ -7,7 +7,7 @@ class CreatePatientNotesTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('patientNotes', function(Blueprint $table) {
+		Schema::create('patientnotes', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('note');
 			$table->integer('complaint_id')->unsigned()->index();
@@ -20,6 +20,6 @@ class CreatePatientNotesTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('patientNotes');
+		Schema::drop('patientnotes');
 	}
 }
