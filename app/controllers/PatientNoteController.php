@@ -28,10 +28,15 @@ class PatientNoteController extends \BaseController {
 		
 		if( ! $patientNote->isValid(['note'=>Input::get('note')]))
 				{
-				$complaint = new Complaint;
-		$complaint = $complaint->ofUser(Auth::id())->findOrFail($complaintID);
-				return View::make('note.showPatientNote', ['complaint' => $complaint])->withErrors($patientNote->errors);
-				//	return Redirect::back()->withInput()->withErrors($patientNote->errors);
+				if(Request::ajax())
+					{
+						return Response::json(array('errors' => $patientNote->errors));
+					}
+					else
+					{
+						return Redirect::back()->withInput()->withErrors($patientNote->errors);
+					}
+
 				}
 		
 		$patientNote->note = Input::get('note'); 

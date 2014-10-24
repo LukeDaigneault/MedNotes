@@ -1,11 +1,7 @@
 <h4>{{ $complaint->description }}	<button class="btn btn-info" id="newNoteBtn">Add Note</button></h4>
 
 <div id="createNoteDiv" class="createForm">
-	@if (!($errors->isEmpty()))
-		<div class="row alert alert-warning">
-			<strong>This field can not be blank</strong>
-		</div>
-	@endif
+	<div class="row alert alert-warning errorPanel" id="noteCreateErrors"><strong>This field can not be blank</strong></div>
 		{{ Form::open(['route' => ['create.patientNote', $complaint->id], 'method' => 'POST', 'id' =>'createNoteFrom']) }}
 			<div class="form-group">
 				{{ Form::textarea('note', 'S:

@@ -160,21 +160,26 @@ $(document).ready(function(){
  
   // Stop form from submitting normally
   event.preventDefault();
- 
+
   // Get some values from elements on the page:
   var $form = $( this ),
     term = $form.find( "textarea[name='note']" ).val(),
     url = $form.attr( "action" );
 
   // Send the data using post
-  var posting = $.post( url, { note: term },function( data ) {
-    $( "#notesTbl" ).empty().append( data );
-
-	});
+  var posting = $.post( url, { note: term }).done(function(response) {
+        if(response.errors)
+        {          
+            $("#noteCreateErrors").slideDown(200);
+        }
+        else
+        {
+        $( "#notesTbl" ).empty().append( response );
+        }
  
 });
 
-
+});
 });
 </script>
 

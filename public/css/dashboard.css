@@ -101,3 +101,7 @@ div#multiColumn {
 	padding-bottom: 10px;
 }
 
+.errorPanel{
+	display: none;
+}
+
