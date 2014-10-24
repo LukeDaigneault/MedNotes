@@ -19,7 +19,7 @@ class PatientNoteController extends \BaseController {
 		$complaint = new Complaint;
 		$complaint = $complaint->ofUser(Auth::id())->findOrFail($complaintID);
 		
-		return View::make('note.showPatientNote', ['patient' => $complaint->patient, 'complaint' => $complaint]);
+		return View::make('note.showPatientNote', ['complaint' => $complaint]);
     }
 	
 	public function handleCreate($complaintID)
@@ -28,7 +28,10 @@ class PatientNoteController extends \BaseController {
 		
 		if( ! $patientNote->isValid(['note'=>Input::get('note')]))
 				{
-					return Redirect::back()->withInput()->withErrors($patientNote->errors);
+				$complaint = new Complaint;
+		$complaint = $complaint->ofUser(Auth::id())->findOrFail($complaintID);
+				return View::make('note.showPatientNote', ['complaint' => $complaint])->withErrors($patientNote->errors);
+				//	return Redirect::back()->withInput()->withErrors($patientNote->errors);
 				}
 		
 		$patientNote->note = Input::get('note'); 

@@ -167,9 +167,7 @@ $(document).ready(function(){
     url = $form.attr( "action" );
 
   // Send the data using post
-  var posting = $.post( url, { note: term });
-
-   posting.done(function( data ) {
+  var posting = $.post( url, { note: term },function( data ) {
     $( "#notesTbl" ).empty().append( data );
 
 	});

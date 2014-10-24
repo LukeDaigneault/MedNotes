@@ -5,7 +5,7 @@
 		<div class="row alert alert-warning">
 			<strong>This field can not be blank</strong>
 		</div>
-		@endif
+	@endif
 		{{ Form::open(['route' => ['create.patientNote', $complaint->id], 'method' => 'POST', 'id' =>'createNoteFrom']) }}
 			<div class="form-group">
 				{{ Form::textarea('note', 'S:
