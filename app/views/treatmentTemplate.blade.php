@@ -125,27 +125,27 @@ $(document).ready(function(){
   
   $( ".showComplaintBtn" ).click(function( event ) {
 
-  event.preventDefault();
+	event.preventDefault();
  
-  // Get some values from elements on the page:
-  var $btn = $( this ),
-    url = $btn.attr( "href" );
+	  // Get some values from elements on the page:
+	  var $btn = $( this ),
+		url = $btn.attr( "href" );
  
-  // Send the data using post
-  var notes = $.get( url, function( data ) {
+	  // Send the data using post
+	  var notes = $.get( url, function( data ) {
   
-    $( "#notesTbl" ).empty().append( data );
+		$( "#notesTbl" ).empty().append( data );
 
-	});
+		});
   
 
   });
   
   
 	$(document).on('click', "#newNoteBtn", function() {
-	event.preventDefault();
+		event.preventDefault();
   
-    $("#createNoteDiv").slideDown(200);
+		$("#createNoteDiv").slideDown(200);
   });
   
 	$(document).on('click', "#cancelNoteBtn", function() {
