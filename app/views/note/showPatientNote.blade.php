@@ -1,6 +1,28 @@
-@extends('treatmentTemplate')
-@section('complaint')
-<h4>{{ $complaint->description }}	<a href="{{ route('new.patientNote', $complaint->id) }}" class="btn btn-info">Add Note</a></h4> 
+<h4>{{ $complaint->description }}	<button class="btn btn-info" id="newNoteBtn">Add Note</button></h4>
+
+<div id="createNoteDiv" class="createForm">
+	@if (!($errors->isEmpty()))
+		<div class="row alert alert-warning">
+			<strong>This field can not be blank</strong>
+		</div>
+		@endif
+		{{ Form::open(['route' => ['create.patientNote', $complaint->id], 'method' => 'POST', 'id' =>'createNoteFrom']) }}
+			<div class="form-group">
+				{{ Form::textarea('note', 'S:
+
+
+O:
+
+
+A:
+
+
+P:', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
+			</div>
+			{{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
+		<button class="btn btn-link" class="btn btn-link" id="cancelNoteBtn">Cancel</button>
+		{{ Form::close() }} 
+</div>
 
 @if ($complaint->patientNotes->isEmpty())
         <p>There are no notes! :(</p>
@@ -18,6 +40,3 @@
 	@endforeach
 		
 @endif
-
-@stop
-	

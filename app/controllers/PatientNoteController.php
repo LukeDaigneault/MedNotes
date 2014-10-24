@@ -22,14 +22,6 @@ class PatientNoteController extends \BaseController {
 		return View::make('note.showPatientNote', ['patient' => $complaint->patient, 'complaint' => $complaint]);
     }
 	
-	 public function showCreate($complaintID)
-    {
-		$complaint = new Complaint;
-		$complaint = $complaint->ofUser(Auth::id())->findOrFail($complaintID);
-		
-	    return View::make('note.createPatientNoteForm', ['patient' => $complaint->patient, 'complaint' => $complaint]);
-    }
-	
 	public function handleCreate($complaintID)
 	{		
 		$patientNote = $this->patientNote;
@@ -44,7 +36,7 @@ class PatientNoteController extends \BaseController {
 		$patientNote->complaint_id = $complaintID;
 		$patientNote->save();
 	
-    	return Redirect::route('show.patientNotes', ['complaint' => $patientNote->complaint->id]);		
+    	return Redirect::route('show.patientNotes', ['complaint' => $complaintID]);		
 		
 	}
 	

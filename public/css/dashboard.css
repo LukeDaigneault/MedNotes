@@ -95,3 +95,9 @@ div#multiColumn {
 .nodots {
 	list-style-type: none;
 }
+
+.createForm{
+	display: none;
+	padding-bottom: 10px;
+}
+

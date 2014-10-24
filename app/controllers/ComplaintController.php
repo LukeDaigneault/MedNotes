@@ -13,14 +13,6 @@ class ComplaintController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	 
-	 public function showCreate($patientID)
-    {
-		$patient = new Patient;
-		$patient = $patient->ofUser(Auth::id())->findOrFail($patientID);
-		
-	    return View::make('complaint.createComplaintForm', compact('patient'));
-    }
 	
 	public function handleCreate($patientID)
 	{		

@@ -45,7 +45,6 @@ Route::group(array('before' => 'auth'), function () {
 	
 	//Complaint routes
 	// Routes to create History
-	Route::get('createComplaint/{patient}', ['as' => 'new.complaint', 'uses' => 'ComplaintController@showCreate']);
 	Route::post('createComplaint/{patient}', ['as' => 'create.complaint', 'uses' => 'ComplaintController@handleCreate']);
 	// Routes to Edit History
 	Route::get('editComplaint/{complaint}', ['as' => 'edit.complaint', 'uses' => 'ComplaintController@showEdit']);
@@ -57,7 +56,6 @@ Route::group(array('before' => 'auth'), function () {
 	//PatientNote routes
 	Route::get('showNotes/{complaint}', ['as' => 'show.patientNotes', 'uses' => 'PatientNoteController@show']);
 	// Routes to create PatientNote
-	Route::get('createPatientNote/{complaint}', ['as' => 'new.patientNote', 'uses' => 'PatientNoteController@showCreate']);
 	Route::post('createPatientNote/{complaint}', ['as' => 'create.patientNote', 'uses' => 'PatientNoteController@handleCreate']);
 	// Routes to Edit PatientNote
 	Route::get('editPatientNote/{patientNote}', ['as' => 'edit.patientNote', 'uses' => 'PatientNoteController@showEdit']);

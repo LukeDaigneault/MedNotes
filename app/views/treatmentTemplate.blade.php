@@ -1,9 +1,5 @@
 @extends('patient.patientTemplate')
 
-@section('head')
-<link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
-
-@stop
 @section('content')
 
 <h2 class="sub-header">Treat {{ $patient->lastName }}, {{$patient->firstName }} <small>{{ date("d/m/Y", strtotime($patient->dob)) }}</small></h2>
@@ -70,17 +66,31 @@
 <h3 class="sub-header">Complaints</h3>
 <div class="row">
 	<div class="col-md-4">
+		<div id="createComplaintForm" class="createForm">
+		@if (!($errors->isEmpty()))
+		<div class="row alert alert-warning">
+			<strong>This field can not be blank</strong>
+		</div>
+		@endif
+		{{ Form::open(['route' => ['create.complaint', $patient->id], 'method' => 'POST']) }}
+			<div class="form-group">
+				{{ Form::text('description', '', ['class' => 'form-control']) }}
+			</div>
+			{{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
+		<button class="btn btn-link" id="cancelComplaintForm">Cancel</button>
+		{{ Form::close() }}
+		</div>
+	
 	 @if ($patient->complaints->isEmpty())
         <p>There are no complaints! :(</p>
     @else
-	<h4>Existing Complaints</h4>
-	<table class="table table-striped">
+	<table class="table table-striped" id="complaintsTbl">
         <tbody>
             @foreach($patient->complaints as $complaint)
 				<tr>
                     <td>{{ $complaint->description }}</td>
                     <td>
-						<a href="{{ route('show.patientNotes', $complaint->id) }}" class="btn btn-success">Open</a>
+						<a href="{{ route('show.patientNotes', $complaint->id) }}" class="btn btn-success showComplaintBtn">Open</a>
 						<a href="{{ route('edit.complaint', $complaint->id) }}" class="btn btn-info">Edit</a>
 						<a href="{{ route('delete.complaint', $complaint->id) }}" class="btn btn-danger">Delete</a>
 					</td>
@@ -89,11 +99,86 @@
         </tbody>
 	</table>
 	@endif
-	<a href="{{ route('new.complaint', $patient->id) }}" class="btn btn-info">Create New Complaint</a>
+	<button class="btn btn-info" id="newComplaintBtn">Create New Complaint</button>
 	</div>
-	<div class="col-md-8">
+	<div class="col-md-8" id="notesTbl">
 	@yield('complaint')
 	</div>
 </div>
+
+@stop
+
+@section ('scripts')
+<script> 
+$(document).ready(function(){
+  $("#newComplaintBtn").click(function(){
+	event.preventDefault();
+  
+    $("#createComplaintForm").slideDown(200);
+  });
+  
+   $("#cancelComplaintForm").click(function(){
+	 event.preventDefault();
+	  
+    $("#createComplaintForm").slideUp(200);
+  });
+  
+  $( ".showComplaintBtn" ).click(function( event ) {
+
+  event.preventDefault();
+ 
+  // Get some values from elements on the page:
+  var $btn = $( this ),
+    url = $btn.attr( "href" );
+ 
+  // Send the data using post
+  var notes = $.get( url, function( data ) {
+  
+    $( "#notesTbl" ).empty().append( data );
+
+	});
+  
+
+  });
+  
+  
+	$(document).on('click', "#newNoteBtn", function() {
+	event.preventDefault();
+  
+    $("#createNoteDiv").slideDown(200);
+  });
+  
+	$(document).on('click', "#cancelNoteBtn", function() {
+	 event.preventDefault();
+	  
+    $("#createNoteDiv").slideUp(200);
+  });
+  
+  
+  $(document).on('submit', "#createNoteFrom", function( event ) {
+ 
+ 
+  // Stop form from submitting normally
+  event.preventDefault();
+ 
+  // Get some values from elements on the page:
+  var $form = $( this ),
+    term = $form.find( "textarea[name='note']" ).val(),
+    url = $form.attr( "action" );
+
+  // Send the data using post
+  var posting = $.post( url, { note: term });
+
+   posting.done(function( data ) {
+    $( "#notesTbl" ).empty().append( data );
+
+	});
+ 
+});
+
+
+});
+</script>
+
 
 @stop
