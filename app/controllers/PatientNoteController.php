@@ -73,14 +73,6 @@ class PatientNoteController extends \BaseController {
 	}
 	
 	
-	public function showDelete($patientNoteID)
-    {
-        // Show delete confirmation page.
-		$patientNote = $this->patientNote->ofUser(Auth::id())->findOrFail($patientNoteID);
-			
-        return View::make('note.deletePatientNoteForm', ['patient' => $patientNote->complaint->patient, 'complaint' => $patientNote->complaint, 'patientNote' => $patientNote]);
-    }
-	
 	public function handleDelete($patientNoteID)
 	{
 		$patientNote = $this->patientNote->ofUser(Auth::id())->findOrFail($patientNoteID);

@@ -110,77 +110,93 @@
 
 @section ('scripts')
 <script> 
-$(document).ready(function(){
-  $("#newComplaintBtn").click(function(){
-	event.preventDefault();
-  
-    $("#createComplaintForm").slideDown(200);
-  });
-  
-   $("#cancelComplaintForm").click(function(){
-	 event.preventDefault();
-	  
-    $("#createComplaintForm").slideUp(200);
-  });
-  
-  $( ".showComplaintBtn" ).click(function( event ) {
-
-	event.preventDefault();
- 
-	  // Get some values from elements on the page:
-	  var $btn = $( this ),
-		url = $btn.attr( "href" );
- 
-	  // Send the data using post
-	  var notes = $.get( url, function( data ) {
-  
-		$( "#notesTbl" ).empty().append( data );
-
+$(document).ready(function() {
+	// Complaint scripts
+	$("#newComplaintBtn").click(function() {
+		event.preventDefault();
+		$("#createComplaintForm").slideDown(200);
+	});
+	
+	$("#cancelComplaintForm").click(function() {
+		event.preventDefault();
+		$("#createComplaintForm").slideUp(200);
+	});
+	
+	$(".showComplaintBtn").click(function(event) {
+		event.preventDefault();
+		// Get some values from elements on the page:
+		var $btn = $(this),
+			url = $btn.attr("href");
+		// Send the data using post
+		var notes = $.get(url, function(data) {
+			$("#notesTbl").empty().append(data);
 		});
-  
-
-  });
-  
-  
+	});
+	
+	//Notes scripts
 	$(document).on('click', "#newNoteBtn", function() {
 		event.preventDefault();
-  
 		$("#createNoteDiv").slideDown(200);
-  });
-  
+	});
+	
 	$(document).on('click', "#cancelNoteBtn", function() {
-	 event.preventDefault();
-	  
-    $("#createNoteDiv").slideUp(200);
-  });
-  
-  
-  $(document).on('submit', "#createNoteFrom", function( event ) {
- 
- 
-  // Stop form from submitting normally
-  event.preventDefault();
-
-  // Get some values from elements on the page:
-  var $form = $( this ),
-    term = $form.find( "textarea[name='note']" ).val(),
-    url = $form.attr( "action" );
-
-  // Send the data using post
-  var posting = $.post( url, { note: term }).done(function(response) {
-        if(response.errors)
-        {          
-            $("#noteCreateErrors").slideDown(200);
-        }
-        else
-        {
-        $( "#notesTbl" ).empty().append( response );
-        }
- 
+		event.preventDefault();
+		$("#createNoteDiv").slideUp(200);
+	});
+	
+	$(document).on('submit', "#createNoteFrom", function(event) {
+		// Stop form from submitting normally
+		event.preventDefault();
+		// Get some values from elements on the page:
+		var $form = $(this),
+			term = $form.find("textarea[name='note']").val(),
+			url = $form.attr("action");
+		// Send the data using post
+		var posting = $.post(url, {
+			note: term
+		}).done(function(response) {
+			if (response.errors) {
+				$("#noteCreateErrors").slideDown(200);
+			} else {
+				$("#notesTbl").empty().append(response);
+			}
+		});
+	});
+	
+	$(document).on('click', "#deleteNoteBtn", function() {
+		event.preventDefault();
+		$('#notesButtonDiv').slideUp(200);
+		$('#notesDeleteButtonDiv').slideDown(200);
+	});
+	
+	$(document).on('click', "#cancelDeleteNoteBtn", function() {
+		event.preventDefault();
+		$("#notesDeleteButtonDiv").slideUp(200);
+		$("#notesButtonDiv").slideDown(200);
+	});
+	
+	$(document).on('submit', "#deleteNoteFrom", function(event) {
+		// Stop form from submitting normally
+		event.preventDefault();
+		// Get some values from elements on the page:
+		var $form = $(this),
+		token = $form.data('_token'),
+		url = $form.attr("action");
+		// Send the data using post
+		
+		var posting = $.ajax({
+   	 url: url,
+    		type: 'post',
+        data: {_method: 'delete', _token :token},
+    	success:function(response){
+					
+				$("#notesTbl").empty().append(response);
+			}
+		});	
+	});
+	
 });
 
-});
-});
 </script>
 
 
