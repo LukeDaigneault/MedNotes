@@ -163,19 +163,27 @@ $(document).ready(function() {
 		});
 	});
 	
-	$(document).on('click', "#deleteNoteBtn", function() {
+	$(document).on('click', ".deleteNoteBtn", function(event) {
 		event.preventDefault();
-		$('#notesButtonDiv').slideUp(200);
-		$('#notesDeleteButtonDiv').slideDown(200);
+	
+		var notesButtonDiv = $(this).parent(".notesButtonDiv");
+		var notesDeleteButtonDiv = $(notesButtonDiv).siblings('.notesDeleteButtonDiv');
+	
+		notesButtonDiv.slideUp(200);
+		notesDeleteButtonDiv.slideDown(200);
 	});
 	
-	$(document).on('click', "#cancelDeleteNoteBtn", function() {
+	$(document).on('click', ".cancelDeleteNoteBtn", function(event) {
 		event.preventDefault();
-		$("#notesDeleteButtonDiv").slideUp(200);
-		$("#notesButtonDiv").slideDown(200);
+		
+		var notesDeleteButtonDiv = $(this).parent().parent(".notesDeleteButtonDiv");
+		var notesButtonDiv = $(notesDeleteButtonDiv).siblings('.notesButtonDiv');
+	
+		notesDeleteButtonDiv.slideUp(200);
+		notesButtonDiv.slideDown(200);
 	});
 	
-	$(document).on('submit', "#deleteNoteFrom", function(event) {
+	$(document).on('submit', ".deleteNoteFrom", function(event) {
 		// Stop form from submitting normally
 		event.preventDefault();
 		// Get some values from elements on the page:

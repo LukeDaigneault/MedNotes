@@ -26,16 +26,18 @@ P:', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
 	
 	@foreach($complaint->patientNotes as $patientNote)
 		<pre class = "pre-scrollable">{{ $patientNote->note }}</pre>
-		<div id="notesButtonDiv">
+		<div class="noteDiv">
+			<div class="notesButtonDiv">
 			<a href="{{ route('edit.patientNote', $patientNote->id) }}" class="btn btn-info">Edit</a>
-			<button class="btn btn-danger" id="deleteNoteBtn">Delete</button>
-		</div>
-		<div id="notesDeleteButtonDiv" class="hidePanel">
-			<strong>Are you sure?</strong>
-			{{ Form::open(['route' => ['delete.patientNote', $patientNote->id], 'method' => 'DELETE', 'id' =>'deleteNoteFrom']) }}
-			{{ Form::submit('Yes', ['class' => 'btn btn-danger']) }}
-			<button class="btn btn-link" id="cancelDeleteNoteBtn">No</button>
-			{{ Form::close() }}
+			<button class="btn btn-danger deleteNoteBtn" >Delete</button>
+			</div>
+			<div class="hidePanel notesDeleteButtonDiv">
+				<strong>Are you sure?</strong>
+				{{ Form::open(['route' => ['delete.patientNote', $patientNote->id], 'method' => 'DELETE', 'class' =>'deleteNoteFrom']) }}
+				{{ Form::submit('Yes', ['class' => 'btn btn-danger']) }}
+				<button class="btn btn-link cancelDeleteNoteBtn" >No</button>
+				{{ Form::close() }}
+			</div>
 		</div>
 		<small>Created: {{ $patientNote->created_at }}</small>
 		@if (!($patientNote->created_at == $patientNote->updated_at))
