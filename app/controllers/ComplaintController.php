@@ -43,9 +43,9 @@ class ComplaintController extends \BaseController {
 		$complaint->user_id = Auth::id();
 		$complaint->patient_id = $patientID;
 		$complaint->save();
-	
-		return View::make('complaint.showComplaintForm', ['patient' => $complaint->patient]);		
 		
+		return Redirect::route('show.complaints', ['patient' => $patientID]);
+	
 	}
 
 	
@@ -72,20 +72,13 @@ class ComplaintController extends \BaseController {
 		
 	}
 	
-	public function showDelete($complaintID)
-    {
-        // Show delete confirmation page.
-		$complaint = $this->complaint->ofUser(Auth::id())->findOrFail($complaintID);
-			
-        return View::make('complaint.deleteComplaintForm', ['patient' => $complaint->patient, 'complaint' => $complaint]);
-    }
 	
 	public function handleDelete($complaintID)
 	{
 		$complaint = $this->complaint->ofUser(Auth::id())->findOrFail($complaintID);
 		$complaint->delete();
-		
-		return Redirect::route('treat.patient', ['patient' => $complaint->patient->id]);	
+
+		return Redirect::route('show.complaints', ['patient' => $complaint->patient->id]);		
 	}
 	
 		

@@ -88,17 +88,16 @@ $(document).ready(function() {
 	$.get("{{ route('show.complaints', $patient->id) }}", function(data) {
 			$("#complaintsTbl").html(data);
 		});
-
-
-	// Complaint scripts
+		
+		// Complaint scripts
 	$(document).on('click', "#newComplaintBtn", function(event) {
 		event.preventDefault();
-		$("#createComplaintDiv").slideDown(200);
+		$("#createComplaintDiv").slideDown(400);
 	});
 	
 	$(document).on('click', "#cancelComplaintForm", function(event) {
 		event.preventDefault();
-		$("#createComplaintDiv").slideUp(200);
+		$("#createComplaintDiv").slideUp(400);
 	});
 	
 	$(document).on('submit', "#createComplaintForm", function(event) {
@@ -126,8 +125,8 @@ $(document).ready(function() {
 		var notesButtonDiv = $(this).parent(".complaintsButtonDiv");
 		var notesDeleteButtonDiv = $(notesButtonDiv).siblings('.complaintsDeleteButtonDiv');
 	
-		notesButtonDiv.slideUp(200);
-		notesDeleteButtonDiv.slideDown(200);
+		notesButtonDiv.slideUp(400);
+		notesDeleteButtonDiv.slideDown(400);
 	});
 	
 	$(document).on('click', ".cancelDeleteNoteBtn", function(event) {
@@ -136,11 +135,11 @@ $(document).ready(function() {
 		var notesDeleteButtonDiv = $(this).parent().parent(".complaintsDeleteButtonDiv");
 		var notesButtonDiv = $(notesDeleteButtonDiv).siblings('.complaintsButtonDiv');
 	
-		notesDeleteButtonDiv.slideUp(200);
-		notesButtonDiv.slideDown(200);
+		notesDeleteButtonDiv.slideUp(400);
+		notesButtonDiv.slideDown(400);
 	});
 	
-	$(document).on('submit', ".deleteNoteFrom", function(event) {
+	$(document).on('submit', ".deleteComplaintFrom", function(event) {
 		// Stop form from submitting normally
 		event.preventDefault();
 		// Get some values from elements on the page:
@@ -154,8 +153,8 @@ $(document).ready(function() {
     		type: 'post',
         data: {_method: 'delete', _token :token},
     	success:function(response){
-					
-				$("#notesTbl").empty().append(response);
+				$("#notesTbl").empty();	
+				$("#complaintsTbl").empty().append(response);
 			}
 		});	
 	});
@@ -172,15 +171,17 @@ $(document).ready(function() {
 		});
 	});
 	
-	//Notes scripts
+});
+
+//Notes scripts
 	$(document).on('click', "#newNoteBtn", function() {
 		event.preventDefault();
-		$("#createNoteDiv").slideDown(200);
+		$("#createNoteDiv").slideDown(400);
 	});
 	
 	$(document).on('click', "#cancelNoteBtn", function() {
 		event.preventDefault();
-		$("#createNoteDiv").slideUp(200);
+		$("#createNoteDiv").slideUp(400);
 	});
 	
 	$(document).on('submit', "#createNoteFrom", function(event) {
@@ -208,8 +209,8 @@ $(document).ready(function() {
 		var notesButtonDiv = $(this).parent(".notesButtonDiv");
 		var notesDeleteButtonDiv = $(notesButtonDiv).siblings('.notesDeleteButtonDiv');
 	
-		notesButtonDiv.slideUp(200);
-		notesDeleteButtonDiv.slideDown(200);
+		notesButtonDiv.slideUp(400);
+		notesDeleteButtonDiv.slideDown(400);
 	});
 	
 	$(document).on('click', ".cancelDeleteNoteBtn", function(event) {
@@ -218,8 +219,8 @@ $(document).ready(function() {
 		var notesDeleteButtonDiv = $(this).parent().parent(".notesDeleteButtonDiv");
 		var notesButtonDiv = $(notesDeleteButtonDiv).siblings('.notesButtonDiv');
 	
-		notesDeleteButtonDiv.slideUp(200);
-		notesButtonDiv.slideDown(200);
+		notesDeleteButtonDiv.slideUp(400);
+		notesButtonDiv.slideDown(400);
 	});
 	
 	$(document).on('submit', ".deleteNoteFrom", function(event) {
@@ -241,8 +242,6 @@ $(document).ready(function() {
 			}
 		});	
 	});
-	
-});
 
 </script>
 

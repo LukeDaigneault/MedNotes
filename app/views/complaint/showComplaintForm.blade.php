@@ -28,7 +28,7 @@
 						</div>
 						<div class="hidePanel complaintsDeleteButtonDiv">
 							<strong>Are you sure?</strong>
-							{{ Form::open(['route' => ['delete.complaint', $complaint->id], 'method' => 'DELETE']) }}
+							{{ Form::open(['route' => ['delete.complaint', $complaint->id], 'method' => 'DELETE', 'class' => 'deleteComplaintFrom']) }}
 							{{ Form::submit('Yes', ['class' => 'btn btn-danger']) }}
 							<button  class="btn btn-link cancelDeleteNoteBtn">No</button>
 							{{ Form::close() }}
@@ -42,3 +42,6 @@
 	</table>
 @endif
 <button class="btn btn-info" id="newComplaintBtn">Create New Complaint</button>
+<script>
+
+</script>
