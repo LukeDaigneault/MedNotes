@@ -13,6 +13,14 @@ class ComplaintController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	 
+	  public function show($patientID)
+    {
+		$patient = new patient;
+		$patient = $patient->ofUser(Auth::id())->findOrFail($patientID);
+		
+		return View::make('complaint.showComplaintForm', ['patient' => $patient]);
+    }
 	
 	public function handleCreate($patientID)
 	{		
@@ -20,7 +28,15 @@ class ComplaintController extends \BaseController {
 		
 		if( ! $complaint->isValid(['description'=>Input::get('description')]))
 				{
-					return Redirect::back()->withInput()->withErrors($complaint->errors);
+				if(Request::ajax())
+					{
+						return Response::json(array('errors' => $complaint->errors));
+					}
+					else
+					{
+						return Redirect::back()->withInput()->withErrors($complaint->errors);
+					}
+					
 				}
 		
 		$complaint->description = Input::get('description'); 
@@ -28,9 +44,10 @@ class ComplaintController extends \BaseController {
 		$complaint->patient_id = $patientID;
 		$complaint->save();
 	
-    	return Redirect::route('treat.patient', ['patient' => $patientID]);		
+		return View::make('complaint.showComplaintForm', ['patient' => $complaint->patient]);		
 		
 	}
+
 	
 	 public function showEdit($complaintID)
     {

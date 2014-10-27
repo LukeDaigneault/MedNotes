@@ -44,6 +44,7 @@ Route::group(array('before' => 'auth'), function () {
 	Route::post('editHistory/{patient}', ['as' => 'edit.history', 'uses' => 'HistoryController@handleEdit']);
 	
 	//Complaint routes
+	Route::get('showComplaints/{patient}', ['as' => 'show.complaints', 'uses' => 'ComplaintController@show']);
 	// Routes to create History
 	Route::post('createComplaint/{patient}', ['as' => 'create.complaint', 'uses' => 'ComplaintController@handleCreate']);
 	// Routes to Edit History
