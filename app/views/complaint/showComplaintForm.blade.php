@@ -20,7 +20,7 @@
 			
 				<tr>
 				
-					<td>
+					<td class="col-md-6">
 					<input class="form-control" name="shownDescription" type="text" value="{{ $complaint->description }}" disabled="true">
 						</td>
 						<td>

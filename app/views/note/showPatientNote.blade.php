@@ -26,17 +26,17 @@ P:', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
 	@foreach($complaint->patientNotes as $patientNote)
 		<textarea class = "form-control" disabled = "true" cols = "50" rows = "10">{{ $patientNote->note }}</textarea>
 		<div class="noteDiv">
-			<div class="notesButtonDiv">
+			<div class="notebuttons notesButtonDiv">
 			<button class="btn btn-info editNoteBtn">Edit</button>
 			<button class="btn btn-danger deleteNoteBtn" >Delete</button>
 			</div>
-			<div  class="createForm notesEditButtonDiv">
+			<div  class="notebuttons hidePanel notesEditButtonDiv">
 						{{ Form::open(['route' => ['edit.patientNote', $patientNote->id], 'method' => 'POST', 'class' => 'editNoteForm']) }}
 						{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
 						<button class="btn btn-link cancelEditNoteBtn">Cancel</button>
 						{{ Form::close() }}
 			</div>
-			<div class="hidePanel notesDeleteButtonDiv">
+			<div class="notebuttons hidePanel notesDeleteButtonDiv">
 				<strong>Are you sure?</strong>
 				{{ Form::open(['route' => ['delete.patientNote', $patientNote->id], 'method' => 'DELETE', 'class' =>'deleteNoteForm']) }}
 				{{ Form::submit('Yes', ['class' => 'btn btn-danger']) }}

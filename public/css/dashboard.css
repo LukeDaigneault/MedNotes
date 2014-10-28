@@ -105,3 +105,7 @@ div#multiColumn {
 	display: none;
 }
 
+.notebuttons {
+padding-bottom: 5px;
+padding-top: 10px;
+}
