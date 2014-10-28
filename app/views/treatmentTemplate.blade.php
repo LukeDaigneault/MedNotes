@@ -122,24 +122,24 @@ $(document).ready(function() {
 	$(document).on('click', ".deleteComplaintBtn", function(event) {
 		event.preventDefault();
 	
-		var notesButtonDiv = $(this).parent(".complaintsButtonDiv");
-		var notesDeleteButtonDiv = $(notesButtonDiv).siblings('.complaintsDeleteButtonDiv');
+		var complaintsButtonDiv = $(this).parent(".complaintsButtonDiv");
+		var complaintsDeleteButtonDiv = $(complaintsButtonDiv).siblings('.complaintsDeleteButtonDiv');
 	
-		notesButtonDiv.slideUp(400);
-		notesDeleteButtonDiv.slideDown(400);
+		complaintsButtonDiv.slideUp(400);
+		complaintsDeleteButtonDiv.slideDown(400);
 	});
 	
-	$(document).on('click', ".cancelDeleteNoteBtn", function(event) {
+	$(document).on('click', ".cancelDeleteComplaintBtn", function(event) {
 		event.preventDefault();
 		
-		var notesDeleteButtonDiv = $(this).parent().parent(".complaintsDeleteButtonDiv");
-		var notesButtonDiv = $(notesDeleteButtonDiv).siblings('.complaintsButtonDiv');
+		var complaintsDeleteButtonDiv = $(this).parent().parent(".complaintsDeleteButtonDiv");
+		var complaintsButtonDiv = $(complaintsDeleteButtonDiv).siblings('.complaintsButtonDiv');
 	
-		notesDeleteButtonDiv.slideUp(400);
-		notesButtonDiv.slideDown(400);
+		complaintsDeleteButtonDiv.slideUp(400);
+		complaintsButtonDiv.slideDown(400);
 	});
 	
-	$(document).on('submit', ".deleteComplaintFrom", function(event) {
+	$(document).on('submit', ".deleteComplaintForm", function(event) {
 		// Stop form from submitting normally
 		event.preventDefault();
 		// Get some values from elements on the page:
@@ -149,7 +149,7 @@ $(document).ready(function() {
 		// Send the data using post
 		
 		var posting = $.ajax({
-   	 url: url,
+			url: url,
     		type: 'post',
         data: {_method: 'delete', _token :token},
     	success:function(response){
@@ -157,6 +157,52 @@ $(document).ready(function() {
 				$("#complaintsTbl").empty().append(response);
 			}
 		});	
+	});
+	
+	$(document).on('click', '.editComplaintBtn', function(event) {
+		event.preventDefault();
+	
+		var complaintDiv = $(this).parent('.complaintsButtonDiv');
+		var complaintEditDiv = $(complaintDiv).next('.complaintsEditButtonDiv');
+		
+		var input = $(complaintEditDiv).parent().prev().children('input');
+	
+		complaintDiv.slideUp(400);
+		complaintEditDiv.slideDown(400);
+		input.prop({disabled :false});
+	});
+	
+	$(document).on('click', '.cancelEditComplaintBtn', function(event) {
+		event.preventDefault();
+		
+		var complaintEditDiv = $(this).parents('.complaintsEditButtonDiv');
+		var complaintDiv = $(complaintEditDiv).prev('.complaintsButtonDiv');
+		
+		var input = $(complaintEditDiv).parent().prev().children('input');
+	
+		complaintEditDiv.slideUp(400);
+		complaintDiv.slideDown(400);
+		input.prop({disabled :true});
+	});
+	
+	$(document).on('submit', ".editComplaintForm", function(event) {
+		// Stop form from submitting normally
+		event.preventDefault();
+		// Get some values from elements on the page:
+	
+		var $form = $(this),
+			term = $(this).parents('td').prev().children('input').val(),
+			url = $form.attr("action");
+		// Send the data using post
+		var posting = $.post(url, {
+			description: term
+		}).done(function(response) {
+			if (response.errors) {
+				$("#complaintCreateErrors").slideDown(200);
+			} else {
+				$("#complaintsTbl").empty().append(response);
+			}
+		});
 	});
 	
 
@@ -171,7 +217,7 @@ $(document).ready(function() {
 		});
 	});
 	
-});
+
 
 //Notes scripts
 	$(document).on('click', "#newNoteBtn", function() {
@@ -184,7 +230,7 @@ $(document).ready(function() {
 		$("#createNoteDiv").slideUp(400);
 	});
 	
-	$(document).on('submit', "#createNoteFrom", function(event) {
+	$(document).on('submit', "#createNoteForm", function(event) {
 		// Stop form from submitting normally
 		event.preventDefault();
 		// Get some values from elements on the page:
@@ -223,7 +269,7 @@ $(document).ready(function() {
 		notesButtonDiv.slideDown(400);
 	});
 	
-	$(document).on('submit', ".deleteNoteFrom", function(event) {
+	$(document).on('submit', ".deleteNoteForm", function(event) {
 		// Stop form from submitting normally
 		event.preventDefault();
 		// Get some values from elements on the page:
@@ -242,6 +288,7 @@ $(document).ready(function() {
 			}
 		});	
 	});
+});
 
 </script>
 

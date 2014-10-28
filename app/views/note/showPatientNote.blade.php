@@ -2,7 +2,7 @@
 
 <div id="createNoteDiv" class="createForm">
 	<div class="row alert alert-warning hidePanel" id="noteCreateErrors"><strong>This field can not be blank</strong></div>
-		{{ Form::open(['route' => ['create.patientNote', $complaint->id], 'method' => 'POST', 'id' =>'createNoteFrom']) }}
+		{{ Form::open(['route' => ['create.patientNote', $complaint->id], 'method' => 'POST', 'id' =>'createNoteForm']) }}
 			<div class="form-group">
 				{{ Form::textarea('note', 'S:
 
@@ -33,7 +33,7 @@ P:', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
 			</div>
 			<div class="hidePanel notesDeleteButtonDiv">
 				<strong>Are you sure?</strong>
-				{{ Form::open(['route' => ['delete.patientNote', $patientNote->id], 'method' => 'DELETE', 'class' =>'deleteNoteFrom']) }}
+				{{ Form::open(['route' => ['delete.patientNote', $patientNote->id], 'method' => 'DELETE', 'class' =>'deleteNoteForm']) }}
 				{{ Form::submit('Yes', ['class' => 'btn btn-danger']) }}
 				<button class="btn btn-link cancelDeleteNoteBtn" >No</button>
 				{{ Form::close() }}

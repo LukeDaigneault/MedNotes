@@ -1,7 +1,7 @@
-<div id="createComplaintDiv" class="createForm">
-	<div class="row alert alert-warning hidePanel" id="complaintCreateErrors">
+<div class="row alert alert-warning hidePanel" id="complaintCreateErrors">
 		<strong>This field can not be blank</strong>
-	</div>
+</div>
+<div id="createComplaintDiv" class="createForm">
 	{{ Form::open(['route' => ['create.complaint', $patient->id], 'method' => 'POST', 'id' => 'createComplaintForm']) }}
 	<div class="form-group">
 		{{ Form::text('description', '', ['class' => 'form-control']) }}
@@ -10,33 +10,42 @@
 	<button class="btn btn-link" id="cancelComplaintForm">Cancel</button>
 	{{ Form::close() }}
 </div>
-	
+
 @if ($patient->complaints->isEmpty())
 	<p>There are no complaints! :(</p>
 @else
-	<table class="table table-striped" id="complaintsTbl">
+	<table class="table table-striped">
 		<tbody>
 			@foreach($patient->complaints as $complaint)
+			
 				<tr>
-					<td>{{ $complaint->description }}</td>
-                    <td>
-					<div class="complaintDiv">
+				
+					<td>
+					<input class="form-control" name="shownDescription" type="text" value="{{ $complaint->description }}" disabled="true">
+						</td>
+						<td>
 						<div class="complaintsButtonDiv">
 							<a href="{{ route('show.patientNotes', $complaint->id) }}" class="btn btn-success showComplaintBtn">Open</a>
-							<a href="{{ route('edit.complaint', $complaint->id) }}" class="btn btn-info">Edit</a>
+							<button class="btn btn-info editComplaintBtn">Edit</button>
 							<button class="btn btn-danger deleteComplaintBtn" >Delete</button>
+						</div>
+						<div  class="createForm complaintsEditButtonDiv">
+						{{ Form::open(['route' => ['edit.complaint', $complaint->id], 'method' => 'POST', 'class' => 'editComplaintForm']) }}
+						{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
+						<button class="btn btn-link cancelEditComplaintBtn">Cancel</button>
+						{{ Form::close() }}
 						</div>
 						<div class="hidePanel complaintsDeleteButtonDiv">
 							<strong>Are you sure?</strong>
-							{{ Form::open(['route' => ['delete.complaint', $complaint->id], 'method' => 'DELETE', 'class' => 'deleteComplaintFrom']) }}
+							{{ Form::open(['route' => ['delete.complaint', $complaint->id], 'method' => 'DELETE', 'class' => 'deleteComplaintForm']) }}
 							{{ Form::submit('Yes', ['class' => 'btn btn-danger']) }}
-							<button  class="btn btn-link cancelDeleteNoteBtn">No</button>
+							<button  class="btn btn-link cancelDeleteComplaintBtn">No</button>
 							{{ Form::close() }}
 						</div>
-					</div>
-						
 					</td>
+					
                 </tr>
+			
             @endforeach
         </tbody>
 	</table>

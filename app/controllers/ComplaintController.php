@@ -48,27 +48,27 @@ class ComplaintController extends \BaseController {
 	
 	}
 
-	
-	 public function showEdit($complaintID)
-    {
-		$complaint = $this->complaint->ofUser(Auth::id())->findOrFail($complaintID);
-				
-	    return View::make('complaint.editComplaintForm', ['patient' => $complaint->patient, 'complaint' => $complaint]);
-    }
-	
+		
 	public function handleEdit($complaintID)
 	{		
 		$complaint = $this->complaint->ofUser(Auth::id())->findOrFail($complaintID);
 		
 		if( ! $complaint->isValid(['description'=>Input::get('description')]))
 				{
-					return Redirect::back()->withInput()->withErrors($complaint->errors);
+				if(Request::ajax())
+					{
+						return Response::json(array('errors' => $complaint->errors));
+					}
+					else
+					{
+						return Redirect::back()->withInput()->withErrors($complaint->errors);
+					}
 				}
 		
 		$complaint->description = Input::get('description'); 
 		$complaint->save();
-	
-    	return Redirect::route('treat.patient', ['patient' => $complaint->patient->id]);		
+		
+		return Redirect::route('show.complaints', ['patient' => $complaint->patient->id]);	
 		
 	}
 	
