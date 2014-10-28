@@ -288,6 +288,54 @@ $(document).ready(function() {
 			}
 		});	
 	});
+	
+	
+	$(document).on('click', '.editNoteBtn', function(event) {
+		event.preventDefault();
+	
+		var noteButtonDiv = $(this).parent('.notesButtonDiv');
+		var noteEditDiv = $(noteButtonDiv).next('.notesEditButtonDiv');
+		
+		var input = $(noteEditDiv).parent().prev();
+	
+		noteButtonDiv.slideUp(400);
+		noteEditDiv.slideDown(400);
+		input.prop({disabled :false});
+	});
+	
+	$(document).on('click', '.cancelEditNoteBtn', function(event) {
+		event.preventDefault();
+		
+		var noteEditDiv = $(this).parents('.notesEditButtonDiv');
+		var noteButtonDiv = $(noteEditDiv).prev();
+		
+		var input = $(noteEditDiv).parent().prev();
+	
+		noteEditDiv.slideUp(400);
+		noteButtonDiv.slideDown(400);
+		input.prop({disabled :true});
+	});
+	
+	$(document).on('submit', ".editNoteForm", function(event) {
+		// Stop form from submitting normally
+		event.preventDefault();
+		// Get some values from elements on the page:
+	
+		var $form = $(this),
+			term = $(this).parents('.noteDiv').prev().val(),
+			url = $form.attr("action");
+		// Send the data using post
+		var posting = $.post(url, {
+			note: term
+		}).done(function(response) {
+			if (response.errors) {
+				$("#noteCreateErrors").slideDown(200);
+			} else {
+				$("#notesTbl").empty().append(response);
+			}
+		});
+	});
+	
 });
 
 </script>

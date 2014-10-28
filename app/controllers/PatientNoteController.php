@@ -47,14 +47,7 @@ class PatientNoteController extends \BaseController {
     	return Redirect::route('show.patientNotes', ['complaint' => $complaintID]);		
 		
 	}
-	
-	 public function showEdit($patientNoteID)
-    {
-        // Show delete confirmation page.
-		$patientNote = $this->patientNote->ofUser(Auth::id())->findOrFail($patientNoteID);
-			
-        return View::make('note.editPatientNoteForm', ['patient' => $patientNote->complaint->patient, 'complaint' => $patientNote->complaint, 'patientNote' => $patientNote]);
-    }
+
 	
 	public function handleEdit($patientNoteID)
 	{		
@@ -62,14 +55,20 @@ class PatientNoteController extends \BaseController {
 		
 		if( ! $patientNote->isValid(['note'=>Input::get('note')]))
 				{
-					return Redirect::back()->withInput()->withErrors($patientNote->errors);
+				if(Request::ajax())
+					{
+						return Response::json(array('errors' => $patientNote->errors));
+					}
+					else
+					{
+						return Redirect::back()->withInput()->withErrors($patientNote->errors);
+					}
 				}
 		
 		$patientNote->note = Input::get('note'); 
 		$patientNote->save();
 	
     	return Redirect::route('show.patientNotes', ['complaint' => $patientNote->complaint->id]);		
-		
 	}
 	
 	

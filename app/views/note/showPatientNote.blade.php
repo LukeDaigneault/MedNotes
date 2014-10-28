@@ -1,7 +1,6 @@
 <h4>{{ $complaint->description }}	<button class="btn btn-info" id="newNoteBtn">Add Note</button></h4>
-
+<div class="row alert alert-warning hidePanel" id="noteCreateErrors"><strong>This field can not be blank</strong></div>
 <div id="createNoteDiv" class="createForm">
-	<div class="row alert alert-warning hidePanel" id="noteCreateErrors"><strong>This field can not be blank</strong></div>
 		{{ Form::open(['route' => ['create.patientNote', $complaint->id], 'method' => 'POST', 'id' =>'createNoteForm']) }}
 			<div class="form-group">
 				{{ Form::textarea('note', 'S:
@@ -25,11 +24,17 @@ P:', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
 @else
 	
 	@foreach($complaint->patientNotes as $patientNote)
-		<pre class = "pre-scrollable">{{ $patientNote->note }}</pre>
+		<textarea class = "form-control" disabled = "true" cols = "50" rows = "10">{{ $patientNote->note }}</textarea>
 		<div class="noteDiv">
 			<div class="notesButtonDiv">
-			<a href="{{ route('edit.patientNote', $patientNote->id) }}" class="btn btn-info">Edit</a>
+			<button class="btn btn-info editNoteBtn">Edit</button>
 			<button class="btn btn-danger deleteNoteBtn" >Delete</button>
+			</div>
+			<div  class="createForm notesEditButtonDiv">
+						{{ Form::open(['route' => ['edit.patientNote', $patientNote->id], 'method' => 'POST', 'class' => 'editNoteForm']) }}
+						{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
+						<button class="btn btn-link cancelEditNoteBtn">Cancel</button>
+						{{ Form::close() }}
 			</div>
 			<div class="hidePanel notesDeleteButtonDiv">
 				<strong>Are you sure?</strong>
