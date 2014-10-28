@@ -16,11 +16,11 @@
 	<div class="col-md-3">
 	<address>
 		<strong>Referred By :</strong><br/>
-	  @if (isset($patient->doctor))
+	@if (is_object($patient->doctor) )
 		  {{ $patient->doctor->name }}<br/>
 		  {{ $patient->doctor->address }}<br/>
 		  <span class="glyphicon glyphicon-earphone"></span> {{ $patient->doctor->phoneNumber }}<br/>
-	  @endif
+	 @endif
 	</address>
 	</div>
 	<div class="col-md-6">
