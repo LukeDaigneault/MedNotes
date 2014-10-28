@@ -32,14 +32,14 @@
 						<div  class="createForm complaintsEditButtonDiv">
 						{{ Form::open(['route' => ['edit.complaint', $complaint->id], 'method' => 'POST', 'class' => 'editComplaintForm']) }}
 						{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
-						<button class="btn btn-link cancelEditNoteBtn">Cancel</button>
+						<button class="btn btn-link cancelEditComplaintBtn">Cancel</button>
 						{{ Form::close() }}
 						</div>
 						<div class="hidePanel complaintsDeleteButtonDiv">
 							<strong>Are you sure?</strong>
 							{{ Form::open(['route' => ['delete.complaint', $complaint->id], 'method' => 'DELETE', 'class' => 'deleteComplaintForm']) }}
 							{{ Form::submit('Yes', ['class' => 'btn btn-danger']) }}
-							<button  class="btn btn-link cancelDeleteNoteBtn">No</button>
+							<button  class="btn btn-link cancelDeleteComplaintBtn">No</button>
 							{{ Form::close() }}
 						</div>
 					</td>
