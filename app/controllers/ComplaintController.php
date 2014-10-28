@@ -16,7 +16,7 @@ class ComplaintController extends \BaseController {
 	 
 	  public function show($patientID)
     {
-		$patient = new patient;
+		$patient = new Patient;
 		$patient = $patient->ofUser(Auth::id())->findOrFail($patientID);
 		
 		return View::make('complaint.showComplaintForm', ['patient' => $patient]);
