@@ -103,9 +103,10 @@ class UserController extends \BaseController {
 			]);
 		}
 
-		Auth::login($user);
+		 Auth::login($user);
 		
-		Redirect::to('index');
+		
+		return Redirect::route('index');
 					
 	}
 
