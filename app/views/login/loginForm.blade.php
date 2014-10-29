@@ -22,8 +22,9 @@
 		{{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email address', 'required', 'autofocus']) }}
 		{{ Form::password('password', ['class' => 'form-control', 'placeholder'=>'Password', 'required']) }}
         {{ Form::submit('Sign in', ['class' => 'btn btn-lg btn-primary btn-block']) }}
+		<a href = '/' class="btn btn-lg btn-primary btn-block">Create Account</a>
       {{ Form::close() }}
-
+		
     </div> <!-- /container -->
 
   </body>

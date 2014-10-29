@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link rel="icon" href="{{ asset('favicon.ico') }}">
 
-    <title>MedNotes App</title>
+    <title>MedNotes</title>
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -22,7 +22,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="{{ route('index') }}">Med Notes</a>				
+					<a class="navbar-brand" href="{{ route('index') }}">MedNotes</a>				
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
