@@ -15,6 +15,7 @@ Route::get('login', ['as' => 'login', 'uses' => 'LoginController@showLogin']);
 Route::post('authenticate', ['as' => 'authenticate', 'uses' => 'LoginController@authenticateUser']);
 Route::get('logout', ['as' => 'logout', 'uses' => 'LoginController@logoutUser']);
 
+Route::get('mailTest', ['as' => 'mailTest', 'uses' => 'EmailController@SendTest']);
 
 // Bind route parameters.
 Route::group(array('before' => 'auth'), function () {
