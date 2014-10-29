@@ -11,9 +11,12 @@
 |
 */
 
-Route::get('login', ['as' => 'login', 'uses' => 'LoginController@showLogin']);
-Route::post('authenticate', ['as' => 'authenticate', 'uses' => 'LoginController@authenticateUser']);
-Route::get('logout', ['as' => 'logout', 'uses' => 'LoginController@logoutUser']);
+Route::get('login', ['as' => 'login', 'uses' => 'UserController@showLogin']);
+Route::get('register', ['as' => 'register', 'uses' => 'UserController@showRegistration']);
+Route::post('register', ['as' => 'create.user', 'uses' => 'UserController@handleRegistration']);
+Route::get('register/verify/{confirmationCode}', ['as' => 'register.verify', 'uses' => 'UserController@verifyEmail']);
+Route::post('authenticate', ['as' => 'authenticate', 'uses' => 'UserController@authenticateUser']);
+Route::get('logout', ['as' => 'logout', 'uses' => 'UserController@logoutUser']);
 
 Route::get('mailTest', ['as' => 'mailTest', 'uses' => 'EmailController@SendTest']);
 

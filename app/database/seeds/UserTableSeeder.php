@@ -10,13 +10,15 @@ class UserTableSeeder extends Seeder {
 		User::create(array(
 				'username' => 'bob',
 				'email' => 'bob@builder.com',
-				'password' => Hash::make('password')
+				'password' => Hash::make('password'),
+				'confirmed' => '1'
 			));
 			
 		User::create(array(
 				'username' => 'bill',
 				'email' => 'bill@builder.com',
 				'password' => Hash::make('password')
+				'confirmed' => '1'
 			));
 	}
 }
