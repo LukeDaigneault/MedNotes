@@ -17,9 +17,15 @@
   <body>
 
     <div class="container">
+
       {{ Form::open(['route' => 'authenticate', 'method' => 'POST', 'class' => 'form-signin']) }}
       <h2 class="form-signin-heading">MedNote</h2>
-	  @if (!($errors->isEmpty()))
+		@if (isset($message))
+			<div class="row alert alert-success">
+				<h4>{{ $message }}</h4>
+			</div>
+		@endif
+		 @if (!($errors->isEmpty()))
 			<div class="row alert alert-warning">
 				@foreach($errors->all() as $error)
 					<h4>{{ $error }}</h4>

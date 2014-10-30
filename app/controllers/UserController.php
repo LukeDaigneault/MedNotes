@@ -45,11 +45,11 @@ class UserController extends \BaseController {
 		$data = [
             'confirmation_code'=>$confirmation_code
         ];
-        Mail::send('emails.verify', $data, function($message) {
+        Mail::queue('emails.verify', $data, function($message) {
             $message->to(Input::get('email'))->subject('MedNotes Account Activation');
         });
 
-		return Redirect::to('login');
+		return View::make('user.loginForm')->with('message', 'Now Check Your Emails To Verify Your Account!');
 	}
 	
 	public function verifyEmail($confirmationCode)
@@ -70,9 +70,7 @@ class UserController extends \BaseController {
         $user->confirmation_code = null;
         $user->save();
 
-        return Redirect::route('login');
-    
-		
+		return View::make('user.loginForm')->with('message', 'Verification Successful!');
 	}
 	
 
