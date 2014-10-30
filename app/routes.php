@@ -33,7 +33,6 @@ Route::group(array('before' => 'auth'), function () {
 	//Search for patient
 	Route::post('searchPatient', ['as' => 'search.patient', 'uses' => 'PatientController@showSearchResults']);
 	// Routes to delete patients
-	Route::get('deletePatient/{patient}', ['as' => 'delete.patient', 'uses' => 'PatientController@showDelete']);
 	Route::delete('deletePatient/{patient}', ['as' => 'delete.patient', 'uses' => 'PatientController@handleDelete']);
 	// Routes to treat patients
 	Route::get('treatPatient/{patient}', ['as' => 'treat.patient', 'uses' => 'PatientController@showTreat']);

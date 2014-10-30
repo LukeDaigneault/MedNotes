@@ -98,21 +98,22 @@ class PatientController extends \BaseController {
 		
 	}
 	
-	public function showDelete($patientID)
-    {
-        // Show delete confirmation page.
-		$patient = $this->patient->ofUser(Auth::id())->findOrFail($patientID);
-	
-        return View::make('patient.deletePatientForm', compact('patient'));
-    }
-	
 	public function handleDelete($patientID)
 	{
 		$patient = $this->patient->ofUser(Auth::id())->findOrFail($patientID);
-		$patient->history()->delete();
+		if(is_object($patient->history) )$patient->history->delete();
 		$patient->delete();
+		if(Request::ajax())
+					{
+						return Response::json(array('success' => true));
+					}
+					else
+					{
+						return Redirect::to('index');
+					}
+				
 
-		return Redirect::to('index');	
+			
 	}
 	
 	public function showEdit($patientID)
