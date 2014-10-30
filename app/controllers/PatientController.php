@@ -181,9 +181,7 @@ class PatientController extends \BaseController {
     {
         // Show delete confirmation page.
 		$patient = $this->patient->ofUser(Auth::id())->findOrFail($patientID);
-		
-		if ($patient->history == null) return View::make('history.createHistoryForm', compact('patient'));
-	
+			
         return View::make('patient.treatPatientForm', compact('patient'));
     }
 

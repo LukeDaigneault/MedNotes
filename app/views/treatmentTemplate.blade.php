@@ -24,6 +24,7 @@
 	</address>
 	</div>
 	<div class="col-md-6">
+	@if (is_object($patient->history) )
 	<strong>Past Medical History :</strong> {{ $patient->history->details }}<br/>
 	<strong>Social History:</strong> {{ $patient->history->social }}<br/>
 	<strong>Drug History :</strong> {{ $patient->history->drug }}<br/>
@@ -51,7 +52,12 @@
 				{{ ($patient->history->arthritis) ? '<li>Arthritis</li>' : null  }}
 			</ul>
 		</div>
-		
+	@else
+	<strong>Past Medical History :</strong> <br/>
+	<strong>Social History:</strong> <br/>
+	<strong>Drug History :</strong> <br/>
+	<strong>Pathologies :</strong><br/>
+	@endif	
 	</div>
 </div>
 <div class="row">
@@ -66,7 +72,11 @@
 	@endif
 	</div>
 	<div class="col-md-6">
-	<a href="{{ route('edit.history', $patient->id) }}" class="btn btn-info pull-right">Edit History</a>
+	@if (!(isset($patient->history)))
+		<a href="{{ route('new.history', $patient->id) }}" class="btn btn-info pull-right">Add History</a>
+	@else
+		<a href="{{ route('edit.history', $patient->id) }}" class="btn btn-info pull-right">Edit History</a>
+	@endif
 	</div>
 </div>
 <h3 class="sub-header">Complaints</h3>
