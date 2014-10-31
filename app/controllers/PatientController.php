@@ -27,7 +27,7 @@ class PatientController extends \BaseController {
      orWhere('lastName', 'LIKE', '%'.Input::get('search').'%')->
      orderBy('lastName', 'asc')->
      orderBy('firstName', 'asc')->get();
-    return View::make('patient.patientSearchResults', compact('patients'));
+    return View::make('patient.patientIndex', compact('patients'));
 
     }
 
