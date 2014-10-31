@@ -18,7 +18,7 @@
 		<tbody>
 			@foreach($patient->complaints as $complaint)
 			
-				<tr>
+				<tr id='complaint{{ $complaint->id }}'>
 				
 					<td class="col-md-6">
 					<input class="form-control" name="shownDescription" type="text" value="{{ $complaint->description }}" disabled="true">
@@ -38,6 +38,7 @@
 						<div class="hidePanel complaintsDeleteButtonDiv">
 							<strong>Are you sure?</strong>
 							{{ Form::open(['route' => ['delete.complaint', $complaint->id], 'method' => 'DELETE', 'class' => 'deleteComplaintForm']) }}
+							{{ Form::hidden('id', $complaint->id) }}
 							{{ Form::submit('Yes', ['class' => 'btn btn-danger']) }}
 							<button  class="btn btn-link cancelDeleteComplaintBtn">No</button>
 							{{ Form::close() }}

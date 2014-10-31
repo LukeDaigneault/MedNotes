@@ -154,7 +154,8 @@ $(document).ready(function() {
 		event.preventDefault();
 		// Get some values from elements on the page:
 		var $form = $(this),
-		token = $form.data('_token'),
+		id = $form.find( "input[name='id']" ).val(),
+		token = $form.find( "input[name='_token']" ).val(),
 		url = $form.attr("action");
 		// Send the data using post
 		
@@ -163,8 +164,9 @@ $(document).ready(function() {
     		type: 'post',
         data: {_method: 'delete', _token :token},
     	success:function(response){
-				$("#notesTbl").empty();	
-				$("#complaintsTbl").empty().append(response);
+				$("#notesTbl").empty();
+				
+				$("#complaint" + id).remove();				
 			}
 		});	
 	});
@@ -284,7 +286,8 @@ $(document).ready(function() {
 		event.preventDefault();
 		// Get some values from elements on the page:
 		var $form = $(this),
-		token = $form.data('_token'),
+		id = $form.find( "input[name='id']" ).val(),
+		token = $form.find( "input[name='_token']" ).val(),
 		url = $form.attr("action");
 		// Send the data using post
 		
@@ -294,7 +297,7 @@ $(document).ready(function() {
         data: {_method: 'delete', _token :token},
     	success:function(response){
 					
-				$("#notesTbl").empty().append(response);
+				$("#patientNote" + id).remove();
 			}
 		});	
 	});

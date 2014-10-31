@@ -77,8 +77,15 @@ class ComplaintController extends \BaseController {
 	{
 		$complaint = $this->complaint->ofUser(Auth::id())->findOrFail($complaintID);
 		$complaint->delete();
-
-		return Redirect::route('show.complaints', ['patient' => $complaint->patient->id]);		
+		if(Request::ajax())
+					{
+						return Response::json(array('success' => true));
+					}
+					else
+					{
+						return Redirect::route('show.complaints', ['patient' => $complaint->patient->id]);
+					}
+				
 	}
 	
 		

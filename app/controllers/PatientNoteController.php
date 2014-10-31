@@ -76,8 +76,16 @@ class PatientNoteController extends \BaseController {
 	{
 		$patientNote = $this->patientNote->ofUser(Auth::id())->findOrFail($patientNoteID);
 		$patientNote->delete();
+		if(Request::ajax())
+					{
+						return Response::json(array('success' => true));
+					}
+					else
+					{
+						return Redirect::route('show.patientNotes', ['complaint' => $patientNote->complaint->id]);	
+					}
 		
-		return Redirect::route('show.patientNotes', ['complaint' => $patientNote->complaint->id]);	
+		
 	}
 	
 }
