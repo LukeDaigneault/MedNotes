@@ -52,7 +52,7 @@
 
 @stop
 
-@section ('scripts')
+@section ('patientScripts')
 <script> 
 $(document).ready(function() {
 
