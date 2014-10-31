@@ -16,7 +16,7 @@
                     <th>DOB</th>
 					<th>Address</th>
 					<th>Email</th>
-					<th>Actions</th>
+					<th class="col-md-2">Actions</th>
                 </tr>
             </thead>
             <tbody>
