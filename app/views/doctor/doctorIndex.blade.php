@@ -2,6 +2,14 @@
 
 @section('content')
 
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="createDoctorModal">
+            
+   	 </div>
+  </div>
+</div>
+
  <h2 class="sub-header">Doctor Index</h2>
 	<div class="row">
     @if ($doctors->isEmpty())
@@ -26,7 +34,7 @@
 					<td>{{ $doctor->address }}</td>
                     <td>
 					<div class="doctorButtonDiv">
-						<a href="{{ route('edit.doctor', $doctor->id) }}" class="btn btn-info">Edit</a>
+						<a href="{{ route('edit.doctor', $doctor->id) }}" class="btn btn-info editDoctorButton">Edit</a>
 						<button class="btn btn-danger deleteDoctorBtn">Delete</button>
 					</div>
 					<div class="doctorDeleteButtonDiv hidePanel">
@@ -43,14 +51,24 @@
             </tbody>
 		</table>
 		@endif
-		
-		<a href="{{ route('create.doctor') }}" class="btn btn-primary btn-lg">Create New Doctor</a>
+		<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#basicModal" id="createDoctorButton">Create New Doctor</a>
 	</div>
 @stop
 
 @section ('scripts')
 <script> 
 $(document).ready(function() {
+	
+	$(document).on('click', "#createDoctorButton", function(event) {
+		$( "#createDoctorModal" ).load( "{{ route('create.doctor') }}" );
+		
+	});
+	
+	$(document).on('click', ".editDoctorButton", function(event) {
+		event.preventDefault();
+		$( "#createDoctorModal" ).load( $(this).attr('href'));
+		$('#basicModal').modal('toggle')
+	});
 
 	$(document).on('click', ".deleteDoctorBtn", function(event) {
 		event.preventDefault();
