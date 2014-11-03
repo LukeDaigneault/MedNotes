@@ -81,10 +81,10 @@
 </div>
 <h3 class="sub-header">Complaints</h3>
 <div class="row">
-	<div class="col-md-4" id="complaintsTbl">
+	<div class="col-md-5" id="complaintsTbl">
 		
 	</div>
-	<div class="col-md-8" id="notesTbl">
+	<div class="col-md-7" id="notesTbl">
 	
 	</div>
 </div>
