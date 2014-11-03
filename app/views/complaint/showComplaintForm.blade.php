@@ -51,7 +51,7 @@
         </tbody>
 	</table>
 @endif
-<button class="btn btn-info" id="newComplaintBtn">Create New Complaint</button>
+<button class="btn btn-primary" id="newComplaintBtn">Create New Complaint</button>
 <script>
 
 </script>

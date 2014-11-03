@@ -1,4 +1,4 @@
-<h4>{{ $complaint->description }}	<button class="btn btn-info" id="newNoteBtn">Add Note</button></h4>
+<h4>{{ $complaint->description }}	<button class="btn  btn-primary" id="newNoteBtn">Add Note</button></h4>
 <div class="row alert alert-warning hidePanel" id="noteCreateErrors"><strong>This field can not be blank</strong></div>
 <div id="createNoteDiv" class="createForm">
 		{{ Form::open(['route' => ['create.patientNote', $complaint->id], 'method' => 'POST', 'id' =>'createNoteForm']) }}
