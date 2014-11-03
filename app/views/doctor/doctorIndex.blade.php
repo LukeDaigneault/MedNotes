@@ -1,4 +1,4 @@
-@extends('doctor.doctorTemplate')
+@extends('layout')
 
 @section('content')
 
@@ -48,7 +48,7 @@
 	</div>
 @stop
 
-@section ('doctorScripts')
+@section ('scripts')
 <script> 
 $(document).ready(function() {
 

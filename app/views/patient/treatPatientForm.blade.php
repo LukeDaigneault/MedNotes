@@ -1,4 +1,4 @@
-@extends('patient.patientTemplate')
+@extends('layout')
 
 @section('content')
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -109,7 +109,7 @@
 
 @stop
 
-@section ('patientScripts')
+@section ('scripts')
 <script> 
 $(document).ready(function() {
 

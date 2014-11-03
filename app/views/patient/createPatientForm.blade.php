@@ -1,4 +1,4 @@
-@extends('patient.patientTemplate')
+@extends('layout')
 
 @section('head')
 <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
@@ -77,7 +77,7 @@
 
 @stop
 
-@section('patientScripts')
+@section('scripts')
 
 <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
 <script>
