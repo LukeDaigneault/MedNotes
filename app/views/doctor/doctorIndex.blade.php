@@ -71,16 +71,10 @@ $(document).ready(function() {
 		event.preventDefault();
 		// Get some values from elements on the page:
 		var $form = $(this),
-			name = $form.find("input[name='name']").val(),
-			phoneNumber = $form.find("input[name='phoneNumber']").val(),
-			address = $form.find("input[name='address']").val(),
+			data = $(this).serialize(),
 			url = $form.attr("action");
 		// Send the data using post
-		var posting = $.post(url, {
-			name: name,
-			phoneNumber: phoneNumber,
-			address: address
-		}).done(function(response) {
+		var posting = $.post(url, data).done(function(response) {
 			if (response.errors) {
 				$.each(response.errors, function (key, value) {
                  $("#doctorCreateErrors").empty().append("<h4>"+value+"</h4>");

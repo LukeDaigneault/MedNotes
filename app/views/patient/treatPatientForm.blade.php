@@ -1,6 +1,15 @@
 @extends('layout')
 
 @section('content')
+<div class="modal fade" id="treatModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="treatPatientModalForm">
+            
+   	 </div>
+  </div>
+</div>
+
+
 <h2 class="sub-header">Treat {{ $patient->lastName }}, {{$patient->firstName }} <small>{{ date("d/m/Y", strtotime($patient->dob)) }}</small></h2>
 <div class="row">
 	<div class="col-md-3">
@@ -72,9 +81,13 @@
 	</div>
 	<div class="col-md-6">
 	@if (!(isset($patient->history)))
-		<a href="{{ route('new.history', $patient->id) }}" class="btn btn-info pull-right">Add History</a>
+		{{ Form::open(['route' => ['new.history', $patient->id], 'method' => 'GET', 'id' => 'addHistoryButton']) }}
+		{{ Form::submit('Add History', ['class' => 'btn btn-info pull-right']) }}
+		{{ Form::close() }}
 	@else
-		<a href="{{ route('edit.history', $patient->id) }}" class="btn btn-info pull-right">Edit History</a>
+		{{ Form::open(['route' => ['edit.history', $patient->id], 'method' => 'GET', 'id' => 'editHistoryButton']) }}
+		{{ Form::submit('Edit History', ['class' => 'btn btn-info pull-right']) }}
+		{{ Form::close() }}
 	@endif
 	</div>
 </div>
@@ -98,6 +111,58 @@ $(document).ready(function() {
 			$("#complaintsTbl").html(data);
 		});
 		
+	$(document).on('submit', "#addHistoryButton", function(event) {
+		event.preventDefault();
+		$( "#treatPatientModalForm" ).load( $(this).attr("action"));
+		$('#treatModal').modal('toggle')
+	});	
+	
+	$(document).on('submit', "#createHistoryForm", function(event) {
+		// Stop form from submitting normally
+		event.preventDefault();
+		// Get some values from elements on the page:
+		var $form = $(this),
+			data = $(this).serialize(),
+			url = $form.attr("action");
+		// Send the data using post
+		var posting = $.post(url, data).done(function(response) {
+			if (response.errors) {
+				$.each(response.errors, function (key, value) {
+                 $("#historyCreateErrors").empty().append("<h4>"+value+"</h4>");
+				});
+				$("#historyCreateErrors").slideDown(400);
+			} else {
+				location.reload(true);
+			}
+		});
+	});
+	
+	$(document).on('submit', "#editHistoryButton", function(event) {
+		event.preventDefault();
+		$( "#treatPatientModalForm" ).load( $(this).attr("action"));
+		$('#treatModal').modal('toggle')
+	});	
+	
+	$(document).on('submit', "#editHistoryForm", function(event) {
+		// Stop form from submitting normally
+		event.preventDefault();
+		// Get some values from elements on the page:
+		var $form = $(this),
+			data = $(this).serialize(),
+			url = $form.attr("action");
+		// Send the data using post
+		var posting = $.post(url, data).done(function(response) {
+			if (response.errors) {
+				$.each(response.errors, function (key, value) {
+                 $("#historyEditErrors").empty().append("<h4>"+value+"</h4>");
+				});
+				$("#historyEditErrors").slideDown(400);
+			} else {
+				location.reload(true);
+			}
+		});
+	});
+	
 		// Complaint scripts
 	$(document).on('click', "#newComplaintBtn", function(event) {
 		event.preventDefault();

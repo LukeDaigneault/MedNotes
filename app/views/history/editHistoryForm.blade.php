@@ -1,53 +1,41 @@
-@extends('history.historyTemplate')
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h4 class="modal-title" id="myModalLabel">Edit History {{ $patient->lastName }}, {{$patient->firstName }}</h4>
+</div>
+{{ Form::open(['route' => ['edit.history', $patient->id], 'method' => 'POST','id'=>'editHistoryForm']) }}
+<div class="modal-body">
+	<div class="row alert alert-warning hidePanel" id="historyEditErrors">
 
-@section('head')
-<link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
-
-@stop
-@section('content')
-
-<h2 class="sub-header">Edit History {{ $patient->lastName }}, {{$patient->firstName }} </h2>
-@if (!is_object($history))
-	<div class="row alert alert-warning">
-			<h4>{{ $patient->lastName }}, {{$patient->firstName }} Does not have a history yet.</h4>
 	</div>
-@else
-
-			<div class="col-md-6">
-			{{ Form::open(['route' => ['edit.history', $patient->id], 'method' => 'POST']) }}
-				<div class="form-group">
-					{{ Form::label('social', 'Social History') }}
-					{{ Form::textarea('social', $history->social, ['class' => 'form-control', 'style' => 'resize:vertical']) }}
-				</div>
-				<div class="form-group">
-					{{ Form::label('drug', 'Drug History') }}
-					{{ Form::textarea('drug', $history->drug, ['class' => 'form-control', 'style' => 'resize:vertical']) }}
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					{{ Form::label('details', 'Past Medical History') }}
-					{{ Form::textarea('details', $history->details, ['class' => 'form-control', 'style' => 'resize:vertical']) }}
-				</div>
-	
-		<div class="row">
+	<div class="form-group">
+		{{ Form::label('social', 'Social History') }}
+		{{ Form::textarea('social', $history->social, ['class' => 'form-control', 'style' => 'resize:vertical']) }}
+	</div>
+	<div class="form-group">
+		{{ Form::label('drug', 'Drug History') }}
+		{{ Form::textarea('drug', $history->drug, ['class' => 'form-control', 'style' => 'resize:vertical']) }}
+	</div>
+	<div class="form-group">
+		{{ Form::label('details', 'Past Medical History') }}
+		{{ Form::textarea('details', $history->details, ['class' => 'form-control', 'style' => 'resize:vertical']) }}
+	</div>
+	<div class="row">
 		{{ Form::label('', 'Pathologies') }}
 		<div class="col-md-12">
-		
 			<div class="col-md-4">
 				<div class="checkbox">
 					<label>
-					{{ Form::checkbox('diplopia', 1, $history->diplopia) }} Diplopia
+						{{ Form::checkbox('diplopia', 1, $history->diplopia) }} Diplopia
 					</label>
  				</div>
 				<div class="checkbox">
 					<label>
-     			 		{{ Form::checkbox('dizziness', 1, $history->dizziness) }} Dizziness
+						{{ Form::checkbox('dizziness', 1, $history->dizziness) }} Dizziness
 					</label>
  				</div>
  				<div class="checkbox">
 					<label>
-     			 		{{ Form::checkbox('speechSwallow', 1, $history->speechSwallow) }} Speech/Swallow
+						{{ Form::checkbox('speechSwallow', 1, $history->speechSwallow) }} Speech/Swallow
 					</label>
  				</div>
 				<div class="checkbox">
@@ -61,9 +49,8 @@
 					</label>
  				</div>
 			</div>
-	
 			<div class="col-md-4">
-			<div class="checkbox">
+				<div class="checkbox">
 					<label>
      			 		{{ Form::checkbox('bilateralNeuroSigns', 1, $history->bilateralNeuroSigns) }} Bilateral Neuro Signs
 					</label>
@@ -83,10 +70,9 @@
      			 		{{ Form::checkbox('cancerHistory', 1, $history->cancerHistory) }} Cancer History
 					</label>
  				</div>
-			</div>
-		
+			</div>	
 			<div class="col-md-4">
-			<div class="checkbox">
+				<div class="checkbox">
 					<label>
      			 		{{ Form::checkbox('weightloss', 1, $history->weightloss) }} Weightloss
 					</label>
@@ -107,66 +93,58 @@
 					</label>
  				</div>
 			</div>
-			</div>
-			</div>
-			
-			<div class="row">
-			<div class="col-md-12">			
+		</div>
+	</div>		
+	<div class="row">
+		<div class="col-md-12">			
 			<div class="col-md-4">
-
 				<div class="checkbox">
 					<label>
-     			 		{{ Form::checkbox('diabetes', 1, $history->diabetes) }} Diabetes
+						{{ Form::checkbox('diabetes', 1, $history->diabetes) }} Diabetes
 					</label>
- 				</div>
+				</div>
 				<div class="checkbox">
 					<label>
-     			 		{{ Form::checkbox('epilepsy', 1, $history->epilepsy) }} Epilepsy
+						{{ Form::checkbox('epilepsy', 1, $history->epilepsy) }} Epilepsy
 					</label>
- 				</div>
- 				<div class="checkbox">
+				</div>
+				<div class="checkbox">
 					<label>
-     			 		{{ Form::checkbox('bloodPressure', 1, $history->bloodPressure) }} Blood pressure
+						{{ Form::checkbox('bloodPressure', 1, $history->bloodPressure) }} Blood pressure
 					</label>
- 				</div>
-
+				</div>
 			</div>
-		
 			<div class="col-md-4">
-		
-			<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('heartConditions', 1, $history->heartConditions) }} Heart Conditions
-					</label>
- 				</div>
 				<div class="checkbox">
 					<label>
-     			 		{{ Form::checkbox('osteoporosis', 1, $history->osteoporosis) }} Osteoporosis
+						{{ Form::checkbox('heartConditions', 1, $history->heartConditions) }} Heart Conditions
 					</label>
- 				</div>
+				</div>
+				<div class="checkbox">
+					<label>
+						{{ Form::checkbox('osteoporosis', 1, $history->osteoporosis) }} Osteoporosis
+					</label>
+				</div>
 			</div>
-			
-		
 			<div class="col-md-4">
-
-			<div class="checkbox">
-					<label>
-     			 		{{ Form::checkbox('thyroid', 1, $history->thyroid) }} Thyroid
-					</label>
- 				</div>
 				<div class="checkbox">
 					<label>
-     			 		{{ Form::checkbox('arthritis', 1, $history->arthritis) }} Arthritis
+						{{ Form::checkbox('thyroid', 1, $history->thyroid) }} Thyroid
 					</label>
- 				</div>
-				{{ Form::submit('Update', ['class' => 'btn btn-primary btn-lg']) }}
-					<a href="{{ route('treat.patient', $patient->id) }}" class="btn btn-link">Cancel</a>
-				{{ Form::close() }}
+				</div>
+				<div class="checkbox">
+					<label>
+						{{ Form::checkbox('arthritis', 1, $history->arthritis) }} Arthritis
+					</label>
+				</div>
 			</div>
-			
-			</div>
-			</div>
-	
-			</div>
-@endif
-@stop
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<div class="form-group">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
+	</div>
+</div>
+{{ Form::close() }}

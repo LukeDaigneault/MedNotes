@@ -62,8 +62,16 @@ class HistoryController extends \BaseController {
 		
   		$patient->save();
 
-
-    	return Redirect::route('treat.patient', ['patient' => $patientID]);		
+		if(Request::ajax())
+				{
+					return Response::json(array('success' => true));
+				}
+			else
+				{
+					return Redirect::route('treat.patient', ['patient' => $patientID]);
+				}	
+		
+    			
 		
 	}
 	
@@ -115,7 +123,14 @@ class HistoryController extends \BaseController {
 		
   		$patient->save();
 
-			return Redirect::route('treat.patient', ['patient' => $patientID]);		
+		if(Request::ajax())
+				{
+					return Response::json(array('success' => true));
+				}
+			else
+				{
+					return Redirect::route('treat.patient', ['patient' => $patientID]);
+				}
 		
 	}
 
