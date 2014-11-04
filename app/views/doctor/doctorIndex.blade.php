@@ -2,9 +2,9 @@
 
 @section('content')
 
-<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+<div class="modal fade" id="doctorModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content" id="createDoctorModal">
+        <div class="modal-content" id="createDoctorModalForm">
             
    	 </div>
   </div>
@@ -34,8 +34,10 @@
 					<td>{{ $doctor->address }}</td>
                     <td>
 					<div class="doctorButtonDiv">
-						<a href="{{ route('edit.doctor', $doctor->id) }}" class="btn btn-info editDoctorButton">Edit</a>
+						{{ Form::open(['route' => ['edit.doctor', $doctor->id], 'method' => 'POST', 'class' => 'editDoctorFrom']) }}
+						{{ Form::submit('Edit', ['class' => 'btn btn-info']) }}
 						<button class="btn btn-danger deleteDoctorBtn">Delete</button>
+						{{ Form::close() }}
 					</div>
 					<div class="doctorDeleteButtonDiv hidePanel">
 						<small>Are you sure?</small>
@@ -51,7 +53,7 @@
             </tbody>
 		</table>
 		@endif
-		<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#basicModal" id="createDoctorButton">Create New Doctor</a>
+		<button class="btn btn-primary" id="createDoctorButton">Create New Doctor</button>
 	</div>
 @stop
 
@@ -60,8 +62,8 @@
 $(document).ready(function() {
 	
 	$(document).on('click', "#createDoctorButton", function(event) {
-		$( "#createDoctorModal" ).load( "{{ route('create.doctor') }}" );
-		
+		$( "#createDoctorModalForm" ).load( "{{ route('create.doctor') }}" );
+		$('#doctorModal').modal('toggle')
 	});
 	
 	$(document).on('submit', "#createDoctorForm", function(event) {
@@ -81,7 +83,7 @@ $(document).ready(function() {
 		}).done(function(response) {
 			if (response.errors) {
 				$.each(response.errors, function (key, value) {
-                 $("#doctorCreateErrors").append("<h4>"+value+"</h4>");
+                 $("#doctorCreateErrors").empty().append("<h4>"+value+"</h4>");
 				});
 				$("#doctorCreateErrors").slideDown(400);
 			} else {
@@ -91,10 +93,10 @@ $(document).ready(function() {
 	});
 	
 	
-	$(document).on('click', ".editDoctorButton", function(event) {
+	$(document).on('submit', ".editDoctorFrom", function(event) {
 		event.preventDefault();
-		$( "#createDoctorModal" ).load( $(this).attr('href'));
-		$('#basicModal').modal('toggle')
+		$( "#createDoctorModalForm" ).load( $(this).attr("action"));
+		$('#doctorModal').modal('toggle')
 	});
 	
 	$(document).on('submit', "#editDoctorForm", function(event) {
@@ -114,7 +116,7 @@ $(document).ready(function() {
 		}).done(function(response) {
 			if (response.errors) {
 				$.each(response.errors, function (key, value) {
-                 $("#doctorEditErrors").append("<h4>"+value+"</h4>");
+                 $("#doctorEditErrors").empty().append("<h4>"+value+"</h4>");
 				});
 				$("#doctorEditErrors").slideDown(400);
 			} else {
@@ -126,7 +128,7 @@ $(document).ready(function() {
 	$(document).on('click', ".deleteDoctorBtn", function(event) {
 		event.preventDefault();
 	
-		var doctorButtonDiv = $(this).parent(".doctorButtonDiv");
+		var doctorButtonDiv = $(this).parents(".doctorButtonDiv");
 		var doctorDeleteButtonDiv = $(doctorButtonDiv).siblings('.doctorDeleteButtonDiv');
 	
 		doctorButtonDiv.slideUp(400);

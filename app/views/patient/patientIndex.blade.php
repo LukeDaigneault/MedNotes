@@ -47,7 +47,7 @@
 		</table>
 		@endif
 		
-		<a href="{{ route('create.patient') }}" class="btn btn-primary btn-lg">Create New Patient</a>
+		<a href="{{ route('create.patient') }}" class="btn btn-primary">Create New Patient</a>
 	</div>
 
 @stop
