@@ -31,13 +31,20 @@ class DoctorController extends \BaseController {
 	 */
 	public function handleCreate()
 	{
+	$doctor = $this->doctor;
 		if( ! $this->doctor->isValid(Input::all()))
-		{
-		return Redirect::back()->withInput()->withErrors($this->doctor->errors);
-		}					
+				{
+				if(Request::ajax())
+					{
+						return Response::json(array('errors' => $doctor->errors));
+					}
+					else
+					{
+						return Redirect::back()->withInput()->withErrors($doctor->errors);
+					}
+
+				}
 		
-		
-		$doctor = new Doctor;
 		$doctor->name = Input::get('name');
 		$doctor->phoneNumber = Input::get('phoneNumber');
 		$doctor->address = Input::get('address');
@@ -45,23 +52,30 @@ class DoctorController extends \BaseController {
 				
 		$doctor->save();
 
-    	return Redirect::to('doctorIndex');		
+    	if(Request::ajax())
+				{
+					return Response::json(array('success' => true));
+				}
+			else
+				{
+					return Redirect::to('doctorIndex');
+				}	
 		
 	}
-	
-	public function showDelete($doctorID)
-    {
-        // Show delete confirmation page.
-		$doctor = $this->doctor->ofUser(Auth::id())->findOrFail($doctorID);
-        return View::make('doctor.deleteDoctorForm', compact('doctor'));
-    }
 	
 	public function handleDelete($doctorID)
 	{
 		$doctor = $this->doctor->ofUser(Auth::id())->findOrFail($doctorID);
 		$doctor->delete();
 
-		return Redirect::to('doctorIndex');	
+		if(Request::ajax())
+				{
+					return Response::json(array('success' => true));
+				}
+			else
+				{
+					return Redirect::to('doctorIndex');
+				}	
 	}
 
 
@@ -81,21 +95,35 @@ class DoctorController extends \BaseController {
 	 */
 	public function handleEdit($doctorID)
 	{
-		if( ! $this->doctor->isValid(Input::all(), $doctorID))
-		{
-		return Redirect::back()->withInput()->withErrors($this->doctor->errors);
-		}					
-		
 		$doctor = $this->doctor->findOrFail($doctorID);
+		
+		if( ! $doctor->isValid(Input::all(), $doctorID))
+		{	
+			if(Request::ajax())
+				{
+					return Response::json(array('errors' => $doctor->errors));
+				}
+			else
+				{
+					return Redirect::back()->withInput()->withErrors($doctor->errors);
+				}
+		}
 		
 		$doctor->name = Input::get('name');
 		$doctor->phoneNumber = Input::get('phoneNumber');
 		$doctor->address = Input::get('address');
 				
 		$doctor->save();
-
-    	return Redirect::to('doctorIndex');		
 		
+		if(Request::ajax())
+				{
+					return Response::json(array('success' => true));
+				}
+			else
+				{
+					return Redirect::to('doctorIndex');
+				}
+   		
 	}
 
 }

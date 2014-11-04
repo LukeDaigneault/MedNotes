@@ -2,15 +2,11 @@
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	<h4 class="modal-title" id="myModalLabel">Create Doctor</h4>
 </div>
-{{ Form::open(['route' => 'create.doctor', 'method' => 'POST']) }}
+{{ Form::open(['route' => 'create.doctor', 'method' => 'POST', 'id'=>'createDoctorForm']) }}
 	<div class="modal-body">
-		@if (!($errors->isEmpty()))
-			<div class="row alert alert-warning">
-				@foreach($errors->all() as $error)
-				<h4>{{ $error }}</h4>
-				@endforeach
+			<div class="row alert alert-warning hidePanel" id="doctorCreateErrors">
+
 			</div>
-		@endif
 		<div class="form-group">
 		
 			{{ Form::label('name', 'Doctors Name') }}

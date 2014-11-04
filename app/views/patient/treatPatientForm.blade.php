@@ -140,7 +140,7 @@ $(document).ready(function() {
 			description: term
 		}).done(function(response) {
 			if (response.errors) {
-				$("#complaintCreateErrors").slideDown(200);
+				$("#complaintCreateErrors").slideDown(400);
 			} else {
 				$("#complaintsTbl").empty().append(response);
 			}

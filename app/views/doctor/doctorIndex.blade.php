@@ -64,10 +64,63 @@ $(document).ready(function() {
 		
 	});
 	
+	$(document).on('submit', "#createDoctorForm", function(event) {
+		// Stop form from submitting normally
+		event.preventDefault();
+		// Get some values from elements on the page:
+		var $form = $(this),
+			name = $form.find("input[name='name']").val(),
+			phoneNumber = $form.find("input[name='phoneNumber']").val(),
+			address = $form.find("input[name='address']").val(),
+			url = $form.attr("action");
+		// Send the data using post
+		var posting = $.post(url, {
+			name: name,
+			phoneNumber: phoneNumber,
+			address: address
+		}).done(function(response) {
+			if (response.errors) {
+				$.each(response.errors, function (key, value) {
+                 $("#doctorCreateErrors").append("<h4>"+value+"</h4>");
+				});
+				$("#doctorCreateErrors").slideDown(400);
+			} else {
+				location.reload(true);
+			}
+		});
+	});
+	
+	
 	$(document).on('click', ".editDoctorButton", function(event) {
 		event.preventDefault();
 		$( "#createDoctorModal" ).load( $(this).attr('href'));
 		$('#basicModal').modal('toggle')
+	});
+	
+	$(document).on('submit', "#editDoctorForm", function(event) {
+		// Stop form from submitting normally
+		event.preventDefault();
+		// Get some values from elements on the page:
+		var $form = $(this),
+			name = $form.find("input[name='name']").val(),
+			phoneNumber = $form.find("input[name='phoneNumber']").val(),
+			address = $form.find("input[name='address']").val(),
+			url = $form.attr("action");
+		// Send the data using post
+		var posting = $.post(url, {
+			name: name,
+			phoneNumber: phoneNumber,
+			address: address
+		}).done(function(response) {
+			if (response.errors) {
+				$.each(response.errors, function (key, value) {
+                 $("#doctorEditErrors").append("<h4>"+value+"</h4>");
+				});
+				$("#doctorEditErrors").slideDown(400);
+			} else {
+				location.reload(true);
+			}
+		});
 	});
 
 	$(document).on('click', ".deleteDoctorBtn", function(event) {
