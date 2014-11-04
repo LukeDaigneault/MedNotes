@@ -74,7 +74,7 @@
 	</div>
 	<div class="col-md-3">
 	@if (!(isset($patient->doctor)))
-		<a href="{{ route('edit.history', $patient->id) }}" class="btn btn-info pull-right">Add Referrer</a>
+		<a href="{{ route('edit.history', $patient->id) }}" class="btn btn-primary pull-right">Add Referrer</a>
 	@else
 		<a href="{{ route('edit.history', $patient->id) }}" class="btn btn-info pull-right">Edit Referrer</a>
 	@endif
@@ -82,7 +82,7 @@
 	<div class="col-md-6">
 	@if (!(isset($patient->history)))
 		{{ Form::open(['route' => ['new.history', $patient->id], 'method' => 'GET', 'id' => 'addHistoryButton']) }}
-		{{ Form::submit('Add History', ['class' => 'btn btn-info pull-right']) }}
+		{{ Form::submit('Add History', ['class' => 'btn btn-primary pull-right']) }}
 		{{ Form::close() }}
 	@else
 		{{ Form::open(['route' => ['edit.history', $patient->id], 'method' => 'GET', 'id' => 'editHistoryButton']) }}
