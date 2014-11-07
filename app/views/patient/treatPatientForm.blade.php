@@ -70,14 +70,18 @@
 </div>
 <div class="row">
 	<div class="col-md-3">
-	<a href="{{ route('edit.history', $patient->id) }}" class="btn btn-info pull-right">Edit Details</a>
+	{{ Form::open(['route' => ['edit.patient', $patient->id], 'method' => 'GET', 'id' => 'editDetailsButton']) }}
+	{{ Form::submit('Edit Details', ['class' => 'btn btn-info pull-right']) }}
+	{{ Form::close() }}
 	</div>
 	<div class="col-md-3">
-	@if (!(isset($patient->doctor)))
-		<a href="{{ route('edit.history', $patient->id) }}" class="btn btn-primary pull-right">Add Referrer</a>
-	@else
-		<a href="{{ route('edit.history', $patient->id) }}" class="btn btn-info pull-right">Edit Referrer</a>
-	@endif
+		{{ Form::open(['route' => ['add.referrer', $patient->id], 'method' => 'GET', 'id' => 'addReferrerButton']) }}
+		@if (!(isset($patient->doctor)))
+		{{ Form::submit('Add Referrer', ['class' => 'btn btn-primary pull-right']) }}
+		@else
+		{{ Form::submit('Edit Referrer', ['class' => 'btn btn-info pull-right']) }}
+		@endif
+		{{ Form::close() }}
 	</div>
 	<div class="col-md-6">
 	@if (!(isset($patient->history)))
@@ -111,6 +115,59 @@ $(document).ready(function() {
 			$("#complaintsTbl").html(data);
 		});
 		
+	$(document).on('submit', "#addReferrerButton", function(event) {
+		event.preventDefault();
+		$( "#treatPatientModalForm" ).load( $(this).attr("action"));
+		$('#treatModal').modal('toggle')
+	});	
+	
+	$(document).on('submit', "#attachReferrerForm", function(event) {
+		// Stop form from submitting normally
+		event.preventDefault();
+		// Get some values from elements on the page:
+		var $form = $(this),
+			data = $(this).serialize(),
+			url = $form.attr("action");
+		// Send the data using post
+		var posting = $.post(url, data).done(function(response) {
+			if (response.errors) {
+				$.each(response.errors, function (key, value) {
+                 $("#patientReferrerErrors").empty().append("<h4>"+value+"</h4>");
+				});
+				$("#patientReferrerErrors").slideDown(400);
+			} else {
+				location.reload(true);
+			}
+		});
+	});
+		
+	$(document).on('submit', "#editDetailsButton", function(event) {
+		event.preventDefault();
+		$( "#treatPatientModalForm" ).load( $(this).attr("action"));
+		$('#treatModal').modal('toggle')
+	});	
+	
+	$(document).on('submit', "#editPatientForm", function(event) {
+		// Stop form from submitting normally
+		event.preventDefault();
+		// Get some values from elements on the page:
+		var $form = $(this),
+			data = $(this).serialize(),
+			url = $form.attr("action");
+		// Send the data using post
+		var posting = $.post(url, data).done(function(response) {
+			if (response.errors) {
+			$("#patientEditErrors").empty();
+				$.each(response.errors, function (key, value) {
+                 $("#patientEditErrors").append("<h4>"+value+"</h4>");
+				});
+				$("#patientEditErrors").slideDown(400);
+			} else {
+				location.reload(true);
+			}
+		});
+	});
+		
 	$(document).on('submit', "#addHistoryButton", function(event) {
 		event.preventDefault();
 		$( "#treatPatientModalForm" ).load( $(this).attr("action"));
@@ -127,8 +184,9 @@ $(document).ready(function() {
 		// Send the data using post
 		var posting = $.post(url, data).done(function(response) {
 			if (response.errors) {
+				$("#historyCreateErrors").empty();
 				$.each(response.errors, function (key, value) {
-                 $("#historyCreateErrors").empty().append("<h4>"+value+"</h4>");
+                 $("#historyCreateErrors").append("<h4>"+value+"</h4>");
 				});
 				$("#historyCreateErrors").slideDown(400);
 			} else {
@@ -153,8 +211,9 @@ $(document).ready(function() {
 		// Send the data using post
 		var posting = $.post(url, data).done(function(response) {
 			if (response.errors) {
+				$("#historyEditErrors").empty();
 				$.each(response.errors, function (key, value) {
-                 $("#historyEditErrors").empty().append("<h4>"+value+"</h4>");
+                 $("#historyEditErrors").append("<h4>"+value+"</h4>");
 				});
 				$("#historyEditErrors").slideDown(400);
 			} else {

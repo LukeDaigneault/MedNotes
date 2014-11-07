@@ -152,6 +152,67 @@ class PatientController extends \BaseController {
 		
 	}
 	
+	public function showAddReferrer($patientID)
+    {
+        $patient = $this->patient->ofUser(Auth::id())->findOrFail($patientID);
+		$doctors = new Doctor;
+		$doctors = $doctors->ofUser(Auth::id())->get();
+		
+        return View::make('patient.attachReferrerForm', ['patient' => $patient, 'doctors' => $doctors]);
+
+    }
+	
+	public function handleAddReferrer($patientID)
+	{
+		$doctor = new Doctor;
+		$patient = $this->patient->ofUser(Auth::id())->findOrFail($patientID);
+		
+		if(Input::has('name'))
+		{
+			
+			if( ! $doctor->isValid(Input::all()))
+				{
+				if(Request::ajax())
+					{
+						return Response::json(array('errors' => $doctor->errors));
+					}
+				else
+					{
+						return Redirect::back()->withInput()->withErrors($doctor->errors);
+					}
+			}
+			
+			$doctor->name = Input::get('name');
+			$doctor->phoneNumber = Input::get('phoneNumber');
+			$doctor->address = Input::get('address');
+			$doctor->user_id = Auth::id();
+			
+			$doctor->save();
+			$patient->doctor()->associate($doctor);
+		}
+		elseif (Input::get('doctorsID') != 0)
+		{
+			$doctor = $doctor->ofUser(Auth::id())->findOrFail(Input::get('doctorsID'));
+			$patient->doctor()->associate($doctor);
+		}
+		else
+		{
+				$patient->doctor_id = null;
+		}
+		
+  		$patient->save();
+
+		if(Request::ajax())
+			{
+				return Response::json(array('success' => true));
+			}
+		else
+			{
+				return Redirect::to('index');		
+			}		
+		
+	}
+	
 	public function showTreat($patientID)
     {
 

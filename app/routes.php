@@ -30,6 +30,9 @@ Route::group(array('before' => 'auth'), function () {
 	// Routes to edit patients
 	Route::get('editPatient/{patient}', ['as' => 'edit.patient', 'uses' => 'PatientController@showEdit']);
 	Route::post('editPatient/{patient}', ['as' => 'edit.patient', 'uses' => 'PatientController@handleEdit']);
+		// Routes to edit referrer
+	Route::get('addReferrer/{patient}', ['as' => 'add.referrer', 'uses' => 'PatientController@showAddReferrer']);
+	Route::post('addReferrer/{patient}', ['as' => 'add.referrer', 'uses' => 'PatientController@handleAddReferrer']);
 	//Search for patient
 	Route::post('searchPatient', ['as' => 'search.patient', 'uses' => 'PatientController@showSearchResults']);
 	// Routes to delete patients
