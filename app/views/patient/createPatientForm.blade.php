@@ -31,9 +31,8 @@
 	</div>
 	<div class="modal-footer">
 		<div class="form-group">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			{{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
-			
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		</div>
 	</div>
 {{ Form::close() }}

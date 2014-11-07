@@ -15,7 +15,7 @@ A:
 P:', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
 			</div>
 			{{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
-		<button class="btn btn-link" class="btn btn-link" id="cancelNoteBtn">Cancel</button>
+		<button class="btn btn-default" id="cancelNoteBtn">Cancel</button>
 		{{ Form::close() }} 
 </div>
 
@@ -42,7 +42,7 @@ P:', ['class' => 'form-control', 'style' => 'resize:vertical']) }}
 					{{ Form::open(['route' => ['delete.patientNote', $patientNote->id], 'method' => 'DELETE', 'class' =>'deleteNoteForm']) }}
 					{{ Form::hidden('id', $patientNote->id) }}
 					{{ Form::submit('Yes', ['class' => 'btn btn-danger']) }}
-					<button class="btn btn-link cancelDeleteNoteBtn" >No</button>
+					<button class="btn btn-default cancelDeleteNoteBtn" >No</button>
 					{{ Form::close() }}
 				</div>
 			</div>

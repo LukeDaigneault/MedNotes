@@ -7,7 +7,7 @@
 		{{ Form::text('description', '', ['class' => 'form-control']) }}
 	</div>
 	{{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
-	<button class="btn btn-link" id="cancelComplaintForm">Cancel</button>
+	<button class="btn btn-default" id="cancelComplaintForm">Cancel</button>
 	{{ Form::close() }}
 </div>
 
@@ -40,7 +40,7 @@
 							{{ Form::open(['route' => ['delete.complaint', $complaint->id], 'method' => 'DELETE', 'class' => 'deleteComplaintForm']) }}
 							{{ Form::hidden('id', $complaint->id) }}
 							{{ Form::submit('Yes', ['class' => 'btn btn-danger']) }}
-							<button  class="btn btn-link cancelDeleteComplaintBtn">No</button>
+							<button  class="btn btn-default cancelDeleteComplaintBtn">No</button>
 							{{ Form::close() }}
 						</div>
 					</td>
