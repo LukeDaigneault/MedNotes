@@ -63,7 +63,7 @@ class UserController extends \BaseController {
 
         if ( ! $user)
         {
-            throw new InvalidConfirmationCodeException;
+          return View::make('user.loginForm')->with('message', 'Verification Failed Invalid Code!');
         }
 
         $user->confirmed = 1;
