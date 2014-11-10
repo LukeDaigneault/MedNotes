@@ -27,20 +27,6 @@
 		$(function() {
 			$( "#datepicker" ).datepicker({ dateFormat: "dd/mm/yy", changeYear: true, changeMonth: true, yearRange: "-100:-0", minDate: "-100Y", maxDate: "+0D" });
 		});
-		
-		// Since confModal is essentially a nested modal it's enforceFocus method
-		// must be no-op'd or the following error results 
-		// "Uncaught RangeError: Maximum call stack size exceeded"
-		// But then when the nested modal is hidden we reset modal.enforceFocus
-		var enforceModalFocusFn = $.fn.modal.Constructor.prototype.enforceFocus;
-
-		$.fn.modal.Constructor.prototype.enforceFocus = function() {};
-
-		$confModal.on('hidden', function() {
-   		 $.fn.modal.Constructor.prototype.enforceFocus = enforceModalFocusFn;
-		});
-
-		$confModal.modal({ backdrop : false });
 		</script>
 	</div>
 	<div class="modal-footer">

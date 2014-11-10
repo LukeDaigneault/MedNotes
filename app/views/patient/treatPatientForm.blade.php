@@ -1,4 +1,8 @@
 @extends('layout')
+@section('head')
+<link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
+
+@stop
 
 @section('content')
 <div class="modal fade" id="treatModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -108,6 +112,7 @@
 @stop
 
 @section ('scripts')
+<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
 <script> 
 $(document).ready(function() {
 
@@ -143,8 +148,8 @@ $(document).ready(function() {
 		
 	$(document).on('submit', "#editDetailsButton", function(event) {
 		event.preventDefault();
-		$( "#treatPatientModalForm" ).load( $(this).attr("action"));
-		$('#treatModal').modal('toggle')
+		$("#treatPatientModalForm").load( $(this).attr("action"));
+		$("#treatModal").modal("toggle");
 	});	
 	
 	$(document).on('submit', "#editPatientForm", function(event) {

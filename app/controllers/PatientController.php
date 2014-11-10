@@ -65,8 +65,7 @@ class PatientController extends \BaseController {
 		$patient->mobilePhone = Input::get('mobilePhone');
 		$patient->address = Input::get('address');
 
-		$dob_orig = strtotime(Input::get('dob'));
-		$dob = date("Y-m-d", $dob_orig );		
+		$dob = DateTime::createFromFormat('d/m/Y', Input::get('dob'));		
 		
 		$patient->dob = $dob;
 		$patient->email = Input::get('email');
@@ -133,8 +132,8 @@ class PatientController extends \BaseController {
 		$patient->mobilePhone = Input::get('mobilePhone');
 		$patient->address = Input::get('address');
 
-		$dob_orig = strtotime(Input::get('dob'));
-		$dob = date("Y-m-d", $dob_orig );		
+	
+		$dob = DateTime::createFromFormat('d/m/Y', Input::get('dob'));		
 		
 		$patient->dob = $dob;
 		$patient->email = Input::get('email');
