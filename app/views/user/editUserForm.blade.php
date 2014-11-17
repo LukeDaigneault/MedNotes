@@ -41,8 +41,8 @@
 
 					<!--- buttons Field --->
 					<div class="form-group">
-						<a href = "{{ route('index') }}" class="btn btn-default">Return To Index</a>
 						{{ Form::submit('Update Details', ['class' => 'btn btn-primary']) }}
+						<a href = "{{ route('index') }}" class="btn btn-default">Return To Index</a>
 					</div>
 		  {{ Form::close() }}
 		</div>
