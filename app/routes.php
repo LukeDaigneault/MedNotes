@@ -80,4 +80,9 @@ Route::group(array('before' => 'auth'), function () {
 	Route::get('editDoctor/{doctor}', ['as' => 'edit.doctor', 'uses' => 'DoctorController@showEdit']);
 	Route::post('editDoctor/{doctor}', ['as' => 'edit.doctor', 'uses' => 'DoctorController@handleEdit']);
 	
+	//User routes
+	// Routes to Edit Doctors
+	Route::get('editUser', ['as' => 'edit.user', 'uses' => 'UserController@showEdit']);
+	Route::post('editUser', ['as' => 'edit.user', 'uses' => 'UserController@handleEdit']);
+	
 });

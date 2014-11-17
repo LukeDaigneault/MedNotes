@@ -108,6 +108,38 @@ class UserController extends \BaseController {
 					
 	}
 
+		public function showEdit()
+	{	
+		$user = $this->user->find(Auth::id());
+		
+		return View::make('user.editUserForm', compact('user'));
+	}
+
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function handleEdit()
+	{
+		$user = $this->user->findOrFail(Auth::id());
+		
+		if( ! $user->isValid(Input::all(), Auth::id()))
+		{	
+			return Redirect::back()->withInput()->withErrors($user->errors);
+		}
+		
+		$user->username = Input::get('username');
+		$user->email = Input::get('email');
+		$user->password = Hash::make(Input::get('password'));
+  		$user->save();
+		
+		return View::make('user.editUserForm', compact('user'));
+		
+   		
+	}
+	
 
 
 	/**
