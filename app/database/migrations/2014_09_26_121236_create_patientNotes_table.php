@@ -9,7 +9,7 @@ class CreatePatientNotesTable extends Migration {
 	{
 		Schema::create('patientnotes', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('note');
+			$table->text('note');
 			$table->integer('complaint_id')->unsigned()->index();
 			$table->foreign('complaint_id')->references('id')->on('complaints')->onDelete('cascade')->onUpdate('cascade');
 			$table->integer('user_id')->unsigned()->index();

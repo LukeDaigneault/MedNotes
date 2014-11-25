@@ -9,9 +9,9 @@ class CreateHistorysTable extends Migration {
 	{
 		Schema::create('historys', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('social')->nullable();
-			$table->string('drug')->nullable();
-			$table->string('details')->nullable();
+			$table->text('social')->nullable();
+			$table->text('drug')->nullable();
+			$table->text('details')->nullable();
 			$table->boolean('diplopia')->default(0);
 			$table->boolean('dizziness')->default(0);
 			$table->boolean('speechSwallow')->default(0);
